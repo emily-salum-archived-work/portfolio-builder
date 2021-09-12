@@ -1,0 +1,22 @@
+{
+  "name": "portfolio_builder",
+  "version": "1.0.0",
+  "description": "Program with the purpose of creating the main page of my portfolio through an ejs file.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emily Salum",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^13.2.2",
+    "electron-builder": "^22.11.7"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.8",
+    "ejs-electron": "^2.1.1",
+    "python-shell": "^3.0.0"
+  }
+}
