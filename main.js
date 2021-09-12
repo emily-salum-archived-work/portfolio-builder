@@ -8,9 +8,6 @@ const path = require('path');
 
 let TESTING = true;
 let SEND_CHANGES = false;
-let GET_DATA = false;
-
-
 
 let win;
 function createWindow () 
