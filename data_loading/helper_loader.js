@@ -2,7 +2,7 @@ var fs = require('fs');
 const pathf = require('path');
 
 function make_project(name) {
-    let image = "res\\crumbt_hunt_start.png";
+    let image = "portfolio_need/res/crumbt_hunt_start.png";
 
     return { 'name': name, 'image': image };
 }
@@ -21,12 +21,12 @@ function save_images(project_lists) {
             filepath = project.image;
             fileName = pathf.basename(filepath);
 
-            fs.copyFile(filepath, './res/' + fileName, (err) => {
+            fs.copyFile(filepath, './portfolio_need/res/' + fileName, (err) => {
                 if (err)
                     throw err;
             });
 
-            project.image = './res/' + fileName;
+            project.image = './portfolio_need/res/' + fileName;
 
 
         }

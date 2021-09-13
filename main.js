@@ -37,6 +37,7 @@ function createWindow ()
     });
 
     win.loadURL(__dirname + "/builder_pages/choose_configurations/main.html");
+  //  win.loadURL(__dirname + "/index.html");
     
    
   }
@@ -44,17 +45,18 @@ function createWindow ()
 
   function inicialize_program(project_lists)
   {
-  
-      data = {'project_lists' : project_lists}
+    console.log(__dirname);
+      data = {'project_lists' : project_lists, 'root': __dirname}
   
       ejse.data('data', data)
   
-  
-      var template = fs.readFileSync('./portfolio.ejs', 'utf-8');
+      var portfolio_path = '/portfolio.ejs';
+
+      var template = fs.readFileSync('.'+portfolio_path, 'utf-8');
       var html = ejs.render ( template , data );
       
   
-      win.loadURL('file://' + __dirname + '/portfolio.ejs');
+      win.loadURL('file://' + __dirname + portfolio_path);
       
       send_changes(html);
   }
@@ -65,20 +67,22 @@ function createWindow ()
 function send_changes(html) 
 {
     let {PythonShell} = require('python-shell');
-
+    fs.writeFileSync("./index.html", html, 'utf8');
     if(TESTING && !SEND_CHANGES)
     {
         return;
     }
-    fs.writeFileSync("./index.html", html, 'utf8');
+   
     let options = {
-        pythonPath: "C:\\Users\\user\\PycharmProjects\\untitled\\venv\\Scripts\\python.exe",
+        pythonPath: "C:/Users/user/PycharmProjects/untitled/venv/Scripts/python.exe",
         args: ["portfolio",
-            '{"paths" : ["C:/Users/user/portfolio_builder/index.html", "C:/Users/user/portfolio_builder/styles.css", "C:/Users/user/portfolio_builder/res"]}',
+            '{"paths" : ["C:/Users/user/portfolio_builder/index.html", '+
+           '"C:/Users/user/portfolio-builder/bootstrap-5.1.0-dist",'+
+           ' "C:/Users/user/portfolio-builder/portfolio_need"]}',
             true]
     };
 
-    PythonShell.run('C:\\Users\\user\\PycharmProjects\\github_init\\github_args.py', options, function (err, results) {
+    PythonShell.run('C:/Users/user/PycharmProjects/github_init/github_args.py', options, function (err, results) {
         if (err)
             throw err;
         console.log('github.py finished.');
