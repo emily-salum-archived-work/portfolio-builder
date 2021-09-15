@@ -32,7 +32,7 @@ function createWindow ()
 
     });
 
-    win.loadURL(__dirname + "/builder_pages/choose_configurations/main.html");
+    win.loadURL(__dirname + "/builder_pages/choose_loader/main.html");
   //  win.loadURL(__dirname + "/index.html");
     
    
@@ -80,12 +80,14 @@ function createWindow ()
       console.log("it works");
   }
 
-
+let changes_sent = false;
 function send_changes() 
 {
     let {PythonShell} = require('python-shell');
     fs.writeFileSync("./index.html", html_to_save, 'utf8');
-   
+    
+    if (changes_sent){ return;}
+    changes_sent = true;
     let options = {
         pythonPath: "C:/Users/user/PycharmProjects/untitled/venv/Scripts/python.exe",
         args: ["portfolio",
