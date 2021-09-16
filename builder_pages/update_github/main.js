@@ -1,0 +1,58 @@
+let changes_sent = false;
+
+const path = require('path');
+const { app,BrowserWindow, ipcMain } = require('electron')
+var fs = require('fs');
+let confirm_win;
+let html_to_save;
+
+function open_window(html,w)
+{
+    html_to_save = html;
+     confirm_win = new BrowserWindow({
+        webPreferences:{
+             
+             nodeIntegration: true,  contextIsolation: false,
+        }
+    });
+
+    confirm_win.loadURL(__dirname + "\\main.html").then(
+        () => {
+ 
+            ipcMain.on('save_changes', send_changes);
+
+            ipcMain.on("github_close", (e,a) => {
+                confirm_win.close();
+            });
+
+        confirm_win.webContents.send('init_update_github');    
+
+  });
+
+}
+exports.open_window = open_window;
+
+function send_changes() 
+{
+    let {PythonShell} = require('python-shell');
+    fs.writeFileSync("./index.html", html_to_save, 'utf8');
+    
+    if (changes_sent){ return;}
+    changes_sent = true;
+    let options = {
+        pythonPath: "C:/Users/user/PycharmProjects/untitled/venv/Scripts/python.exe",
+        args: ["portfolio",
+            '{"paths" : ["C:/Users/user/portfolio-builder/index.html", '+
+           '"C:/Users/user/portfolio-builder/bootstrap-5.1.0-dist",'+
+           ' "C:/Users/user/portfolio-builder/portfolio_need"]}',
+            true]
+    };
+
+    PythonShell.run('C:/Users/user/PycharmProjects/github_init/togit/github_args.py', options, function (err, results) {
+        if (err)
+            throw err;
+        console.log('github.py finished.');
+    });
+
+}
+  
