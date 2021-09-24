@@ -13,18 +13,6 @@ background-color: rgb(63, 62, 61);
   transition: 1s;
 }
 
-h3.project
-{
-    color:rgb(168, 253, 165);
-    position:absolute;
-    top: 30%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  font-size: 2.5vw;
-
-  pointer-events: none; 
-}
-
 .header
 {
  
@@ -153,20 +141,6 @@ font-size: 2vh;
  }
  
 
-.project_button
-{
-  position:absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12vw;
-  height: 3vw;
-  font-size: 1.5vw;
-  background-color: rgb(80, 79, 79);
-  transition: 0.5s;
-  color:wheat;
-
-}
 
 .holder
 {
@@ -214,14 +188,6 @@ font-size: 2vh;
 
 }
 
-.project_button:hover
-{
-  box-shadow: 0 0 10px rgb(18, 122, 6) , 0 0 40px rgb(38, 122, 65), 0 0 80px rgb(58, 122, 35);
-  background-color: rgb(78, 122, 35);
-
-  
-  transition: 0.5s;
-}
 
 .language_text
 {
@@ -272,22 +238,99 @@ font-size: 2vh;
   
 }
 
-div.project:hover
+.additional_image
 {
-
+  
+  transform: translate(-100%, 0%);
+  position: absolute;
+  transition: 0s;
+  
+  -webkit-filter: brightness(0);
+  z-index: -1;
 }
 
-.project_image
-{
-
-}
 
 
 div.background_project
 {   
     position: relative;
-    background-color: rgb(70, 70, 70);
+
     text-align: center;
 }
 
+.project_text
+{
+    color:rgb(228, 158, 28);
+    
+    position:absolute;
+    top: 30%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 2.5vw;
 
+  pointer-events: none; 
+}
+
+
+.profile_pic
+{
+  width: 30vw;
+  height: 30vw;
+  border-radius: 50%;
+
+}
+
+
+.project_main_text
+{
+  font-size: 16vw;
+  color: rgb(238, 74, 175);
+  background-color: rgba(178, 216, 117, 0.664);
+  height: 20vw;
+}
+
+.profile_div  
+{
+  width: 0;
+  overflow: hidden;
+  animation: show 1s ease-in forwards; 
+  clear: both;
+  
+margin-left: auto;  
+
+margin-right: auto;  
+  text-align: center;
+  padding-bottom: 15vw;
+}
+
+@keyframes show {
+  100%
+  {
+    width: 30vw;
+  }
+}
+
+.project_button
+{
+  position:absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12vw;
+  height: 3vw;
+  font-size: 1.5vw;
+  background-color: rgb(80, 79, 79);
+  transition: 0.5s;
+  color:wheat;
+
+}
+
+
+.project_button:hover
+{
+  box-shadow: 0 0 10px rgb(18, 122, 6) , 0 0 40px rgb(38, 122, 65), 0 0 80px rgb(58, 122, 35);
+  background-color: rgb(78, 122, 35);
+
+  
+  transition: 0.5s;
+}

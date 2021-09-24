@@ -20,15 +20,20 @@
         <input type = 'button' name = "move_to_button" class = "header_button" value = "Projects" data-move_to = "projects">
         <input type = 'button' name = "move_to_button" class = "header_button" value = "Contacts" data-move_to = "contacts">
     </div>
-
-    <div class = "animation_text"> 
+  
+    <div class = "animation_text inicial_area"> 
+        
         <h2 class = "main_text">Emily Salum</h2> 
+        
         <h3 class = "presentation_text" name = "write_on">Begginner programmer with interest in back-end development.</h3>
 
     </div>
+  <div class="profile_div">
+        <img class="profile_pic" src = "portfolio_need/res/prfp.jpg">
+    </div>
     <br>
-    
-    <div name = "projects">
+    <h2 class = "language_text presentation_text project_main_text" name = "projects"> Projects </h2>
+    <div >
         <% for(language of Object.keys(data.project_lists)){%>
         <% let project_list = data.project_lists[language] %>
         
@@ -42,9 +47,10 @@
                         
                             <div name = "image" class = "project background_project project_element">
                                 <img class="project_element project_image" src = "<%=project.image%>">
-
+                                
+                                <img class="additional_image project_element" src = "<%=project.image%>">
                                 <div name = "project_details">  
-                                    <h3 name = "text" class = "project"><%=project.name%></h3>
+                                    <h3 name = "text" class = "project_text"><%=project.name%></h3>
                                     <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/<%=project.name%>')"value="open github" class = "project_button">    
                                 </div>
                             

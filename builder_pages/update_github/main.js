@@ -10,6 +10,9 @@ function open_window(html,w)
 {
     html_to_save = html;
      confirm_win = new BrowserWindow({
+        width: 200,
+        height:150,
+        resizable:false,
         webPreferences:{
              
              nodeIntegration: true,  contextIsolation: false,

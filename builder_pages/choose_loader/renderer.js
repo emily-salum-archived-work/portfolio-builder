@@ -1,4 +1,4 @@
-const ipc = require('electron').ipcRenderer;
+    const ipc = require('electron').ipcRenderer;
 
 mockButton  = document.querySelector('#mockButton'),
 projectsButton = document.querySelector('#projectsButton');
