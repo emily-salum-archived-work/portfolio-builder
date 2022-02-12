@@ -1,17 +1,19 @@
 let changes_sent = false;
 
 const path = require('path');
+const loader_main =   require("../../builder_pages/choose_loader/main");
+
 const { app,BrowserWindow, ipcMain } = require('electron')
 var fs = require('fs');
 let confirm_win;
 let html_to_save;
 
-function open_window(html,w)
+function open_window(html,win)
 {
     html_to_save = html;
      confirm_win = new BrowserWindow({
-        width: 200,
-        height:150,
+        width: 300,
+        height:250,
         resizable:false,
         webPreferences:{
              
@@ -27,6 +29,11 @@ function open_window(html,w)
             ipcMain.on("github_close", (e,a) => {
                 confirm_win.close();
             });
+
+            ipcMain.on("choose_loader_again", () => {loader_main.open_window(win);
+            })
+            
+
 
         confirm_win.webContents.send('init_update_github');    
 

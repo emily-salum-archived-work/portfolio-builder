@@ -1,94 +1,216 @@
-
 <html>
+
 <head>
     <title> Portfolio </title>
 
 
 
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="bootstrap-5.1.0-dist/css/bootstrap.css">
-    
+
     <link rel="stylesheet" href="portfolio_need/styles.css">
-<script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
-    
+    <link rel="stylesheet" href="portfolio_need/reset.css">
+
+
+    <script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
+
 </head>
 
 <body>
+    <div id="body_container">
+        <header id="header">
 
-    <div class="header">
-        <input type = 'button' name = "move_to_button" class = "header_button" value = "Projects" data-move_to = "projects">
-        <input type = 'button' name = "move_to_button" class = "header_button" value = "Contacts" data-move_to = "contacts">
-    </div>
-  
-    <div class = "animation_text inicial_area"> 
-        
-        <h2 class = "main_text">Emily Salum</h2> 
-        
-        <h3 class = "presentation_text" name = "write_on">Begginner programmer with interest in back-end development.</h3>
+            <div class="container">
 
-    </div>
-  <div class="profile_div">
-        <img class="profile_pic" src = "portfolio_need/res/prfp.jpg">
-    </div>
-    <br>
-    <h2 class = "language_text presentation_text project_main_text" name = "projects"> Projects </h2>
-    <div >
-        <% for(language of Object.keys(data.project_lists)){%>
-        <% let project_list = data.project_lists[language] %>
-        
-        <h2 class = "language_text presentation_text"><%=language%></h2>
-        <div  name = "list" class = "language_list">
-            <input type="button" value="<-" name = "move_left" class = "direction_button">
-            <div class = "holder" id = "list_holder"> 
-                <% for(let i = 0; i < project_list.length; i++){%>    
-                    <% let project = project_list[i] %>
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "<%=project.image%>">
-                                
-                                <img class="additional_image project_element" src = "<%=project.image%>">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text"><%=project.name%></h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/<%=project.name%>')"value="open github" class = "project_button">    
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
+                <nav>
+
+
+                    <a class='header-button' id="projects-button">
+                        P
+                    </a>
+
+
+                    <div id="projects-buttons">
+
                     </div>
-                    
-                    
-                <%}%>
-                
+
+
+                    <a href="#contacts" class='header-button'>
+                        C
+                    </a>
+
+                </nav>
             </div>
-            <input type="button" value="->" name = "move_right" class = "direction_button">
-        </div>
-    
-        <%}%>
+
+
+        </header>
+
+
+        <main>
+
+
+            <div class="section main-section">
+
+                <h2 class="section-title">Emily Salum</h2>
+
+                <h3 class="below-title">Determined to be the best programmer I can be!</h3>
+
+            </div>
+
+
+            <div class="techs section">
+                <h3 class='section-title'> What I know </h3>
+                <ul class='tech-list'>
+
+                    <% for(let i=0; i < 3; i++){%>
+
+                        <% let tech=data.tech_list[i]; %>
+
+                            <li>
+                                <%=tech%>
+                            </li>
+
+                            <%}%>
+
+                                <li>...</li>
+
+                </ul>
+
+
+                <div class="tech-images">
+
+
+                    <% for(let i=0; i < data.tech_list.length; i++){%>
+
+                        <% let tech=data.tech_list[i]; %>
+
+                            <img class="tech-logo" src="portfolio_need/res/<%=tech%>-logo.png">
+
+                            <%}%>
+                </div>
+
+            </div>
+
+
+
+
+            <section class="projects holder section">
+
+                <h2 class="section-title" id="projects"> Projects </h2>
+
+                <p class="project-bracket">[</p>
+                <div class="projects-box" id="project-box">
+                    <% let counter=0;%>
+                        <% for(language of Object.keys(data.project_lists)){%>
+                            <% let project_list=data.project_lists[language] %>
+
+                                <% if(project_list.length==0){continue;} %>
+
+
+                                    <% for(let i=0; i < project_list.length; i++){%>
+                                        <% let project=project_list[i] %>
+                                            <% counter +=1;%>
+                                                <div class="project project_element" project-name="<%=project.name%>">
+                                                    <p class="project-index">
+                                                        <%=counter-1%>
+                                                    </p>
+
+                                                    <% if(project.open_link){ %>
+                                                        <a href='<%=project.open_link%>' class="project_link">
+
+                                                            <% } %>
+                                                                <img class="project_image original_image"
+                                                                    src="<%=project.image%>">
+
+                                                                <% if(project.open_link){ %>
+                                                        </a>
+                                                        <% } %>
+
+
+                                                </div>
+
+
+
+
+
+
+
+
+                                                <%}%>
+
+
+
+                                                    <%}%>
+                </div>
+                <p class="project-bracket">]</p>
+
+            </section>
+
+
+
+        </main>
+
+
+        <footer class="section contacts" id="contacts">
+
+            <h2 class="section-title" name="contacts">Contacting</h2>
+
+            <div class="contact-form-box">
+                <h3 class="subtitle"> Email me!</h3>
+
+                <form class="contact_form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name">
+
+                    <label for="email">Email</label>
+                    <input type="text" id="email">
+
+                    <label for="message">Message!</label>
+                    <textarea id="message">
+
+                    </textarea>
+
+
+                    <input type="submit" value="send!" class='contact-send'>
+
+
+                </form>
+
+            </div>
+
+            <div class="contact_buttons">
+
+                <h3 class="subtitle"> Or call me through...</h3>
+
+                <a class="contact_button" href="http://discord.com/users/674759841583202328">
+
+                    <img class="media_image" src="portfolio_need/res/discord_logo.png">
+
+                </a>
+
+                <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
+                    <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
+                </a>
+        </footer>
+
     </div>
 
-    <br>
-    <br>
-    <div class = "contacts" name = "contacts" >
-        <h2 class = "presentation_text">Contacting</h2>
-        
-        <button data-method = "link" class="contact_button" data-link="http://discord.com/users/674759841583202328" name = "contact_button" > 
-            <img class = "media_image" src = "portfolio_need/res/discord_logo.png">
 
-        </button>
-        <button data-method = "link" class = "contact_button" data-link= "https://www.linkedin.com/in/emily-salum-839653217/" name = "contact_button"> 
-            <img class = "media_image" src = "portfolio_need/res/linkedin_logo.png">
-        </button>
 
     </div>
 
-    <script src = "portfolio_need/behaviour.js">
-
-    
-    </script>
 </body>
+
+
+<script src="portfolio_need/behaviour.js">
+
+
+</script>
+
+
+<script src="portfolio_need/header.js">
+
+</script>
 
 </html>
