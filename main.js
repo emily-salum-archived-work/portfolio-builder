@@ -42,11 +42,58 @@ function createWindow ()
   }
   app.whenReady().then(createWindow)    
 
+
+
+  function getStuffILikeText(stuffILike) {
+    let stuffILikeText = "";
+    
+    stuffILike.forEach((el) => {stuffILikeText += el + ", ";});
+    stuffILikeText = stuffILikeText.substring(0, stuffILikeText.length - 2);
+
+    stuffILikeText += "!";
+
+    let lastItem = stuffILikeText.lastIndexOf(",")
+    stuffILikeText = stuffILikeText.substring(0, lastItem) + " and" + stuffILikeText.substring(lastItem + 1, stuffILikeText.length);
+
+    return stuffILikeText;
+  }
   
+  function stuffILikeString(stuffILike) {
+
+    let likesString = "[";
+    
+    stuffILike.forEach((t) => {likesString += `"${t}",` });
+
+    likesString = likesString.substring(0, likesString.length - 1) + "]";
+
+    return likesString;
+  }
+
+  function getProfile() {
+
+    const stuffILike =  ["rpg", "automation", "classical music", "discord"];
+    let stuffILikeText = getStuffILikeText(stuffILike);
+
+    return {
+  
+      "From": {'raw': "COUNTRIES.Brazil", 'not_raw': "Brasil"},
+      "Likes": {'raw': `${stuffILikeString(stuffILike)}`, "not_raw": stuffILikeText }  
+       
+    }
+  }
+
+  
+
   let firstTime = true;
   function inicialize_program(project_lists)
   {
-      data = {'project_lists' : project_lists, 'tech_list': tech_list, 'root': __dirname}
+      data = {
+        'project_lists' : project_lists, 
+        'tech_list': tech_list,
+        'profile': getProfile(), 
+         
+      
+      'root': __dirname}
   
       ejse.data('data', data)
   

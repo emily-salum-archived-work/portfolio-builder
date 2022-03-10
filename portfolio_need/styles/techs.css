@@ -1,0 +1,31 @@
+
+
+
+.techs
+{
+  padding-top: 2vh;
+
+  text-align: center;
+  display: block;
+ width: 100%;
+}
+
+     
+
+.tech-images
+{  
+  width: 100vw;
+  margin-top: 2vh; 
+  margin: auto;
+  padding-top: 2vh;
+  display: block;
+}
+
+.tech-logo
+{
+  width: 20vmin;
+  padding-top: 1vh;
+  margin-right: 1vw;
+  display: inline;
+}
+

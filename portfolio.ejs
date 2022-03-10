@@ -9,208 +9,242 @@
 
     <link rel="stylesheet" href="bootstrap-5.1.0-dist/css/bootstrap.css">
 
-    <link rel="stylesheet" href="portfolio_need/styles.css">
-    <link rel="stylesheet" href="portfolio_need/reset.css">
+    
+    <link rel="stylesheet" href="portfolio_need/styles/reset.css">
 
+    <link rel="stylesheet" href="portfolio_need/styles/styles.css">
+    <link rel="stylesheet" href="portfolio_need/styles/header.css">
+    <link rel="stylesheet" href="portfolio_need/styles/techs.css">
+    <link rel="stylesheet" href="portfolio_need/styles/profile.css">
+    <link rel="stylesheet" href="portfolio_need/styles/contacts.css">
+    <link rel="stylesheet" href="portfolio_need/styles/projects.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 </head>
 
 <body>
-    <div id="body_container">
-        <header id="header">
-
-            <div class="container">
-
-                <nav>
 
 
-                    <a class='header-button' id="projects-button">
-                        P
-                    </a>
+    <header id="header">
+
+        <div class="container">
+
+            <nav>
 
 
-                    <div id="projects-buttons">
+                <a class='header-button' id="projects-button">
+                    Projects
+                </a>
 
-                    </div>
+                <!-- Will hold buttons related to every project -->
+                <div id="projects-buttons">
 
-
-                    <a href="#contacts" class='header-button'>
-                        C
-                    </a>
-
-                </nav>
-            </div>
-
-
-        </header>
-
-
-        <main>
-
-
-            <div class="section main-section">
-
-                <h2 class="section-title">Emily Salum</h2>
-
-                <h3 class="below-title">Determined to be the best programmer I can be!</h3>
-
-            </div>
-
-
-            <div class="techs section">
-                <h3 class='section-title'> What I know </h3>
-                <ul class='tech-list'>
-
-                    <% for(let i=0; i < 3; i++){%>
-
-                        <% let tech=data.tech_list[i]; %>
-
-                            <li>
-                                <%=tech%>
-                            </li>
-
-                            <%}%>
-
-                                <li>...</li>
-
-                </ul>
-
-
-                <div class="tech-images">
-
-
-                    <% for(let i=0; i < data.tech_list.length; i++){%>
-
-                        <% let tech=data.tech_list[i]; %>
-
-                            <img class="tech-logo" src="portfolio_need/res/<%=tech%>-logo.png">
-
-                            <%}%>
                 </div>
 
+                <a href="#profile" class='header-button'>
+                    Profile
+                </a>
+
+                <a href="#contacts" class='header-button'>
+                    Contact
+                </a>
+                
+                
+
+
+            </nav>
+        </div>
+
+
+    </header>
+
+    <main>
+
+        <!-- Introduction! -->
+        <div class="section main-section">
+
+            <h2 class="main-title">Emily Salum</h2>
+
+            <h3 class="below-title">Determined to be the best programmer I can be!</h3>
+
+        </div>
+
+
+        <!-- Technologies I know! -->
+        <div class="techs section container">
+            <h3 class='section-title'>What I know</h3>
+
+            <div class="tech-images">
+
+                <!-- tech_list is an array with strings -->
+                <% for(let i=0; i < data.tech_list.length; i++){%>
+
+                    <% let tech=data.tech_list[i]; %>
+
+                        <img class="tech-logo" src="portfolio_need/res/<%=tech%>-logo.png">
+
+                        <%}%>
+
             </div>
 
+        </div>
 
 
+        <!-- Projects! -->
+        <section class="projects holder section">
 
-            <section class="projects holder section">
+            <h2 class="section-title" id="projects"> Projects </h2>
 
-                <h2 class="section-title" id="projects"> Projects </h2>
+            <p class="project-bracket">[</p>
+            <div class="projects-box" id="project-box">
+                <% let counter=0;%>
 
-                <p class="project-bracket">[</p>
-                <div class="projects-box" id="project-box">
-                    <% let counter=0;%>
-                        <% for(language of Object.keys(data.project_lists)){%>
-                            <% let project_list=data.project_lists[language] %>
+                    <!-- project_lists is a dict with languages paired to projects (str array) -->
+                    <% for(language of Object.keys(data.project_lists)){%>
+                        <% let project_list=data.project_lists[language] %>
 
-                                <% if(project_list.length==0){continue;} %>
+                            <% if(project_list.length==0){continue;} %>
 
 
-                                    <% for(let i=0; i < project_list.length; i++){%>
-                                        <% let project=project_list[i] %>
-                                            <% counter +=1;%>
-                                                <div class="project project_element" project-name="<%=project.name%>">
-                                                    <p class="project-index">
-                                                        <%=counter-1%>
-                                                    </p>
+                                <% for(let i=0; i < project_list.length; i++){%>
+                                    <% let project=project_list[i] %>
+                                        <% counter +=1;%>
+                                            <div class="project project_element" project-name="<%=project.name%>">
+                                                <p class="project-index">
+                                                    <%=counter-1%>
+                                                </p>
 
-                                                    <% if(project.open_link){ %>
-                                                        <a href='<%=project.open_link%>' class="project_link">
+                                                <% if(project.open_link){ %>
+                                                    <a href='<%=project.open_link%>' class="project_link">
 
-                                                            <% } %>
-                                                                <img class="project_image original_image"
-                                                                    src="<%=project.image%>">
-
-                                                                <% if(project.open_link){ %>
-                                                        </a>
                                                         <% } %>
+                                                            <img class="project_image original_image"
+                                                                src="<%=project.image%>">
+
+                                                            <% if(project.open_link){ %>
+                                                    </a>
+                                                    <% } %>
 
 
-                                                </div>
+                                            </div>
 
 
 
 
 
+
+
+
+                                            <%}%>
 
 
 
                                                 <%}%>
-
-
-
-                                                    <%}%>
-                </div>
-                <p class="project-bracket">]</p>
-
-            </section>
-
-
-
-        </main>
-
-
-        <footer class="section contacts" id="contacts">
-
-            <h2 class="section-title" name="contacts">Contacting</h2>
-
-            <div class="contact-form-box">
-                <h3 class="subtitle"> Email me!</h3>
-
-                <form class="contact_form">
-                    <label for="name">Name</label>
-                    <input type="text" id="name">
-
-                    <label for="email">Email</label>
-                    <input type="text" id="email">
-
-                    <label for="message">Message!</label>
-                    <textarea id="message">
-
-                    </textarea>
-
-
-                    <input type="submit" value="send!" class='contact-send'>
-
-
-                </form>
-
             </div>
 
-            <div class="contact_buttons">
+            <p class="project-bracket">]</p>
 
-                <h3 class="subtitle"> Or call me through...</h3>
+        </section>
 
-                <a class="contact_button" href="http://discord.com/users/674759841583202328">
 
-                    <img class="media_image" src="portfolio_need/res/discord_logo.png">
 
-                </a>
+        <!-- Profile, Gives some information about me -->
+        <section id = "profile" class="profile">
+            <h3 class="subtitle profile_subtitle hidden_from_raw">So you know a bit about me...</h3>
+            <h3 class="profile_key key_open">const profile = {</h3>
+            <table class='profile_table'>
+                <tbody id="profile_body">
 
-                <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
-                    <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
-                </a>
-        </footer>
+                    <% for(let [name, value] of Object.entries(data.profile)) { %>
+                        <tr>
+
+                            <td class = "profile_field_key">
+                                <%=name%> 
+                            </td>
+
+                            <td field_class="<%=name%>_value" class="raw_value profile_value" not-raw = '<%=value.not_raw%>'>
+                                <%=value.raw %>
+                            </td>
+                        </tr>
+
+
+                        <% } %>
+
+                </tbody>
+
+            </table>
+            <h3 class="profile_key">}</h3>
+            <button id = "profile_button" class="profile_button">Build Profile</button>
+
+        </section'>
+
+    </main>
+
+    <!-- Footer -> End of site! -->
+    <footer class="section contacts" id="contacts">
+
+        <h2 class="section-title" name="contacts">Contacting</h2>
+
+        <div class="contact-form-box" id="contact-form-box">
+            <h3 class="subtitle"> Email me!</h3>
+
+            <form class="contact_form" id="contact-form" onsubmit="sendEmail()">
+
+                <label for="name">Name</label>
+                <input class="input-element" type="text" id="name" required>
+
+
+                <label for="email">Email</label>
+                <input class="input-element" type="email" id="email" required>
+
+                <label for="message">Message!</label>
+
+                <textarea class="input-element" id="message">
+                    </textarea>
+
+                <input id="send_email" type="submit" class='contact-send contact-element' value="Send">
+
+            </form>
+
+        </div>
+
+        <!-- Call me in -> To add plataforms where people can contact me -->
+        <div class="contact_buttons">
+
+            <h3 class="subtitle" id="call_me_in"> Or call me in...</h3>
+
+            <a class="contact_button" href="http://discord.com/users/674759841583202328">
+
+                <img class="media_image" src="portfolio_need/res/discord_logo.png">
+
+            </a>
+
+            <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
+                <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
+            </a>
+        </div>
+
+    </footer>
 
     </div>
 
 
 
-    </div>
 
 </body>
 
 
-<script src="portfolio_need/behaviour.js">
+<script src="portfolio_need/js/behaviour.js"> </script>
+<script src="portfolio_need/js/contact.js"> </script>
+<script src="portfolio_need/js/header.js"> </script>
+<script src="portfolio_need/js/profile.js"> </script>
 
 
-</script>
 
-
-<script src="portfolio_need/header.js">
-
-</script>
 
 </html>

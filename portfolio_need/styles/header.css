@@ -1,0 +1,104 @@
+
+#open-header
+{
+  position: fixed ;
+  z-index: 2;
+  
+  transition: 1s;
+  width: 5vw  ;
+cursor: pointer;
+
+  left: 2vw;
+}
+
+header
+{ 
+  position: fixed ;
+  overflow: hidden;
+  white-space: nowrap;
+
+
+  transition: 3s;
+ 
+  border-color: var(--visible_gray);
+  border-width: 1vh;
+
+  width: 3vw;
+  height: 100vh;
+  
+  z-index: 2;
+  top: 0;
+  background-color: #0c721a77;
+  text-align: left;
+  transition: 0.7s;
+  filter: brightness(74%);
+}
+
+
+ 
+
+#header {
+  overflow-x: hidden;
+
+}
+
+
+.closed_header {
+  width: 3vw;
+}
+
+.opened_header {
+  background-color: #16992777;
+  width: 17vw;
+ 
+}
+
+
+header:hover
+{
+
+  filter: brightness(90%);
+
+}
+
+header:active
+{
+  width: 12vw; 
+}
+
+
+
+
+
+.header-button:hover
+{  
+  color: #00ff22;
+ 
+}
+
+.opened_file {
+
+  padding-top: 1vh ;
+  font-size: 1em !important;
+}
+
+.closed_file {
+  font-size: 0 !important; 
+  padding-top: 0;
+}
+
+.header-button
+{
+ 
+  transition: 0.45s;
+
+ 
+
+  display: block;
+text-align: left;
+padding-right:0.1vw;
+  font-size: 1.7vw;
+  color: #83e490;
+
+  text-decoration: none;
+}

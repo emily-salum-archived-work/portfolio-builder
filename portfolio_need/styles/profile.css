@@ -1,0 +1,142 @@
+
+  .profile {
+    background-color: var(--classy-black);
+    width: 85%;
+    margin: auto;
+
+    border: 8px solid #214637;
+    border-radius: 3%;
+    overflow-x: hidden;
+    text-overflow:clip;
+    white-space: nowrap;
+    animation: 5s close_up;
+  }
+
+@keyframes close_up {
+  100%{
+    /*width: 0;*/ 
+  }
+}
+
+
+.profile_table, .profile_table td, .profile_table tr  {
+ 
+  border-right: 0;
+  border-top: 0;
+  border-left: 0;
+  color: #65ac6e; 
+  font-size: 3vmin;
+  padding-left: 0; 
+  margin: auto;
+
+  user-select: none;
+}
+
+.profile_table {
+   
+
+  margin-left: 10%;
+  margin-right: 0;
+  
+}
+
+.pretty_profile {
+ 
+  padding-top: 5vh;
+  background-color: rgb(25, 54, 49);
+}
+
+.profile_button {
+
+  display: block;
+  border-radius: 10%;
+  margin: auto; 
+  width: 40vmin;
+   
+  font-size: 4.5vmin;
+  height: 7.5vmin;
+  color: #cbfdd1;
+  background-color: #1b221c;
+}
+
+.profile_key {
+
+  font-size: 7vmin;
+  color: #00ff22;
+  margin-left: 15%; 
+    padding: 1%;
+  margin-bottom: 2.5%;
+  display: block;
+}
+
+.key_open {
+  font-size: 5vmin;
+  margin-left: 5%;  
+}
+
+.profile_table td {
+
+  height: 10vh; 
+}
+
+
+.From_value {   
+  
+  width: 50vw;
+  height: 50vh;
+}
+
+.From_value::before {
+  content: "";
+  background:url('../res/brazil.png');
+  background-size:contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 2vmax;
+  height: 2vmax; 
+  margin-left: -2.5vmax;
+}
+
+
+.profile_field_title {
+
+
+  color: rgb(53, 255, 154) !important;
+ 
+  padding-right: 30vw;
+}
+ 
+
+.profile_field_key::before {
+  content: '"';
+}
+
+.profile_field_key::after {
+  content: '": ';
+  display: inline;
+}
+
+.raw_value {
+  content: " ,";
+}
+
+.profile_table td:hover {
+ 
+}
+
+
+.pretty_profile_value {
+  text-align: center;
+}
+
+
+.closed_keys {
+
+  font-size: 0;
+}
+
+.hidden_from_raw {
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+}

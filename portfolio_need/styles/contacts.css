@@ -1,0 +1,171 @@
+
+.contacts
+{
+  overflow: hidden;
+}
+  
+.contact-form-box
+{ 
+
+  width: fit-content;
+  
+  margin:auto;
+  position: relative;
+  background-color: #333131;
+  text-align: center;
+
+    padding-top: 2vh;
+ 
+    padding-bottom: 2vh;
+
+  
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+ 
+}
+
+ 
+
+.contact_form input, .contact_form textarea
+{
+  
+  background-color: var(--darky);
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 40vw;
+
+  height: 6vh;
+
+  color: #4e4833;
+  font-size: 4vmin;
+  font-weight: bold;
+  font-family: var(--default-font);
+  -webkit-text-stroke-color: #51df64;
+  -webkit-text-stroke-width: 0.07px;
+
+
+  caret-color: #51df64;
+  transition: 0.5s;
+
+  
+ }
+
+.contact_form input::grammar-error  {
+  text-decoration: none;
+
+}
+
+.contact_form textarea{
+
+  height: 12vh;
+}
+
+
+.contact_form .input-element:focus
+{
+  
+  transform: scale(1.1); 
+  outline:none;
+ 
+  border: 3px solid rgba(56, 138, 45, 43);
+  z-index: 2;
+  
+} 
+
+
+.contact_form label
+{
+  display: block;
+  color: hsl(120, 92%, 62%);
+  margin-top: 1vh;
+  font-size: 3vmin;
+  font-weight: bold;
+  text-align: center;
+  
+}
+
+ .contact_buttons
+ {
+
+  transition: all 2s;
+   
+  margin: auto;
+  text-align: center;
+   display: block;
+
+   padding-bottom: 10vh;
+ }
+
+
+
+.contact_button
+{
+  padding: 2%;
+}
+
+.contact_button img
+{
+  width: 5vw;
+  margin: auto;
+  display: inline;
+}
+
+ 
+
+.contact-send
+{
+  
+  margin-top: 3vh;
+}
+
+
+.powered
+{
+  animation: loadLight 3s ease-in-out ;
+transition: 3s;
+
+margin: none;
+
+background-color: var(--dark);
+
+}
+
+
+@keyframes loadLight {
+  25%
+  {
+    color: hsl(172, 89%, 76%);
+  }
+  
+
+  50%
+  {
+    color: hsl(192, 92%, 62%);
+  }
+
+  75%
+  {
+    color: hsl(231, 92%, 62%);
+  }
+  90%
+  {
+    color: hsl(192, 92%, 62%);
+  }
+
+ 
+
+}
+
+
+#call_me_in {
+  text-align: center;
+  margin: auto;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  width: 100vw;
+  font-size: 2.4em;
+  
+}

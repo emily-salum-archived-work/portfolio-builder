@@ -102,5 +102,9 @@ function check_for_in_screen() {
     }
 }
 
+
+ 
+
+
 window.addEventListener('scroll', check_for_in_screen);
 check_for_in_screen();
