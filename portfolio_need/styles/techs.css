@@ -3,11 +3,14 @@
 
 .techs
 {
+  
+  padding: 0;
+  margin: 0;
   padding-top: 2vh;
-
-  text-align: center;
+  
+  
   display: block;
- width: 100%;
+ width: 100vw;
 }
 
      
@@ -19,6 +22,7 @@
   margin: auto;
   padding-top: 2vh;
   display: block;
+  text-align: center;
 }
 
 .tech-logo

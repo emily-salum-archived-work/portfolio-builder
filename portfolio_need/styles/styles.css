@@ -39,8 +39,8 @@
 --default-font :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  
 --default-font: 'Fira Code';*/
---title-font: "monolisa";
---default-font: 'monolisa';
+--title-font:  "Quicksand";
+--default-font: 'Quicksand';
  
 }
 
@@ -129,8 +129,7 @@ body
 }
 
 .section-title {
-     
-  width: 100vw;
+ width: 100%;     
 }
  
 
@@ -140,9 +139,11 @@ body
   font-size: 8vmin;
   text-align: center;
   color: var(--main);
+  margin: auto;
 
   margin-bottom: 6vh;
 }
+ 
 
 .section-title::after {
   content: ">";
@@ -171,6 +172,8 @@ body
   margin-right: auto;
   text-align: center;
   font-size: 3vmin;
+
+  font-family: "monolisa";
 }
 
 
@@ -188,6 +191,7 @@ body
   color: var(--main);
   user-select: none;
   padding-bottom: 2%;
+  font-family: 'Quicksand';
 }
 
 .below-title {
@@ -274,7 +278,7 @@ opacity: 0;
 
 
  96% {
-   top:85%
+   top:85%;
     opacity: 0%;
   }
 

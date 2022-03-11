@@ -71,7 +71,7 @@ function createWindow ()
 
   function getProfile() {
 
-    const stuffILike =  ["rpg", "automation", "classical music", "discord"];
+    const stuffILike =  ["Rpg", "automation", "classical music", "discord"];
     let stuffILikeText = getStuffILikeText(stuffILike);
 
     return {

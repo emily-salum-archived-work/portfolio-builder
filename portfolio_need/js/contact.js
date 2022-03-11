@@ -35,8 +35,7 @@ function makePopup(title, text) {
 
     document.body.appendChild(popupDiv);
 }
-
- makePopup("test", "Working?");
+ 
 function validateEmail (emailAdress)
 {
   let regexEmail = /^\S+@\S+\.\S+$/;

@@ -61,7 +61,7 @@
 
 .profile_key {
 
-  font-size: 7vmin;
+  font-size: 7vmax;
   color: #00ff22;
   margin-left: 15%; 
     padding: 1%;
@@ -102,7 +102,8 @@
 
 
   color: rgb(53, 255, 154) !important;
- 
+   
+  font-size: 3vmax !important;
   padding-right: 30vw;
 }
  
@@ -127,6 +128,10 @@
 
 .pretty_profile_value {
   text-align: center;
+
+  font-size: 2vmax !important;
+  color: rgb(145, 255, 2) !important;
+ 
 }
 
 
