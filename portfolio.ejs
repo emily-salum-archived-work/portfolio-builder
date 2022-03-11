@@ -145,6 +145,7 @@
 
 
                                                 <%}%>
+                            
             </div>
 
             <p class="project-bracket">]</p>
@@ -155,7 +156,7 @@
 
         <!-- Profile, Gives some information about me -->
         <section id = "profile" class="profile">
-            <h3 class="subtitle profile_subtitle hidden_from_raw">So you know a bit about me...</h3>
+            <h3 class="subtitle profile_subtitle hidden_from_raw">For you to know a bit about me...</h3>
             <h3 class="profile_key key_open">const profile = {</h3>
             <table class='profile_table'>
                 <tbody id="profile_body">
@@ -193,25 +194,27 @@
         <div class="contact-form-box" id="contact-form-box">
             <h3 class="subtitle"> Email me!</h3>
 
-            <form class="contact_form" id="contact-form" onsubmit="sendEmail()">
+            <form class="contact_form" id="contact-form" action="https://formspree.io/f/mdobzrbv" method="POST">
 
                 <label for="name">Name</label>
-                <input class="input-element" type="text" id="name" required>
+                <input class="input-element" type="text" id="name" name="name" required>
 
 
                 <label for="email">Email</label>
-                <input class="input-element" type="email" id="email" required>
+                <input class="input-element" type="email" id="email" name="email" required>
 
                 <label for="message">Message!</label>
 
-                <textarea class="input-element" id="message">
-                    </textarea>
+                <textarea class="input-element" id="message" name="messages"></textarea>
 
                 <input id="send_email" type="submit" class='contact-send contact-element' value="Send">
 
             </form>
 
         </div>
+
+
+       
 
         <!-- Call me in -> To add plataforms where people can contact me -->
         <div class="contact_buttons">

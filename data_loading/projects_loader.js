@@ -17,7 +17,7 @@ function buildArguments() {
 
 function load_projects() {
 
-
+    const function_arguments = buildArguments();
 
     final_args = { "functions": "[", "parameters": "[" };
     final_args["functions"] = "[" + function_arguments.map(x => x["function"]).join('');
@@ -34,9 +34,14 @@ function load_projects() {
             ` "parameters" : ${final_args['parameters']}}`]
     };
 
+    console.log("About to run python shell");
+
     PythonShell.run('C:\\Users\\user\\PycharmProjects\\builder_helper\\builder_args.py', options, function (err, results) {
+
+        console.log("ran python shell");
         if (err)
             throw err;
+
         console.log(results[0])
         let project_lists = JSON.parse(clean_python_result(results[0]));
 
@@ -45,6 +50,7 @@ function load_projects() {
         app.emit("project_lists_loaded", project_lists);
 
     });
+
 
 }
 

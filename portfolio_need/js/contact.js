@@ -48,10 +48,10 @@ function validateEmail (emailAdress)
 }
 formBox = document.getElementById("contact-form-box")
                  
- 
+const form = document.getElementById("contact-form");
+    
 
-function sendEmail()
-{ 
+function sendEmail(event) { 
 
     event.preventDefault();
     sendButton = document.getElementById("send_email");
@@ -59,7 +59,6 @@ function sendEmail()
     sendButton.classList.add("powered");
     sendButton.innerHTML = "Sending...";
 
-    let form = document.getElementById("contact-form");
     
     let elements = form.getElementsByClassName("input-element");
 
@@ -87,34 +86,35 @@ function sendEmail()
         makePopup("Problem in email field!", "Not a proper email!");
         return;
     }
+    
     formBox.classList.add("closed_contact_top");
-    // TODO :  Check if email is an email
-    // makePopup("Couldn't send your email!", `${email} is not a valid email!`)
-
-    Email.send({
-        Host: "smtp.elasticemail.com",
-        Username : "EmilyMarquesSalum@gmail.com",
-        Password : "AD46166C38E12E8FC6C45C82DAFE90ECAA04",
-        To : 'EmilyMarquesSalum@gmail.com',
-        From : "EmilyMarquesSalum@gmail.com",
-        Subject : "Email do Portfolio",
-        
-        Body : message,
-
-
-        }).then(
-            message => {
-
-                console.log(message);
-                makePopup("Done!", "Your email was sent! Thank you for your time and have a good day!");
-                
  
- 
-               
 
-            }
-        ).catch(error => {console.log(error);});
-            
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        makePopup("Email sent!", "Thank you for your time!");
+       
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            makePopup("Oh no!", "A problem happened! Your email wasn't sent!");
+          } 
+             
+          
+        })
+      }
+    }).catch(error => {
+      makePopup("Oh no!", "A problem happened! Your email wasn't sent!");
+    });
 
         return false;
 }
+
+form.addEventListener("submit", sendEmail);

@@ -13,7 +13,7 @@ cursor: pointer;
 
 header
 { 
-  position: fixed ;
+  position: fixed;
   overflow: hidden;
   white-space: nowrap;
 
@@ -37,9 +37,15 @@ header
 
  
 
+
+
 #header {
   overflow-x: hidden;
 
+}
+
+#header:hover {
+  width: 20vw !important;
 }
 
 
@@ -53,6 +59,17 @@ header
  
 }
 
+@media (max-width: 1000px) {
+  
+  header {
+
+    white-space:normal;
+  }
+
+  .opened_header {
+    width: 30vw;
+  }
+} 
 
 header:hover
 {
@@ -79,12 +96,15 @@ header:active
 .opened_file {
 
   padding-top: 1vh ;
-  font-size: 1em !important;
+  font-size: 1vmax;
 }
 
 .closed_file {
   font-size: 0 !important; 
   padding-top: 0;
+
+  
+  padding-bottom: 0 !important;
 }
 
 .header-button
@@ -92,13 +112,15 @@ header:active
  
   transition: 0.45s;
 
- 
+  text-transform:capitalize;
 
   display: block;
 text-align: left;
 padding-right:0.1vw;
-  font-size: 1.7vw;
+  font-size: 1.7vmax;
   color: #83e490;
+ 
+  padding-bottom: 1vh;
 
   text-decoration: none;
 }

@@ -51,7 +51,7 @@ function createProjectShortcut(project) {
     projectFile.href = "#projects";
     projectFile.classList.add("header-button");
 
-    projectFile.innerHTML = project.getAttribute("project-name");
+    projectFile.innerHTML = project.getAttribute("project-name").replace("_", " ");
 
     return projectFile
 }

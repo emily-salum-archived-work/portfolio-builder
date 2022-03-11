@@ -108,7 +108,7 @@
 
 .contact_button img
 {
-  width: 5vw;
+  width: 8vmax;
   margin: auto;
   display: inline;
 }
@@ -166,6 +166,6 @@ background-color: var(--dark);
   padding-top: 4vh;
   padding-bottom: 4vh;
   width: 100vw;
-  font-size: 2.4em;
+  font-size: 4vmax;
   
 }

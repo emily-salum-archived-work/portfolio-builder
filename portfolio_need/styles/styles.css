@@ -204,10 +204,10 @@ body
  position: fixed;
 
 
- background-color: var(--light-darky);
+ background-color: var(--classy-black);
 
  min-width: 14vw;
- color: #dbd7d7;
+ color:  var(--main);
 
  left: 3.5%;
  padding: 1%;
@@ -234,13 +234,14 @@ opacity: 0;
 
   position:absolute;
 
-  left: 85%;
-  width: 14%;
+  left: 80%;
   top: 0%;
 
-  background-color: #0e6b44;
-  color: whitesmoke;
+  background-color: #02643b;
+  color: #00e4be;
 
+  font-size: 1rem;
+  text-align: center;
 }
 
 

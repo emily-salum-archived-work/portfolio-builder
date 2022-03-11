@@ -1,10 +1,13 @@
 var fs = require('fs');
 const pathf = require('path');
 
-function make_project(name) {
-    let image = "portfolio_need/res/crumbt_hunt_start.png";
+function make_project(name, image, open_link="#") {
+    if(!image) {
+        image = "portfolio_need/res/crumbt_hunt_start.png";
+    }
+    
 
-    return { 'name': name, 'image': image, 'open_link': "#" };
+    return { 'name': name, 'image': image, 'open_link': open_link };
 }
 exports.make_project = make_project;
 
