@@ -1,310 +1,330 @@
-
 <html>
+
 <head>
     <title> Portfolio </title>
 
 
 
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="bootstrap-5.1.0-dist/css/bootstrap.css">
-    
-    <link rel="stylesheet" href="portfolio_need/styles.css">
-<script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
-    
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="portfolio_need/styles/reset.css">
+
+    <link rel="stylesheet" href="portfolio_need/styles/styles.css">
+    <link rel="stylesheet" href="portfolio_need/styles/header.css">
+    <link rel="stylesheet" href="portfolio_need/styles/techs.css">
+    <link rel="stylesheet" href="portfolio_need/styles/profile.css">
+    <link rel="stylesheet" href="portfolio_need/styles/contacts.css">
+    <link rel="stylesheet" href="portfolio_need/styles/projects.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
 </head>
 
 <body>
 
-    <div class="header">
-        <input type = 'button' name = "move_to_button" class = "header_button" value = "Projects" data-move_to = "projects">
-        <input type = 'button' name = "move_to_button" class = "header_button" value = "Contacts" data-move_to = "contacts">
-    </div>
 
-    
-  
-    <div class = "animation_text inicial_area"> 
-        
-        <h2 class = "main_text">Emily Salum</h2> 
-        
-        <h3 class = "presentation_text" name = "write_on">Begginner programmer with interest in back-end development.</h3>
+    <header id="header">
 
-    </div>
+        <div class="container">
+
+            <nav>
 
 
-    <div class = "popup"> <h3> Tests </h3> <p> You can see text here </p>  </div>
+                <a class='header-button' id="projects-button">
+                    Projects
+                </a>
 
+                <!-- Will hold buttons related to every project -->
+                <div id="projects-buttons">
 
-  <div class="profile_div">
-        <img class="profile_pic" src = "portfolio_need/res/prfp.jpg">
-    </div>
-    <br>
-    <h2 class = "language_text presentation_text project_main_text" name = "projects"> Projects </h2>
-    <div >
-        
-        
-        
-        <h2 class = "language_text presentation_text">python</h2>
-        <div  name = "list" class = "language_list">
-            <input type="button" value="<-" name = "move_left" class = "direction_button">
-            <div class = "holder" id = "list_holder"> 
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">portfolio builder</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/portfolio builder')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">md builder</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/md builder')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
+                </div>
+
+                <a href="#profile" class='header-button'>
+                    Profile
+                </a>
+
+                <a href="#contacts" class='header-button'>
+                    Contact
+                </a>
                 
                 
-            </div>
-            <input type="button" value="->" name = "move_right" class = "direction_button">
+
+
+            </nav>
         </div>
-    
-        
-        
-        
-        <h2 class = "language_text presentation_text">java</h2>
-        <div  name = "list" class = "language_list">
-            <input type="button" value="<-" name = "move_left" class = "direction_button">
-            <div class = "holder" id = "list_holder"> 
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">necromancer tower defense</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/necromancer tower defense')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">perfect seven</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/perfect seven')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">crumb hunt</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/crumb hunt')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">underway</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/underway')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">travellair</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/travellair')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">space game</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/space game')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                    
-                    
-                    <div name = "project" class = "project">
-                        
-                            <div name = "image" class = "project background_project project_element">
-                                <img class="project_element project_image" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                
-                                <img class="additional_image project_element" src = "portfolio_need/res/crumbt_hunt_start.png">
-                                <div name = "project_details">  
-                                    <h3 name = "text" class = "project_text">shooting on robots game</h3>
-                                    <input type="button" onclick= "open_link('https:/github.com/emilymarquessalum/shooting on robots game')"value="go to github" class = "project_button">    
-                                    
-                                        <input type="button" onclick= "open_link('aaa')"value="open" class = "project_button link_button">    
-                                    
-                                   
-                                </div>
-                            
-                                
-                            </div>
-                            
-                            
-                    </div>
-                    
-                    
-                
-                
-            </div>
-            <input type="button" value="->" name = "move_right" class = "direction_button">
+
+
+    </header>
+
+    <main>
+
+        <!-- Introduction! -->
+        <div class="section main-section">
+
+            <h2 class="main-title">Emily Salum</h2>
+
+            <h3 class="below-title">Determined to be the best programmer I can be!</h3>
+
         </div>
-    
-        
+
+
+        <!-- Technologies I know! -->
+        <div class="techs section">
+            <h3 class='section-title'>What I know</h3>
+
+            <div class="tech-images">
+
+                <!-- tech_list is an array with strings -->
+                
+
+                    
+
+                        <img class="tech-logo" src="portfolio_need/res/python-logo.png">
+
+                        
+
+                    
+
+                        <img class="tech-logo" src="portfolio_need/res/java-logo.png">
+
+                        
+
+                    
+
+                        <img class="tech-logo" src="portfolio_need/res/javascript-logo.png">
+
+                        
+
+                    
+
+                        <img class="tech-logo" src="portfolio_need/res/godot-logo.png">
+
+                        
+
+            </div>
+
+        </div>
+
+
+        <!-- Projects! -->
+        <section class="projects holder section">
+
+            <h2 class="section-title" id="projects"> Projects </h2>
+
+            <p class="project-bracket">[</p>
+            <div class="projects-box" id="project-box">
+                
+
+                    <!-- project_lists is a dict with languages paired to projects (str array) -->
+                    
+                        
+
+                            
+
+
+                                
+                                    
+                                        
+                                            <div class="project project_element" project-name="heart_beat">
+                                                <p class="project-index">
+                                                    0
+                                                </p>
+
+                                                
+                                                    <a href='https://gotm.io/emilysalum/heart-beat' class="project_link">
+
+                                                        
+                                                            <img class="project_image original_image"
+                                                                src="./portfolio_need/res/menu.png">
+
+                                                            
+                                                    </a>
+                                                    
+
+
+                                            </div>
+
+
+
+
+
+
+
+
+                                            
+
+
+
+                                                
+                        
+
+                            
+
+
+                                
+                                    
+                                        
+                                            <div class="project project_element" project-name="barbearia_alura">
+                                                <p class="project-index">
+                                                    1
+                                                </p>
+
+                                                
+                                                    <a href='https://emilymarquessalum.github.io/alura-barbearia/' class="project_link">
+
+                                                        
+                                                            <img class="project_image original_image"
+                                                                src="./portfolio_need/res/frontpage2.png">
+
+                                                            
+                                                    </a>
+                                                    
+
+
+                                            </div>
+
+
+
+
+
+
+
+
+                                            
+
+
+
+                                                
+                            
+            </div>
+
+            <p class="project-bracket">]</p>
+
+        </section>
+
+
+
+        <!-- Profile, Gives some information about me -->
+        <section id = "profile" class="profile">
+            <h3 class="subtitle profile_subtitle hidden_from_raw">For you to know a bit about me...</h3>
+            <h3 class="profile_key key_open">const profile = {</h3>
+            <table class='profile_table'>
+                <tbody id="profile_body">
+
+                    
+                        <tr>
+
+                            <td class = "profile_field_key">
+                                From 
+                            </td>
+
+                            <td field_class="From_value" class="raw_value profile_value" not-raw = 'Brasil'>
+                                COUNTRIES.Brazil
+                            </td>
+                        </tr>
+
+
+                        
+                        <tr>
+
+                            <td class = "profile_field_key">
+                                Likes 
+                            </td>
+
+                            <td field_class="Likes_value" class="raw_value profile_value" not-raw = 'Rpg, automation, classical music and discord!'>
+                                [&#34;Rpg&#34;,&#34;automation&#34;,&#34;classical music&#34;,&#34;discord&#34;]
+                            </td>
+                        </tr>
+
+
+                        
+
+                </tbody>
+
+            </table>
+            <h3 class="profile_key">}</h3>
+            <button id = "profile_button" class="profile_button">Build Profile</button>
+
+        </section'>
+
+    </main>
+
+    <!-- Footer -> End of site! -->
+    <footer class="section contacts" id="contacts">
+
+        <h2 class="section-title" name="contacts">Contacting</h2>
+
+        <div class="contact-form-box" id="contact-form-box">
+            <h3 class="subtitle"> Email me!</h3>
+
+            <form class="contact_form" id="contact-form" action="https://formspree.io/f/mdobzrbv" method="POST">
+
+                <label for="name">Name</label>
+                <input class="input-element" type="text" id="name" name="name" required>
+
+
+                <label for="email">Email</label>
+                <input class="input-element" type="email" id="email" name="email" required>
+
+                <label for="message">Message!</label>
+
+                <textarea class="input-element" id="message" name="messages"></textarea>
+
+                <input id="send_email" type="submit" class='contact-send contact-element' value="Send">
+
+            </form>
+
+        </div>
+
+
+       
+
+        <!-- Call me in -> To add plataforms where people can contact me -->
+        <div class="contact_buttons">
+
+            <h3 class="subtitle" id="call_me_in"> Or call me in...</h3>
+
+            <a class="contact_button" href="http://discord.com/users/674759841583202328">
+
+                <img class="media_image" src="portfolio_need/res/discord_logo.png">
+
+            </a>
+
+            <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
+                <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
+            </a>
+        </div>
+
+    </footer>
+
     </div>
 
-    <br>
-    <br>
-    <div class = "contacts" name = "contacts" >
-        <h2 class = "presentation_text">Contacting</h2>
-        
-        <button data-method = "link" class="contact_button" data-link="http://discord.com/users/674759841583202328" name = "contact_button" > 
-            <img class = "media_image" src = "portfolio_need/res/discord_logo.png">
 
-        </button>
-        <button data-method = "link" class = "contact_button" data-link= "https://www.linkedin.com/in/emily-salum-839653217/" name = "contact_button"> 
-            <img class = "media_image" src = "portfolio_need/res/linkedin_logo.png">
-        </button>
 
-    </div>
 
-    <script src = "portfolio_need/behaviour.js">
-
-    
-    </script>
 </body>
+
+
+<script src="portfolio_need/js/behaviour.js"> </script>
+<script src="portfolio_need/js/contact.js"> </script>
+<script src="portfolio_need/js/header.js"> </script>
+<script src="portfolio_need/js/profile.js"> </script>
+
+
+
 
 </html>

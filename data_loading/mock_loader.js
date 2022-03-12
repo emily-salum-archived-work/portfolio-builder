@@ -1,5 +1,5 @@
 
-const { make_project } = require("./helper_loader");
+const { make_project, save_images } = require("./helper_loader");
 const { app } = require("electron");
 function load_mock() {
 
@@ -18,7 +18,7 @@ function load_mock() {
     "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png", "https://emilymarquessalum.github.io/alura-barbearia/")]
 
     //project_lists['python'] = [make_project()]
-
+    save_images(project_lists);
     app.emit("project_lists_loaded", project_lists);
 
 
