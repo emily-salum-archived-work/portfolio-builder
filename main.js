@@ -5,7 +5,7 @@ var ejs  = require('ejs');
 const path = require('path');
 const github_main = require("./builder_pages/update_github/main");
 const loader_main =   require("./builder_pages/choose_loader/main");
- 
+const {  save_images } = require("./data_loading/helper_loader.js");
 
 let win;
 
@@ -13,11 +13,13 @@ let win;
 of adding a new language. Currently, after putting the name in this array directly in code,
 you must manually look for an icon image on google. For next versions, consider finding a better
 way!  */
-tech_list = ["python", 'java', 'javascript', 'godot'];
+tech_list = ["python", 'java', 'javascript', 'godot', 'electron'];
 
 function createWindow () 
 {
 
+
+  
     win = new BrowserWindow({
 
         webPreferences:{
@@ -87,6 +89,9 @@ function createWindow ()
   let firstTime = true;
   function inicialize_program(project_lists)
   {
+
+    save_images(project_lists);
+
       data = {
         'project_lists' : project_lists, 
         'tech_list': tech_list,

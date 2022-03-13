@@ -51,10 +51,10 @@
   display: block;
   border-radius: 10%;
   margin: auto; 
-  width: 40vmin;
+  width: 40vmax;
    
   font-size: 4.5vmin;
-  height: 7.5vmin;
+  height: 7.5vmax;
   color: #cbfdd1;
   background-color: #1b221c;
 }
@@ -137,7 +137,9 @@
 
 .closed_keys {
 
-  font-size: 0;
+  font-size: 0; 
+  width: 0;
+  height: 0;
 }
 
 .hidden_from_raw {

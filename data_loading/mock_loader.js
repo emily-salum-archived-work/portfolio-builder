@@ -10,15 +10,16 @@ function load_mock() {
 
 
     project_lists['godot'] = [make_project('heart_beat', 
+
     "C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png",
+    "Godot",
     "https://gotm.io/emilysalum/heart-beat")];
 
 
     project_lists['javascript'] = [make_project("barbearia_alura", 
-    "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png", "https://emilymarquessalum.github.io/alura-barbearia/")]
+    "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png", "HTML, CSS", "https://emilymarquessalum.github.io/alura-barbearia/")]
 
-    //project_lists['python'] = [make_project()]
-    save_images(project_lists);
+ 
     app.emit("project_lists_loaded", project_lists);
 
 

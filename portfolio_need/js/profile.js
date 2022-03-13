@@ -77,8 +77,10 @@ buildProfile.addEventListener("click", () => {
 
         key.classList.add("closed_keys")
     })
+ 
+    buildProfile.classList.add("closed_keys");
 
-    buildProfile.remove();
+    setTimeout(()=>{buildProfile.remove()}, 1600);
 
 
     const hiddenElements = Array.from(profile.getElementsByClassName("hidden_from_raw"));

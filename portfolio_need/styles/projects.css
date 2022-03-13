@@ -24,7 +24,7 @@
 
   padding: 0;
 
-  padding-right: 10vw;
+    padding-right: 10vw;
 
   scroll-behavior: smooth;
  
@@ -36,16 +36,11 @@
 .project
 {
   display: inline;
-  white-space:nowrap; 
-  margin-left: var(--project-offset);
-  
-  margin-top: 2vh;
-  margin-right: 1.5vw;
-
-  padding-left: 0;
-  padding-right: 0;
+  position: relative;
+  white-space:nowrap;  
+  margin-top: 2vh; 
   height: 100%;
-  width: var(--project-width);
+  width: var(--project-width );
 }
  
 
@@ -53,15 +48,15 @@
     margin-left: 0;
 }
 
-.project::after
-{
+
+.project-comma {
+  
   font-size: 5vmin;
 
   color: var(--light-main);
-
-  content: ",";
+ 
+  display: inline;
 }
-
 
 .project-index
 {
@@ -73,11 +68,29 @@
   left: calc(var(--project-width) / 1.8);
 
 
-  top: calc(var(--project-width) +3vh);
+  top: calc(var(--project-width) *-1);
   font-size: 3vmin;
 z-index: 3;
   color: var(--light-secundary);
 
+  user-select: none;
+
+}
+
+.project-info {
+
+  user-select: none;
+
+  display: inline;  
+  
+  top: 2vh;
+  left: 30%;
+  position: absolute;
+  color: var(--light-main);
+
+
+  font-size: 2.8vmin;
+  text-transform: capitalize;
 }
 
  
@@ -112,9 +125,10 @@ z-index: 3;
   color: var(--light-main);
 } 
 
-.project:hover .project-index
+.project:hover .project-index, 
+.project:hover .project-info
 {
-display: none; 
+ font-size: 0;
 }
 
 

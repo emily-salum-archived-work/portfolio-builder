@@ -12,8 +12,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
 
@@ -44,24 +48,52 @@
             <nav>
 
 
-                <a class='header-button' id="projects-button">
-                    Projects
-                </a>
+                <div id="root-folder" class="folder-container">
 
-                <!-- Will hold buttons related to every project -->
-                <div id="projects-buttons">
+                  
+                    <a class='header-button header-folder' id="projects-button" folder>
+                        Projects
+                    </a>
 
+                    <!-- Will hold buttons related to every project -->
+                    <div id="projects-buttons" class="folder-container closed-folder">
+                        <% for(language of Object.keys(data.project_lists)){
+                            
+                             let project_list=data.project_lists[language] 
+                             for(let i=0; i < project_list.length; i++){
+                                    let project=project_list[i] 
+                             
+                                    %>
+
+                                    <a href="#projects" 
+                                    class="header-button header-file closed_file" 
+                                    link-project-name="<%=project.name%>">
+                                        <%=project.name.replace("_", " ")%>
+                                        </a>
+                                    
+                                    
+                                <%}
+
+                            %>
+
+
+                        <% }%>
+
+                    </div>
+
+
+
+                    <a href="#profile" class='header-button header-file header-profile'>
+                        Profile
+                    </a>
+
+                    <a href="#contacts" class='header-button header-file header-contact'>
+                        Contact
+                    </a>
                 </div>
 
-                <a href="#profile" class='header-button'>
-                    Profile
-                </a>
 
-                <a href="#contacts" class='header-button'>
-                    Contact
-                </a>
-                
-                
+
 
 
             </nav>
@@ -83,17 +115,27 @@
 
 
         <!-- Technologies I know! -->
-        <div class="techs section">
+        <div class="techs section" id="techs">
             <h3 class='section-title'>What I know</h3>
 
+
+            <!-- tech_list is an array with strings -->
+
+            <div class="tech-list">
+                <% for(let i=0; i < data.tech_list.length; i++){ 
+
+                let tech=data.tech_list[i]; %>
+                    <p class="tech-name" tech-name="<%=tech%>"><%=tech%></p>
+                <% } %>
+            </div>
+
             <div class="tech-images">
+ 
+                <% for(let i=0; i < data.tech_list.length; i++){ 
 
-                <!-- tech_list is an array with strings -->
-                <% for(let i=0; i < data.tech_list.length; i++){%>
+                    let tech=data.tech_list[i]; %>
 
-                    <% let tech=data.tech_list[i]; %>
-
-                        <img class="tech-logo" src="portfolio_need/res/<%=tech%>-logo.png">
+                        <img tech="<%=tech%>" class="tech-logo" src="portfolio_need/res/techs/<%=tech%>-logo.png">
 
                         <%}%>
 
@@ -114,9 +156,7 @@
                     <!-- project_lists is a dict with languages paired to projects (str array) -->
                     <% for(language of Object.keys(data.project_lists)){%>
                         <% let project_list=data.project_lists[language] %>
-
                             <% if(project_list.length==0){continue;} %>
-
 
                                 <% for(let i=0; i < project_list.length; i++){%>
                                     <% let project=project_list[i] %>
@@ -137,22 +177,20 @@
                                                     </a>
                                                     <% } %>
 
+                                                    <p class="project-info"> 
+                                                        <%=project.techs%>
+                                                     </p>
+                                                     
 
-                                            </div>
+                                            </div>  
 
-
-
-
-
-
+                                            <p class="project-comma">,</p>
 
 
                                             <%}%>
 
-
-
                                                 <%}%>
-                            
+
             </div>
 
             <p class="project-bracket">]</p>
@@ -162,7 +200,7 @@
 
 
         <!-- Profile, Gives some information about me -->
-        <section id = "profile" class="profile">
+        <section id="profile" class="profile">
             <h3 class="subtitle profile_subtitle hidden_from_raw">For you to know a bit about me...</h3>
             <h3 class="profile_key key_open">const profile = {</h3>
             <table class='profile_table'>
@@ -171,11 +209,12 @@
                     <% for(let [name, value] of Object.entries(data.profile)) { %>
                         <tr>
 
-                            <td class = "profile_field_key">
-                                <%=name%> 
+                            <td class="profile_field_key">
+                                <%=name%>
                             </td>
 
-                            <td field_class="<%=name%>_value" class="raw_value profile_value" not-raw = '<%=value.not_raw%>'>
+                            <td field_class="<%=name%>_value" class="raw_value profile_value"
+                                not-raw='<%=value.not_raw%>'>
                                 <%=value.raw %>
                             </td>
                         </tr>
@@ -187,9 +226,9 @@
 
             </table>
             <h3 class="profile_key">}</h3>
-            <button id = "profile_button" class="profile_button">Build Profile</button>
+            <button id="profile_button" class="profile_button">Build Profile</button>
 
-        </section'>
+            </section'>
 
     </main>
 
@@ -221,7 +260,7 @@
         </div>
 
 
-       
+
 
         <!-- Call me in -> To add plataforms where people can contact me -->
         <div class="contact_buttons">
@@ -230,12 +269,12 @@
 
             <a class="contact_button" href="http://discord.com/users/674759841583202328">
 
-                <img class="media_image" src="portfolio_need/res/discord_logo.png">
+                <img class="media_image" src="portfolio_need/res/medias/discord_logo.png">
 
             </a>
 
             <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
-                <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
+                <img class="media_image" src="portfolio_need/res/medias/linkedin_logo.png">
             </a>
         </div>
 
@@ -248,12 +287,14 @@
 
 </body>
 
-
-<script src="portfolio_need/js/behaviour.js"> </script>
+ 
 <script src="portfolio_need/js/contact.js"> </script>
-<script src="portfolio_need/js/header.js"> </script>
+<script src="portfolio_need/js/header/headerControl.js"> </script>
+<script src="portfolio_need/js/header/projectFilesControl.js"> </script>
+
 <script src="portfolio_need/js/profile.js"> </script>
 
+<script src="portfolio_need/js/techs.js" type="module"> </script>
 
 
 
