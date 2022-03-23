@@ -1,0 +1,23 @@
+
+
+.profile__field-title {
+
+    color: rgb(53, 255, 154) !important;
+     
+    font-size: 3vmax !important; 
+    width: 50%;
+    margin-right: 20vw;
+    
+    text-transform: capitalize;
+  }
+  
+  @media screen and (max-width: 768px) {
+
+    .profile__field-title {
+ 
+        display: block;
+        font-size: 5.5vmax !important;
+        margin: auto !important;
+    }
+  
+}

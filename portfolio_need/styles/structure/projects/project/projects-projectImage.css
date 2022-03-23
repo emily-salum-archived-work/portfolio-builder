@@ -1,0 +1,22 @@
+
+.projects__project-image
+{
+ 
+  border-radius: 1em; 
+  height: var(--project-width);
+  width: var(--project-width);
+  filter: brightness(50%);
+
+  grid-area: image;
+
+  
+  padding-top: 0;
+  margin-top: 0;
+
+}  
+
+
+.projects__project-image:hover {
+    filter: brightness(100%);
+}
+

@@ -1,7 +1,15 @@
 var fs = require('fs');
 const pathf = require('path');
 
-function make_project(name, image, techs, open_link="#") {
+/**
+ * 
+ * @param {String} name 
+ * @param {String} image 
+ * @param {String} techs 
+ * @param {String} open_link 
+ * @returns {Object}
+ */
+function makeProject(name, image, techs, open_link="#") {
     if(!image) {
         image = "portfolio_need/res/crumbt_hunt_start.png";
     }
@@ -9,7 +17,7 @@ function make_project(name, image, techs, open_link="#") {
 
     return { 'name': name, 'image': image, 'open_link': open_link, 'techs': techs };
 }
-exports.make_project = make_project;
+exports.makeProject = makeProject;
 
 
 

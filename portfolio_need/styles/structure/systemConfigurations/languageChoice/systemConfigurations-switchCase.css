@@ -1,0 +1,44 @@
+
+.system-configurations__switch-case {
+    padding-top: 1vh;
+    margin-left: 4vw;
+}
+
+
+.system-configurations__switch-case--selected {
+     
+
+    animation: selected-case 2s;
+}
+ 
+
+@keyframes selected-case {
+
+ 
+
+
+    20% {
+        color: aqua;
+    }
+
+    50% {
+        color: rgb(0, 255, 55) !important;
+        font-size: 5vmin;
+    }
+
+    70% {
+        color: rgb(0, 255, 55) !important;
+    }
+
+    80% {
+        color: aqua;
+    }
+
+
+    100% {
+        color: rgb(0, 255, 55) !important;
+        font-size: 4vmin;
+    }
+}
+ 
+

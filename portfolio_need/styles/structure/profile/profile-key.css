@@ -1,0 +1,33 @@
+
+
+
+.profile__key {
+
+    font-size: 7vmax;
+    color: var(--code);
+    margin-left: 15%; 
+      padding: 1%;
+    margin-bottom: 2.5%;
+    display: block;
+  }
+  
+
+
+  
+
+
+.profile__key--opened {
+    font-size: 5vmin;
+    margin-left: 5%;  
+  }
+  
+.profile__key--closed {
+
+    font-size: 0; 
+    width: 0;
+    height: 0;
+    border: 0;
+  }
+  
+
+     

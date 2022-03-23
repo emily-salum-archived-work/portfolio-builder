@@ -1,0 +1,65 @@
+ 
+
+
+
+.header
+{ 
+  position: fixed;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: hidden;
+
+
+  transition: 3s;
+  
+  border-right: 4px solid rgb(85, 150, 105);
+
+  width: 2.5vw;
+  height: 100vh;
+  
+  z-index: 2;
+  top: 0;
+  background-color: #0c721a77;
+  text-align: left;
+  transition: 0.7s;
+  filter: brightness(74%);
+
+}
+
+
+.header--closed {
+  width: 2.2vw !important;
+}
+
+.header--opened {
+  background-color: #6ac04d;
+  width: 24vw !important;
+ 
+}
+
+header:hover
+{
+
+  filter: brightness(90%);
+
+}
+
+@media (max-width: 1000px) {
+  
+  .header {
+    white-space:normal;
+  }
+
+  .header--opened {
+    width: 30vw !important;
+  }
+} 
+
+ 
+  
+
+ 
+
+
+
+ 

@@ -3,43 +3,65 @@
 
 
 
-const OPENED_HEADER = "opened_header";
-const CLOSED_HEADER = "closed_header";
+const OPENED_HEADER = "header--opened";
+const CLOSED_HEADER = "header--closed";
 
+const coverScreen = document.querySelector(".screen-cover");
 
-
-let header = document.getElementsByTagName("header")[0];
-
+var header = document.getElementById("header");
+ 
    
 /* ? */
-header.addEventListener("click", changeHeaderState, true);
+document.body.addEventListener("click", 
+clickHeader, 
+true);
 
 
-/* The header gets closed whenever the user clicks on anything outside the header */
-document.body.addEventListener("click", closeHeader, true);
+function clickHeader(event) {
 
+    let element = event.target;
+    
+    let hasHeaderOrigin = element.id === 'header' || header.contains(element);
+    if(!hasHeaderOrigin) {
+        closeHeader();
+        return;
+    }
 
-/* whenever a button is clicked, it should also count as opening the header */
-headerButtons = document.getElementsByClassName("header-button")
-for (button of headerButtons) {
-    button.addEventListener("click", openHeader, false);
+    openHeader();
 }
-
-
+ 
 function changeHeaderState() {
 
     header.classList.toggle(CLOSED_HEADER);
     header.classList.toggle(OPENED_HEADER);
 }
+ 
 
-function closeHeader() {
+export function closeHeader() {
+    console.log("Close header");
+    
+    
+    console.log(" classes : " + header.classList);
     header.classList.add(CLOSED_HEADER);
     header.classList.remove(OPENED_HEADER);
+    
+    console.log(" classes : " + header.classList);
+
+    coverScreen.classList.remove("screen-cover--unfocus");
 
 }
 
 function openHeader() {
 
+    console.log("opening header");
+    
+    console.log(" classes : " + header.classList);
     header.classList.add(OPENED_HEADER);
     header.classList.remove(CLOSED_HEADER);
+    
+    console.log(" classes : " + header.classList);
+
+    console.log(header);
+    coverScreen.classList.add("screen-cover--unfocus");
 }
+ 

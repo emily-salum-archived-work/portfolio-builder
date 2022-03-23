@@ -1,0 +1,34 @@
+
+.header__file::before {
+ 
+  background:url('../res/header_icons/file_icon.png');
+
+    content: "";
+    background-size:contain;
+    background-repeat: no-repeat;
+    width: 2.4vmax;
+    height: 2.4vmax; 
+    position: absolute;
+    
+    margin-left: -3vmax;
+}
+
+
+.header__file--opened {
+
+    padding-top: 0.25vh;
+    font-size: 1vmax;
+   
+  
+    margin-bottom: 2vh;
+  }
+  
+.header__file--closed {
+    font-size: 0 !important; 
+    padding-top: 0;
+  
+    
+    padding-bottom: 0 !important;
+  
+    opacity: 0;
+  }

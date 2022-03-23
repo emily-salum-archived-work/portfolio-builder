@@ -1,0 +1,25 @@
+
+.profile__column {
+ 
+
+    width: 20%;
+    height: 20%;
+
+    margin-top: 1%;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .profile__column {  
+ 
+        display: block;
+        
+         width: 100%;
+        text-align: center;
+        margin: auto; 
+        height: fit-content;
+    }
+  
+}

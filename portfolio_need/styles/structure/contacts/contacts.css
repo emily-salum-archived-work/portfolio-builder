@@ -1,0 +1,28 @@
+
+.contacts
+{
+  overflow: hidden;
+}
+  
+.contacts--closed {
+  animation: close 5s forwards  ; 
+}
+  
+  
+  @keyframes close {
+    
+    0% { 
+      left: -1vw;
+    }
+ 
+    100% {  
+  
+      left: -7vw;
+    }
+  }
+
+ 
+
+
+
+ 

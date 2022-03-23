@@ -47,18 +47,33 @@ function send_changes()
     let {PythonShell} = require('python-shell');
     fs.writeFileSync("./index.html", html_to_save, 'utf8');
     
+
+    const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
+
+
+    const builderPath = "C:/Users/user/Desktop/emily/projects/@site_projects/portfolio-builder/";
+
+    let args = '{"paths" : ["' + builderPath + 'index.html", '+
+           '"' + builderPath + 'bootstrap-5.1.0-dist",'+
+           ' "'+  builderPath + 'portfolio_need"] }';
+ 
+    console.log(args);
+
+    console.log(args[15]);
+
     if (changes_sent){ return;}
     changes_sent = true;
     let options = {
-        pythonPath: "C:/Users/user/PycharmProjects/untitled/venv/Scripts/python.exe",
+        pythonPath: pythonPath,
         args: ["portfolio",
-            '{"paths" : ["C:/Users/user/portfolio-builder/index.html", '+
-           '"C:/Users/user/portfolio-builder/bootstrap-5.1.0-dist",'+
-           ' "C:/Users/user/portfolio-builder/portfolio_need"]}',
+            args,
             true]
     };
 
-    PythonShell.run('C:/Users/user/PycharmProjects/github_init/togit/github_args.py', options, function (err, results) {
+
+    const githubInitPath = "C:\\Users\\user\\Desktop\\emily\\projects\\@python_projects\\@Automation\\github_init\\togit\\github_args.py";
+
+    PythonShell.run(githubInitPath, options, function (err, results) {
         if (err)
             throw err;
         console.log('github.py finished.');

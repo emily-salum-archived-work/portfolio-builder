@@ -1,0 +1,19 @@
+
+     
+.techs__name-list {
+   
+   
+    text-align: center;
+  
+  
+  }
+
+
+  
+@media screen and (max-width: 768px) {
+  
+  .techs__name-list {
+    
+    display: none;
+  }
+}

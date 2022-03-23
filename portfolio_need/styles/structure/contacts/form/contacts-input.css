@@ -1,0 +1,28 @@
+.contacts__input {
+    background-color: var(--darky);
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+  
+    width: 40vw;
+  
+    height: 6vh;
+  
+    color: #4e4833;
+    font-size: 4vmin;
+    font-weight: bold;
+    font-family: var(--default-font);
+    -webkit-text-stroke-color: #51df64;
+    -webkit-text-stroke-width: 0.07px;
+  
+  
+    caret-color: #51df64;
+    transition: 0.5s;
+   }
+  
+
+.contacts__input::grammar-error  {
+    text-decoration: none;
+  
+}
+  

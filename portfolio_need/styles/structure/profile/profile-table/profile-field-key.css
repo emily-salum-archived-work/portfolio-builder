@@ -1,0 +1,13 @@
+
+
+.profile__field-key::before {
+    content: '"';
+  }
+  
+  .profile__field-key::after {
+    content: '": ';
+    display: inline;
+  }
+  
+ 
+ 

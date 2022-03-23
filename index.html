@@ -1,30 +1,36 @@
-<html>
+<html class="scroller">
+
+
 
 <head>
-    <title> Portfolio </title>
 
+
+    <title> Emily Salum - Portfolio </title>
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <link rel="stylesheet" href="bootstrap-5.1.0-dist/css/bootstrap.css">
+
+
+
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="portfolio_need/styles/reset.css">
-
-    <link rel="stylesheet" href="portfolio_need/styles/styles.css">
-    <link rel="stylesheet" href="portfolio_need/styles/header.css">
-    <link rel="stylesheet" href="portfolio_need/styles/techs.css">
-    <link rel="stylesheet" href="portfolio_need/styles/profile.css">
-    <link rel="stylesheet" href="portfolio_need/styles/contacts.css">
-    <link rel="stylesheet" href="portfolio_need/styles/projects.css">
+    <link rel="stylesheet" href="portfolio_need/styles/condensed_css.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
         integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
@@ -37,31 +43,98 @@
 <body>
 
 
-    <header id="header">
+    <div class="screen-cover"> </div>
 
-        <div class="container">
+    <header class="header" id="header">
 
-            <nav>
+        <div class="header__container" id="header-container">
+
+            <nav class="header__explorer">
 
 
-                <a class='header-button' id="projects-button">
-                    Projects
-                </a>
+                <div class="header__root-folder" id="root-folder">
 
-                <!-- Will hold buttons related to every project -->
-                <div id="projects-buttons">
 
+                    <a class='header__button header__button--folder' id="projects-button" folder to-translate="projects">
+                    </a>
+
+                    <!-- Will hold buttons related to every project -->
+                    <div class="header__folder header__folder--closed header__folder--projects" id="projects-buttons">
+                        
+
+                        
+                           
+                        
+
+                        <a class="header__button header__file header__file--closed"
+                        href="#projects"
+                            link-project-name="heart_beat">
+                            heart beat
+                        </a>
+
+
+                        
+
+
+                        
+
+                        
+                           
+                        
+
+                        <a class="header__button header__file header__file--closed"
+                        href="#projects"
+                            link-project-name="barbearia_alura">
+                            barbearia alura
+                        </a>
+
+
+                        
+
+
+                        
+
+                        
+                           
+                        
+
+                        <a class="header__button header__file header__file--closed"
+                        href="#projects"
+                            link-project-name="Perfect Seven">
+                            Perfect Seven
+                        </a>
+
+
+                        
+                        
+
+                        <a class="header__button header__file header__file--closed"
+                        href="#projects"
+                            link-project-name="Crumb Hunt">
+                            Crumb Hunt
+                        </a>
+
+
+                        
+
+
+                        
+
+                    </div>
+
+
+
+                    <a href="#profile" 
+                    class='header__button header__file header__button--profile' to-translate="profile">
+                    </a>
+
+                    <a href="#contacts" 
+                    class='header__button header__file header__button--contact' to-translate="contact">
+                    </a>
                 </div>
 
-                <a href="#profile" class='header-button'>
-                    Profile
-                </a>
 
-                <a href="#contacts" class='header-button'>
-                    Contact
-                </a>
-                
-                
+
 
 
             </nav>
@@ -70,182 +143,290 @@
 
     </header>
 
+
+
     <main>
 
+
+
+
         <!-- Introduction! -->
-        <div class="section main-section">
+        <div class="section introduction">
 
-            <h2 class="main-title">Emily Salum</h2>
+            <h2 class="introduction__name">Emily Salum</h2>
 
-            <h3 class="below-title">Determined to be the best programmer I can be!</h3>
+            <h3 class="introduction__text" to-translate="page_introduction"></h3>
 
         </div>
 
 
         <!-- Technologies I know! -->
-        <div class="techs section">
-            <h3 class='section-title'>What I know</h3>
+        <div class="techs section" id="techs">
+            <h3 class='section__title' to-translate="tech-title"></h3>
 
-            <div class="tech-images">
 
+
+            <div class="techs__box">
                 <!-- tech_list is an array with strings -->
-                
+
+                <div class="techs__name-list">
+                    
+                    <p class="techs__name" tech-name="python">
+                        python
+                    </p>
+                    
+                    <p class="techs__name" tech-name="java">
+                        java
+                    </p>
+                    
+                    <p class="techs__name" tech-name="javascript">
+                        javascript
+                    </p>
+                    
+                    <p class="techs__name" tech-name="nodejs">
+                        nodejs
+                    </p>
+                    
+                    <p class="techs__name" tech-name="godot">
+                        godot
+                    </p>
+                    
+                    <p class="techs__name" tech-name="electron">
+                        electron
+                    </p>
+                    
+                    <p class="techs__name" tech-name="unity">
+                        unity
+                    </p>
+                    
+                    <p class="techs__name" tech-name="c">
+                        c
+                    </p>
+                    
+                </div>
+
+                <div class="techs__image-list">
 
                     
 
-                        <img class="tech-logo" src="portfolio_need/res/python-logo.png">
-
-                        
-
+                    <img tech="python" class="techs__image" 
+                    src="portfolio_need/res/techs/python-logo.png">
                     
 
-                        <img class="tech-logo" src="portfolio_need/res/java-logo.png">
-
-                        
-
+                    <img tech="java" class="techs__image" 
+                    src="portfolio_need/res/techs/java-logo.png">
                     
 
-                        <img class="tech-logo" src="portfolio_need/res/javascript-logo.png">
-
-                        
-
+                    <img tech="javascript" class="techs__image" 
+                    src="portfolio_need/res/techs/javascript-logo.png">
                     
 
-                        <img class="tech-logo" src="portfolio_need/res/godot-logo.png">
+                    <img tech="nodejs" class="techs__image" 
+                    src="portfolio_need/res/techs/nodejs-logo.png">
+                    
 
-                        
+                    <img tech="godot" class="techs__image" 
+                    src="portfolio_need/res/techs/godot-logo.png">
+                    
+
+                    <img tech="electron" class="techs__image" 
+                    src="portfolio_need/res/techs/electron-logo.png">
+                    
+
+                    <img tech="unity" class="techs__image" 
+                    src="portfolio_need/res/techs/unity-logo.png">
+                    
+
+                    <img tech="c" class="techs__image" 
+                    src="portfolio_need/res/techs/c-logo.png">
+                    
 
             </div>
 
+                
+                
+            </div>
+            
+            
         </div>
 
 
-        <!-- Projects! -->
+        <!-- Projects!  
+            -->
+        
         <section class="projects holder section">
+ 
+            <h2 class="section__title" id="projects" to-translate="projects"></h2>
 
-            <h2 class="section-title" id="projects"> Projects </h2>
-
-            <p class="project-bracket">[</p>
-            <div class="projects-box" id="project-box">
+            <div class="projects__box">
+                <p class="projects__bracket">[</p>
+            <div class="projects__selection scroller" id="project-box">
                 
 
                     <!-- project_lists is a dict with languages paired to projects (str array) -->
                     
-                        
-
-                            
-
-
-                                
-                                    
-                                        
-                                            <div class="project project_element" project-name="heart_beat">
-                                                <p class="project-index">
-                                                    0
-                                                </p>
-
-                                                
-                                                    <a href='https://gotm.io/emilysalum/heart-beat' class="project_link">
-
-                                                        
-                                                            <img class="project_image original_image"
-                                                                src="./portfolio_need/res/menu.png">
-
-                                                            
-                                                    </a>
-                                                    
-
-
-                                            </div>
-
-
-
-
-
-
-
-
-                                            
-
-
-
-                                                
-                        
-
-                            
-
-
-                                
-                                    
-                                        
-                                            <div class="project project_element" project-name="barbearia_alura">
-                                                <p class="project-index">
-                                                    1
-                                                </p>
-
-                                                
-                                                    <a href='https://emilymarquessalum.github.io/alura-barbearia/' class="project_link">
-
-                                                        
-                                                            <img class="project_image original_image"
-                                                                src="./portfolio_need/res/frontpage2.png">
-
-                                                            
-                                                    </a>
-                                                    
-
-
-                                            </div>
-
-
-
-
-
-
-
-
-                                            
-
-
-
-                                                
-                            
-            </div>
-
-            <p class="project-bracket">]</p>
-
-        </section>
-
-
-
-        <!-- Profile, Gives some information about me -->
-        <section id = "profile" class="profile">
-            <h3 class="subtitle profile_subtitle hidden_from_raw">For you to know a bit about me...</h3>
-            <h3 class="profile_key key_open">const profile = {</h3>
-            <table class='profile_table'>
-                <tbody id="profile_body">
+                    
+                    
 
                     
-                        <tr>
+                    
+                    
+                    <div class="projects__project" project-name="heart_beat">
+                        <p class="projects__project-index">
+                            0
+                        </p>
 
-                            <td class = "profile_field_key">
-                                From 
-                            </td>
+                        
+                        <a href='https://gotm.io/emilysalum/heart-beat' class="projects__project-link">
 
-                            <td field_class="From_value" class="raw_value profile_value" not-raw = 'Brasil'>
+                            
+                            <img class="projects__project-image" src="./portfolio_need/res/project-images/heart_beat_presentation_image.png">
+
+                            
+                        </a>
+                        
+
+                        <p class="projects__project-info">godot</p>
+
+
+                    </div>
+
+
+
+                    
+
+                                                
+                    
+                    
+
+                    
+                    
+                    
+                    <div class="projects__project" project-name="barbearia_alura">
+                        <p class="projects__project-index">
+                            1
+                        </p>
+
+                        
+                        <a href='https://emilymarquessalum.github.io/alura-barbearia/' class="projects__project-link">
+
+                            
+                            <img class="projects__project-image" src="./portfolio_need/res/project-images/barbearia_alura_presentation_image.png">
+
+                            
+                        </a>
+                        
+
+                        <p class="projects__project-info">HTML, CSS, JS</p>
+
+
+                    </div>
+
+
+
+                    
+
+                                                
+                    
+                    
+
+                    
+                    
+                    
+                    <div class="projects__project" project-name="Perfect Seven">
+                        <p class="projects__project-index">
+                            2
+                        </p>
+
+                        
+                        <a href='https://youtu.be/CWss5f941eA' class="projects__project-link">
+
+                            
+                            <img class="projects__project-image" src="./portfolio_need/res/project-images/Perfect Seven_presentation_image.png">
+
+                            
+                        </a>
+                        
+
+                        <p class="projects__project-info">java</p>
+
+
+                    </div>
+
+
+
+                    
+                    
+                    
+                    <div class="projects__project" project-name="Crumb Hunt">
+                        <p class="projects__project-index">
+                            3
+                        </p>
+
+                        
+                        <a href='https://youtu.be/urmSuQsfpsE' class="projects__project-link">
+
+                            
+                            <img class="projects__project-image" src="./portfolio_need/res/project-images/Crumb Hunt_presentation_image.png">
+
+                            
+                        </a>
+                        
+
+                        <p class="projects__project-info">java</p>
+
+
+                    </div>
+
+
+
+                    
+
+                                                
+
+                </div>
+
+                <p class="projects__bracket">]</p>
+
+            </div>
+
+
+            </section>
+
+
+
+            <!-- Profile, Gives some information about me -->
+            <section id="profile" class="profile">
+                <h3 class="section__subtitle profile__title profile__element--hidden-from-raw" to-translate="to_know_me"></h3>
+                
+                <h3 class="profile__key profile__key--opened">const profile = {</h3>
+                
+                <table class='profile__table profile__element'>
+                    <tbody id="profile__body">
+
+                        
+                        <tr class="profile__element profile__column">
+
+                            <td class="profile__element profile__field-key" 
+                            to-translate="from"></td>
+
+                            <td field_class="from_value" 
+                                class="profile__element profile--raw-value profile__value"
+                                not-raw='Brasil'>
                                 COUNTRIES.Brazil
                             </td>
                         </tr>
 
 
                         
-                        <tr>
+                        <tr class="profile__element profile__column">
 
-                            <td class = "profile_field_key">
-                                Likes 
-                            </td>
+                            <td class="profile__element profile__field-key" 
+                            to-translate="likes"></td>
 
-                            <td field_class="Likes_value" class="raw_value profile_value" not-raw = 'Rpg, automation, classical music and discord!'>
+                            <td field_class="likes_value" 
+                                class="profile__element profile--raw-value profile__value"
+                                not-raw='Rpg, automation, classical music and discord!'>
                                 [&#34;Rpg&#34;,&#34;automation&#34;,&#34;classical music&#34;,&#34;discord&#34;]
                             </td>
                         </tr>
@@ -253,60 +434,72 @@
 
                         
 
-                </tbody>
+                    </tbody>
 
-            </table>
-            <h3 class="profile_key">}</h3>
-            <button id = "profile_button" class="profile_button">Build Profile</button>
+                </table>
+                <h3 class="profile__key">}</h3>
+                
+                <button id="profile_button" class="profile__button" 
+                to-translate="build_profile"></button>
 
-        </section'>
+
+                </section'>
 
     </main>
+
 
     <!-- Footer -> End of site! -->
     <footer class="section contacts" id="contacts">
 
-        <h2 class="section-title" name="contacts">Contacting</h2>
+        <h2 class="section__title" name="contacts" to-translate="contacting"></h2>
 
-        <div class="contact-form-box" id="contact-form-box">
-            <h3 class="subtitle"> Email me!</h3>
+        <div class="contacts__form-box" id="contact-form-box">
+           
+            <h3 class="section__subtitle" to-translate="emailing"></h3>
 
-            <form class="contact_form" id="contact-form" action="https://formspree.io/f/mdobzrbv" method="POST">
+            <form class="contacts__form"
+             id="contact-form" action="https://formspree.io/f/mdobzrbv" method="POST">
 
-                <label for="name">Name</label>
-                <input class="input-element" type="text" id="name" name="name" required>
+                <label class="contacts__label" for="name" to-translate="name"></label>
+
+                <input class="contacts__element contacts__input" 
+                type="text" id="name" name="name" required>
 
 
-                <label for="email">Email</label>
-                <input class="input-element" type="email" id="email" name="email" required>
+                <label class="contacts__label" for="email">E-mail</label>
 
-                <label for="message">Message!</label>
+                <input class="contacts__element contacts__input" type="email" id="email" name="email" required>
 
-                <textarea class="input-element" id="message" name="messages"></textarea>
+                <label class="contacts__label" for="message" to-translate="message_to_send"></label>
 
-                <input id="send_email" type="submit" class='contact-send contact-element' value="Send">
+                <textarea class="contacts__element contacts__input contacts__textarea" id="message" name="messages"></textarea>
 
+                <button type="submit" to-translate="send" 
+                class="contacts__send-button contacts__input contacts__element"></button>
             </form>
 
         </div>
 
 
-       
+
 
         <!-- Call me in -> To add plataforms where people can contact me -->
-        <div class="contact_buttons">
+        <div class="contacts__links-box">
 
-            <h3 class="subtitle" id="call_me_in"> Or call me in...</h3>
+            <h3 class="section__subtitle contacts__call_me_in" id="call_me_in" to-translate="call_me_in"></h3>
 
-            <a class="contact_button" href="http://discord.com/users/674759841583202328">
-
-                <img class="media_image" src="portfolio_need/res/discord_logo.png">
-
+            <a class="contacts__link" href="http://discord.com/users/674759841583202328">
+                <img class="contacts__midia" src="portfolio_need/res/medias/discord_logo.png">
             </a>
 
-            <a class="contact_button" href="https://www.linkedin.com/in/emily-salum-839653217/">
-                <img class="media_image" src="portfolio_need/res/linkedin_logo.png">
+            <a class="contacts__link" href="https://www.linkedin.com/in/emily-salum-839653217/">
+                <img class="contacts__midia" src="portfolio_need/res/medias/linkedin_logo.png">
             </a>
+
+            <a class="contacts__link" href="https://github.com/emilymarquessalum/">
+                <img class="contacts__midia" src="portfolio_need/res/medias/github_logo.png">
+            </a>
+
         </div>
 
     </footer>
@@ -319,12 +512,24 @@
 </body>
 
 
-<script src="portfolio_need/js/behaviour.js"> </script>
-<script src="portfolio_need/js/contact.js"> </script>
-<script src="portfolio_need/js/header.js"> </script>
-<script src="portfolio_need/js/profile.js"> </script>
+
+<script src="portfolio_need/js/languages/portugues.js" type="module"></script>
+
+<script src="portfolio_need/js/languages/english.js" type="module"></script>
+
+
+<script src="portfolio_need/js/systemConfigurations/main.js" type="module"></script>
+
+<script src="portfolio_need/js/contact.js" type="module"> </script>
+<script src="portfolio_need/js/header/headerControl.js" type="module"> </script>
+<script src="portfolio_need/js/header/projectFilesControl.js" type="module"> </script>
+
+
+<script src="portfolio_need/js/techs.js" type="module"> </script>
 
 
 
+
+<script src="portfolio_need/js/profile.js" type="module"> </script>
 
 </html>

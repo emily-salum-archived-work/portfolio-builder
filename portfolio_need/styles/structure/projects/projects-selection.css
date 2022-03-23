@@ -1,0 +1,29 @@
+
+.projects__selection
+{
+  
+  margin-left: 2vw;
+
+  display: flex;
+
+  
+  align-items: flex-start;
+
+
+
+  width: calc(var(--project-width) * 5.5);
+
+  overflow-x: scroll; 
+  overflow-y: hidden;
+  text-align: center;
+ 
+   
+
+  padding: 0;
+ 
+
+  scroll-behavior: smooth;
+ 
+} 
+
+

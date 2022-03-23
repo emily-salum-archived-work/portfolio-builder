@@ -1,0 +1,18 @@
+
+
+.system-configurations__select {
+    margin-left: 30vw;
+    width: 40vw;
+
+    text-align: center;
+    margin-top: 1%;
+    background-color: rgb(36, 35, 35);
+}
+
+@media screen and (max-width: 768px) {
+
+    .system-configurations__select {
+        margin-left: 20vw;
+        width: 60vw;
+    }
+}

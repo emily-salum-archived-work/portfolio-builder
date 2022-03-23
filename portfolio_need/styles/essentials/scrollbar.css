@@ -1,0 +1,26 @@
+
+
+
+
+.scroller::-webkit-scrollbar {
+    width: 2vh;
+  }
+
+/* Track */
+.scroller::-webkit-scrollbar-track {
+  
+    background:  var(--dark) ;  
+}
+   
+  /* Handle */
+.scroller::-webkit-scrollbar-thumb {
+    background:  var(--light-main) ; 
+    border-radius: 10px;
+}
+  
+
+
+.body--config::-webkit-scrollbar {
+  width: 0;
+}
+

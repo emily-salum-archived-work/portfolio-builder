@@ -1,26 +1,73 @@
 
-const { make_project, save_images } = require("./helper_loader");
+const { makeProject, save_images } = require("./helper_loader");
 const { app } = require("electron");
+
+
+
+class ProjectCreator {
+
+    /**
+     * 
+     * @param {String} name 
+     */
+    constructor(name) {
+        this.name = name;
+
+        projectLists[name] = []
+    }
+
+    /**
+ * 
+ * @param {String} nome 
+ * @param {String} imagem 
+ * @param {String} link 
+ */
+    addProject(nome, imagem, link) {
+        projectLists[this.name].push(makeProject(nome, imagem, this.name, link));
+    }
+
+}
+
+
+// #TODO: "ProjectCreator" - Class to make project data without repeating yourself 
+
+var projectLists = {}
+
 function load_mock() {
 
-  
-    let project_lists = {};
- 
-    //project_lists['java'] = [make_project('')];
+
+    projectLists = {};
+
+    const godotProjects = new ProjectCreator("godot");
+    const frontStackProjects = new ProjectCreator("HTML, CSS, JS");
+    const javaProjects = new ProjectCreator("java");
 
 
-    project_lists['godot'] = [make_project('heart_beat', 
+    godotProjects.addProject(
+        "heart_beat",
+        "C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png",
+        "https://gotm.io/emilysalum/heart-beat")
 
-    "C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png",
-    "Godot",
-    "https://gotm.io/emilysalum/heart-beat")];
 
 
-    project_lists['javascript'] = [make_project("barbearia_alura", 
-    "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png", "HTML, CSS", "https://emilymarquessalum.github.io/alura-barbearia/")]
+    frontStackProjects.addProject(
+        "barbearia_alura",
+        "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png",
+        "https://emilymarquessalum.github.io/alura-barbearia/")
 
- 
-    app.emit("project_lists_loaded", project_lists);
+
+    javaProjects.addProject("Perfect Seven",
+        "C:/Users/user/Desktop/emily/projects/res/perfect_seven/logo.png",
+        "https://youtu.be/CWss5f941eA");
+
+    javaProjects.addProject("Crumb Hunt",
+        "C:/Users/user/Desktop/emily/projects/res/game_prints/crumbt_hunt_start.png",
+        "https://youtu.be/urmSuQsfpsE"
+    )
+
+
+
+    app.emit("project_lists_loaded", projectLists);
 
 
 }

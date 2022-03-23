@@ -1,4 +1,8 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, globalShortcut
+      , getCurrentWindow } = require('electron')
+
+
+
 var fs = require('fs');
 const ejse = require('ejs-electron')
 var ejs  = require('ejs');
@@ -6,19 +10,22 @@ const path = require('path');
 const github_main = require("./builder_pages/update_github/main");
 const loader_main =   require("./builder_pages/choose_loader/main");
 const {  save_images } = require("./data_loading/helper_loader.js");
+const { getProfile } = require("./data_loading/profile_loader.js");
 
-let win;
+const { getCSSPaths } = require("./data_loading/css_loader.js");
+
+var win;
 
 /* I decided that at the current moment, its not worth automating much of the process
 of adding a new language. Currently, after putting the name in this array directly in code,
 you must manually look for an icon image on google. For next versions, consider finding a better
 way!  */
-tech_list = ["python", 'java', 'javascript', 'godot', 'electron'];
+tech_list = ["python", 'java', 
+              'javascript', 'nodejs', 
+              'godot', 'electron',  
+              'unity', "c"];
 
-function createWindow () 
-{
-
-
+function createWindow ()  {
   
     win = new BrowserWindow({
 
@@ -42,60 +49,74 @@ function createWindow ()
     
    
   }
+
+
+
   app.whenReady().then(createWindow)    
 
 
 
-  function getStuffILikeText(stuffILike) {
-    let stuffILikeText = "";
-    
-    stuffILike.forEach((el) => {stuffILikeText += el + ", ";});
-    stuffILikeText = stuffILikeText.substring(0, stuffILikeText.length - 2);
-
-    stuffILikeText += "!";
-
-    let lastItem = stuffILikeText.lastIndexOf(",")
-    stuffILikeText = stuffILikeText.substring(0, lastItem) + " and" + stuffILikeText.substring(lastItem + 1, stuffILikeText.length);
-
-    return stuffILikeText;
-  }
-  
-  function stuffILikeString(stuffILike) {
-
-    let likesString = "[";
-    
-    stuffILike.forEach((t) => {likesString += `"${t}",` });
-
-    likesString = likesString.substring(0, likesString.length - 1) + "]";
-
-    return likesString;
-  }
-
-  function getProfile() {
-
-    const stuffILike =  ["Rpg", "automation", "classical music", "discord"];
-    let stuffILikeText = getStuffILikeText(stuffILike);
-
-    return {
-  
-      "From": {'raw': "COUNTRIES.Brazil", 'not_raw': "Brasil"},
-      "Likes": {'raw': `${stuffILikeString(stuffILike)}`, "not_raw": stuffILikeText }  
-       
-    }
-  }
-
   
 
   let firstTime = true;
+
+  /* Receives a list of paths of css files, reads those css files and
+  writes all their content to a new file*/
+  function buildCondensedCSS( ) {
+
+ 
+    /* Delete condensed_css file */
+
+    
+    fs.unlinkSync('./portfolio_need/styles/condensed_css.css');
+
+
+    const cssPaths = getCSSPaths();
+    const condensedCSSExplanation = "/*\n WARNING \n This file is auto generated so that the \n portfolio page only needs to import one \n stylesheet path. If you wish to look \n or modify the structure, look at the other files \n */ \n";
+    fs.writeFileSync(path.join(__dirname, 
+      "portfolio_need/styles/condensed_css.css"), 
+      condensedCSSExplanation, { flag: 'a' });
+
+    cssPaths.forEach(function(cssPath) {
+      if( fs.statSync(cssPath).isDirectory()) {
+         return;
+      }
+      
+      let cssFile = fs.readFileSync(cssPath, 'utf8');
+      fs.writeFileSync(path.join(__dirname, 
+        "portfolio_need/styles/condensed_css.css"), 
+        cssFile, { flag: 'a' });
+  });
+
+   
+  }
+
+
+ 
   function inicialize_program(project_lists)
   {
 
+    globalShortcut.register('commandOrControl+R', ()=>{
+    
+      buildCondensedCSS();
+
+      win.reload();
+    
+    });
+
+    /*win.on('ready-to-show', (e) => {
+      buildCondensedCSS( );
+    })*/
+  
     save_images(project_lists);
 
+ 
+ 
       data = {
         'project_lists' : project_lists, 
         'tech_list': tech_list,
         'profile': getProfile(), 
+        'languages': [{name: "portugues", country: "brazil"}, {name: "english", country: "usa"}],
          
       
       'root': __dirname}

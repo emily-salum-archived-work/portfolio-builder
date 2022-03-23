@@ -1,0 +1,29 @@
+
+
+
+.system-configurations__language-switch {
+    width: 60vw;
+    height: 40vh;
+    
+    font-size: 4vmin;
+    background-color: rgb(41, 36, 36);
+    border: 2px solid #00000088;
+    color: var(--code);
+
+
+    position: absolute;
+
+    top: 25%;
+    left: 20%;
+
+    transition: 4s;
+}
+
+
+.system-configurations__language-switch--hidden {
+ 
+    overflow: hidden !important; 
+
+    left:150%;
+}
+ 

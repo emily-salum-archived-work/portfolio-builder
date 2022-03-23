@@ -1,0 +1,17 @@
+.techs__box {
+
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  
+  
+  }
+
+
+
+  @media screen and (max-width: 768px) {
+    .techs__box {
+      width: 100%;
+    }
+  }

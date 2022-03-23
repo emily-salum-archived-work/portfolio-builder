@@ -1,0 +1,17 @@
+ 
+.projects__project-info {
+
+    user-select: none;
+    
+    color: var(--light-main);
+      
+    overflow-wrap: break-word;
+    
+    text-transform: capitalize;
+    font-size: 3vmin; 
+  
+  
+    grid-area: language;
+  }
+  
+   

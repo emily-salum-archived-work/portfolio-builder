@@ -1,0 +1,22 @@
+.techs__image {
+  width: 9vw;
+  margin-right: 1vw;
+  display: inline;
+}
+
+
+.techs__image--unselected {
+    opacity: 0.1; 
+}
+
+  
+
+@media screen and (max-width: 768px) {
+  .techs__image {
+    display: block;
+    width: 30vw; 
+    margin-left: 35vw;
+    margin-bottom: 5vh;
+
+  }
+}

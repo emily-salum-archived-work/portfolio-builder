@@ -1,0 +1,24 @@
+
+.section
+{
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+
+  width: 98vw;
+ 
+  margin-left: 0.5vw;
+  padding-top: 2vh;
+
+
+  padding-bottom: 4vh;
+
+  background: var(--section-color);
+  
+  box-sizing: border-box; 
+
+
+ /* box-shadow:  inset 12px 0px  25px -4px var(--dark), inset -12px 0px  15px -4px var(--dark);*/
+  border-top: 0; 
+ 
+  
+}

@@ -1,0 +1,35 @@
+
+.profile__button {
+
+    display: block;
+    border-radius: 5%;
+    margin: auto; 
+    width: 60vw;
+  
+    margin-bottom: 2vh;
+    font-size: 4.5vmin;
+    height: 7.5vmax;
+    color:  var(--code);
+    background-color: #113a22;
+  
+    --border-color-xs: rgb(41, 80, 10);
+  
+  
+    --border-color-ys: #2b2a2a;
+  
+    border-left: 10px solid var(--border-color-xs);
+    border-right: 10px solid var(--border-color-xs);
+    border-top: 10px solid var(--border-color-ys);
+    border-bottom: 6px solid var(--border-color-ys);
+    
+  }
+  
+  .profile__button:hover {
+    background-color: #04682d;
+  }
+  
+   
+  .profile__button::after {
+    content: "();";
+  }
+  

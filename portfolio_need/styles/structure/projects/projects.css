@@ -1,0 +1,22 @@
+
+.projects
+{  
+  width:63vw; 
+  
+  text-align: center;
+  margin: auto;
+
+  margin-bottom: 15vh;
+  margin-top: 15vh;
+  
+}
+ 
+.projects::-webkit-scrollbar {
+  width: 0px; 
+}
+
+
+ 
+
+ 
+ 

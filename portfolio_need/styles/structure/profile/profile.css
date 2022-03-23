@@ -1,0 +1,42 @@
+
+.profile {
+    background-color: var(--classy-black);
+    width: 85%;
+    margin: auto;
+
+    border: 8px solid #214637;
+    border-radius: 3%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow:clip;
+    white-space: nowrap; 
+
+    height: fit-content;
+    margin-bottom: 15vh;
+  }
+
+
+.profile--pretty {
+ 
+    padding-top: 5vh;
+    height: 60vh;
+    background-color: rgb(25, 54, 49);
+  }
+
+ 
+@media screen and (max-width: 768px) {
+
+
+  .profile--pretty { 
+    width: fit-content;
+  }
+
+  
+}
+
+ 
+
+
+ 
+
+

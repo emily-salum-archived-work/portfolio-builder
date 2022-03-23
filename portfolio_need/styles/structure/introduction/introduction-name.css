@@ -1,0 +1,15 @@
+
+
+
+.introduction__name {
+    font-size: 14vmin;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    color: var(--main);
+    user-select: none;
+    padding-bottom: 2%;
+    font-family: 'Quicksand';
+  }
+
+  

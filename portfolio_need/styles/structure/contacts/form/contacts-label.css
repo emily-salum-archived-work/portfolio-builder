@@ -1,0 +1,10 @@
+.contacts__label
+{
+  display: block;
+  color: hsl(120, 92%, 62%);
+  margin-top: 1vh;
+  font-size: 3vmin;
+  font-weight: bold;
+  text-align: center;
+  
+}

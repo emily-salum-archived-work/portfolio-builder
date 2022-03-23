@@ -1,0 +1,22 @@
+.profile__table {
+   
+
+    margin-left: 10%;
+    margin-right: 0;
+    
+    height: 30vh;
+ 
+  }
+
+
+
+
+
+  
+  @media screen and (max-width: 768px) {
+
+    .profile__table {
+      margin-left:0; 
+    }
+    
+  }

@@ -1,119 +1,125 @@
 
+import languageLoad from "./systemConfigurations/languageLoad.js";
 
+const translateWord = languageLoad.translateWord;
 
 var popupDiv = null;
 
 function makePopup(title, text) {
 
-    if(popupDiv) {
+  title = translateWord(title);
+  text = translateWord(text);
 
-        popupDiv.remove();
-        popupDiv = null;
-    }
+  if (popupDiv) {
 
-    popupDiv = document.createElement("div");
+    popupDiv.remove();
+    popupDiv = null;
+  }
 
-    popupDiv.classList.add("popup");
+  popupDiv = document.createElement("div");
 
-    const titleElement = document.createElement("h3");
-    titleElement.innerHTML = title;
+  popupDiv.classList.add("popup");
 
-    popupDiv.appendChild(titleElement);
+  const titleElement = document.createElement("h3");
+  titleElement.innerHTML = title;
+  popupDiv.appendChild(titleElement);
 
-    const textElement = document.createElement("p");
-    textElement.innerHTML = text;
+  const textElement = document.createElement("p");
+  textElement.innerHTML = text;
 
-    popupDiv.appendChild(textElement);
-
-    
-    const closeButton = document.createElement("button");
-    closeButton.innerHTML = "X";
-    closeButton.classList.add("close_popup_button");
-    closeButton.onclick =  function()  {popupDiv.remove();};
-    popupDiv.appendChild(closeButton);
+  popupDiv.appendChild(textElement);
 
 
-    document.body.appendChild(popupDiv);
+  document.body.appendChild(popupDiv);
 }
- 
-function validateEmail (emailAdress)
-{
+
+
+function validateEmail(emailAdress) {
   let regexEmail = /^\S+@\S+\.\S+$/;
   if (emailAdress.match(regexEmail)) {
-    return true; 
+    return true;
   } else {
-    return false; 
+    return false;
   }
 }
-formBox = document.getElementById("contact-form-box")
-                 
-const form = document.getElementById("contact-form");
-    
 
-function sendEmail(event) { 
+const contactFormBox = document.getElementById("contact-form-box")
 
-    event.preventDefault();
-    sendButton = document.getElementById("send_email");
+const contactForm = document.getElementById("contact-form");
 
-    sendButton.classList.add("powered");
-    sendButton.innerHTML = "Sending...";
 
-    
-    let elements = form.getElementsByClassName("input-element");
+function sendEmail(event) {
 
-    let message = 'So, \n';
+  event.preventDefault();
 
-    const submitInfo = {};
 
-    for(element of elements)
-    {
-        const value = element.value;
 
-        submitInfo[element.id] = value;
 
-        message += `${element.id}: ${value} \n`;        
+  const submitInfo = {};
+
+
+  const inputs = Array.from(
+    event.target.querySelectorAll(".contacts__element"));
+
+  inputs.forEach((input) => {
+    submitInfo[input.getAttribute("name")] = input.value;
+  })
+
+
+  if (!submitInfoValidated(submitInfo)) {
+
+    return;
+  }
+
+  contactFormBox.classList.add("contacts--closed");
+
+
+  var data = new FormData(event.target);
+
+  fetch(event.target.action, {
+    method: contactForm.method,
+    body: data,
+    headers: {
+      'Accept': 'application/json'
     }
-    
-    if(submitInfo['name'].length <= 3) {
-        
-        makePopup("Problem in name field!", "This name is too short!");
-        return;
+  }).then(response => {
+    if (response.ok) {
+      makePopup("email_sent", "thank_you");
+
+    } else {
+      response.json().then(data => {
+        if (Object.hasOwn(data, 'errors')) {
+          makePopup("oh_no", "email_not_sent");
+        }
+
+
+      })
     }
+  }).catch(error => {
+    makePopup("oh_no", "email_not_sent");
+  });
 
-    if(!validateEmail(submitInfo['email']))
-    {
-        makePopup("Problem in email field!", "Not a proper email!");
-        return;
-    }
-    
-    formBox.classList.add("closed_contact_top");
- 
-
-    var data = new FormData(event.target);
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-          'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        makePopup("Email sent!", "Thank you for your time!");
-       
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            makePopup("Oh no!", "A problem happened! Your email wasn't sent!");
-          } 
-             
-          
-        })
-      }
-    }).catch(error => {
-      makePopup("Oh no!", "A problem happened! Your email wasn't sent!");
-    });
-
-        return false;
+  return false;
 }
 
-form.addEventListener("submit", sendEmail);
+
+
+function submitInfoValidated(submitInfo) {
+
+  if (submitInfo['name'].length <= 3) {
+    makePopup("name_problem", "short_name");
+    return false;
+  }
+
+  if (!validateEmail(submitInfo['email'])) {
+    makePopup("email_problem", "bad_email");
+    return false;
+  }
+
+
+  return true;
+}
+
+
+
+contactForm.addEventListener("submit", sendEmail);

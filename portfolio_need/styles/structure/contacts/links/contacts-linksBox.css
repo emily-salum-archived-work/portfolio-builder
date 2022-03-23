@@ -1,0 +1,12 @@
+
+ .contacts__links-box
+ {
+
+  transition: all 2s;
+   
+  margin: auto;
+  text-align: center;
+   display: block;
+
+   padding-bottom: 10vh;
+ }

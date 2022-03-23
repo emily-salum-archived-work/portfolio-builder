@@ -1,0 +1,29 @@
+
+.techs__name {
+
+    font-family: var(--default-font);
+    background-color: rgb(37, 37, 37);
+    font-size: 4vw;
+    color: var(--pretty-green);
+  
+    font-weight: bold;
+   
+    width: 26vw; 
+    text-align: center;
+  
+    padding-top: auto;
+    padding-bottom: auto;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    user-select: none;
+    margin-bottom: 1vh;
+  
+    text-transform: capitalize;
+  }
+  
+  
+.techs__name:hover {
+   
+    color: rgb(94, 247, 63);
+}
+

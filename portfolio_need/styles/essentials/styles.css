@@ -1,0 +1,76 @@
+
+ 
+
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
+/* TODO: Review variables, if they are being used, if they could have better names */
+:root {
+
+--main: #5eff73;
+--secundary: #adf790;
+--darky: #525252;
+--dark: #172018;
+
+--light-main:#9af3a6;
+--light-secundary: #FFA62B;
+--light-darky: #28442c; 
+ 
+
+--background: rgba(16, 19, 18, 0.945);
+--background: linear-gradient(#0e6b44,#236b4d, #256b4e);
+--section-color:var(--background);
+
+--section-color: #00000000;
+ 
+--classy-black: rgb(36, 36, 24);
+
+ --code: #00ff22;
+ --pretty-green: rgb(154, 218, 90);
+
+
+--projects-offset: 0vw;
+--project-offset: 1vw;
+--project-width:  14vw;
+
+--header-width: 3vw;
+
+--title-font:  "Quicksand";
+--default-font: 'Quicksand';
+ 
+}
+
+/* Smooth elements transition! */
+* {
+  transition: 2s;
+}
+
+
+html {
+  overflow-x: hidden;
+}
+ 
+body {
+
+  background: var(--background);
+  overflow-x: hidden;
+  box-shadow:  inset 12px 0px  14px -4px var(--light-darky), inset -12px 0px  15px -4px var(--light-darky);
+  
+}
+
+ 
+
+
+.container {
+  display: flex; 
+  text-align:center; 
+}
+
+   
+ 
+ 
+  
+ 
+
+
+
+ 

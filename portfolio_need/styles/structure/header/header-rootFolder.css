@@ -1,0 +1,13 @@
+
+
+.header__root-folder {
+    border-left: 2px #7ad185 solid;
+    z-index: -1;
+   
+    transition: 1.3s;
+  
+    padding-bottom: 0;
+
+      margin: 1.3vw;
+  }
+  

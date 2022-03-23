@@ -1,0 +1,20 @@
+
+
+.system-configurations__confirm-button { 
+    width: 30vw; 
+
+    position: absolute !important;
+    margin: 0;
+    left: 35vw;
+    top: 80vh;
+}   
+
+
+@media screen and (max-width: 768px) {
+
+    .system-configurations__confirm-button {
+        width: 90vw;
+        left: 5vw;
+        height: 10vh;
+    }
+}

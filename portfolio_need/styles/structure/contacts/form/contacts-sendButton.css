@@ -1,0 +1,18 @@
+
+.contacts__send-button
+{
+  
+  margin-top: 3vh;
+}
+
+
+
+.contacts__send-button--powered
+{ 
+transition: 3s;
+
+margin: none;
+
+background-color: var(--dark);
+
+}

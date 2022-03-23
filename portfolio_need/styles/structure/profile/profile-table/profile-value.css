@@ -1,0 +1,62 @@
+
+
+
+.profile__value:not(.profile__value--pretty):after {
+    content: ", ";
+  }
+  
+
+.profile__value--raw {
+    
+}
+    
+.profile__value--pretty {
+    text-align: center;
+  
+    font-size: 4vmin !important;
+    color: rgb(145, 255, 2) !important;
+   
+  }
+  
+
+
+
+   
+  
+.from_value::before {
+    content: "";
+    background:url('../res/flags/portugues.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 2vmax;
+    height: 2vmax; 
+    margin-left: -2.5vmax;
+  }
+
+
+  
+@media screen and (max-width: 768px) {
+
+  .profile__value--pretty {  
+ 
+      text-align: center;
+      margin: auto;
+      display: block;
+      
+      margin-bottom: 3vh !important;
+  }
+
+
+   
+  
+  .from_value::before {
+ 
+    width: 3vmax;
+    height: 3vmax; 
+    margin-left: -4vmax;
+    margin-top: 0.8vh;
+  }
+
+
+}
