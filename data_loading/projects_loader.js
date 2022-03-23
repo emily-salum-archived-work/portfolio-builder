@@ -1,64 +1,74 @@
+
+const { makeProject, save_images } = require("./helper_loader");
 const { app } = require("electron");
-let { PythonShell } = require('python-shell');
-const { save_images, make_function_argument } = require('./helper_loader');
 
 
-function buildArguments() {
-    var function_arguments = [];
 
-    function_arguments.push(make_function_argument('"get_projects_with",', '{"to_portfolio" : true}, '));
-    function_arguments.push(make_function_argument('"group_archives", ', '{"selection": "language", "archives": "to_insert"}, '));
-    function_arguments.push(make_function_argument('"get_properties_from_list"', '{"archive_list" : "to_insert", "traverse_by": "array_dict"}'));
+class ProjectCreator {
 
-    return function_arguments;
+    /**
+     * 
+     * @param {String} name 
+     */
+    constructor(name) {
+        this.name = name;
+
+        projectLists[name] = []
+    }
+
+    /**
+ * 
+ * @param {String} nome 
+ * @param {String} imagem 
+ * @param {String} link 
+ */
+    addProject(nome, imagem, link) {
+        projectLists[this.name].push(makeProject(nome, imagem, this.name, link));
+    }
+
+}
+
+ 
+
+var projectLists = {}
+
+function loadProjects() {
+
+
+    projectLists = {};
+
+    const godotProjects = new ProjectCreator("godot");
+    const frontStackProjects = new ProjectCreator("HTML, CSS, JS");
+    const javaProjects = new ProjectCreator("java");
+
+
+    godotProjects.addProject(
+        "heart_beat",
+        "C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png",
+        "https://gotm.io/emilysalum/heart-beat")
+
+
+
+    frontStackProjects.addProject(
+        "barbearia_alura",
+        "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png",
+        "https://emilymarquessalum.github.io/alura-barbearia/")
+
+
+    javaProjects.addProject("Perfect Seven",
+        "C:/Users/user/Desktop/emily/projects/res/perfect_seven/logo.png",
+        "https://youtu.be/CWss5f941eA");
+
+    javaProjects.addProject("Crumb Hunt",
+        "C:/Users/user/Desktop/emily/projects/res/game_prints/crumbt_hunt_start.png",
+        "https://youtu.be/urmSuQsfpsE"
+    )
+
+
+
+    app.emit("project_lists_loaded", projectLists);
 
 
 }
 
-function load_projects() {
-
-    const function_arguments = buildArguments();
-
-    final_args = { "functions": "[", "parameters": "[" };
-    final_args["functions"] = "[" + function_arguments.map(x => x["function"]).join('');
-    final_args["parameters"] = "[" + function_arguments.map(x => x["parameters"]).join('');
-
-    final_args["functions"] += ']';
-    final_args["parameters"] += ']';
-
-    var options = {
-        pythonPath: "C:\\Users\\user\\PycharmProjects\\builder_helper\\venv\\Scripts\\python.exe",
-        args: ['{' +
-            '"module" : "builder_help",' +
-            ` "functions" : ${final_args['functions']}, ` +
-            ` "parameters" : ${final_args['parameters']}}`]
-    };
-
-    console.log("About to run python shell");
-
-    PythonShell.run('C:\\Users\\user\\PycharmProjects\\builder_helper\\builder_args.py', options, function (err, results) {
-
-        console.log("ran python shell");
-        if (err)
-            throw err;
-
-        console.log(results[0])
-        let project_lists = JSON.parse(clean_python_result(results[0]));
-
-        save_images(project_lists);
-
-        app.emit("project_lists_loaded", project_lists);
-
-    });
-
-
-}
-
-
-function clean_python_result(result) {
-    return result.replace(/'/g, `"`).replace(/True/g, "true");
-}
-
-
-
-exports.load_projects = load_projects;
+exports.loadProjects = loadProjects;

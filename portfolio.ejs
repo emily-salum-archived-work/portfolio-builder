@@ -179,7 +179,8 @@
                         </p>
 
                         <% if(project.open_link){ %>
-                        <a href='<%=project.open_link%>' class="projects__project-link">
+                        <a 
+                        rel="noopener noreferrer" target="_blank" href='<%=project.open_link%>' class="projects__project-link">
 
                             <% } %>
                             <img class="projects__project-image" src="<%=project.image%>">

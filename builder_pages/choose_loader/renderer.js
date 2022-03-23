@@ -1,20 +1,25 @@
     const ipc = require('electron').ipcRenderer;
 
-mockButton  = document.querySelector('#mockButton'),
-projectsButton = document.querySelector('#projectsButton');
+    
 
 
-mockButton.addEventListener('click', () => {
+const loadOptions = ["local"];
 
-    ipc.send("load_selected", "mock")
-
-}
-);
+ipc.send("load_selected", "local");
 
 
-projectsButton.addEventListener('click', () => {
+loadOptions.forEach((option) => {
+    
+    
+    let button = document.querySelector('#' + option + 'Button');
 
-    ipc.send("load_selected", "projects")
+    button.addEventListener('click', () => {
+    
+        ipc.send("load_selected", option);
+    
+    });
 
-}
-);
+})
+
+
+ 

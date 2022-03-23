@@ -1,5 +1,8 @@
 
 
+
+
+
 const fs = require("fs");
 
  
@@ -41,3 +44,34 @@ exports.getCSSPaths = function getCSSPaths(startPath='./portfolio_need/styles') 
 
 
 }
+
+
+/* Gets the list of paths of css files, reads those css files and
+writes all their content to a new file, "condensed_css" */
+exports.buildCondensedCSS = function buildCondensedCSS() {
+
+
+    /* Delete condensed_css file */
+    fs.unlinkSync('./portfolio_need/styles/condensed_css.css');
+  
+  
+    const cssPaths = getCSSPaths();
+    const condensedCSSExplanation = "/*\n WARNING \n This file is auto generated so that the \n portfolio page only needs to import one \n stylesheet path. If you wish to look \n or modify the structure, look at the other files \n */ \n";
+    
+    fs.writeFileSync(path.join(__dirname,
+      "portfolio_need/styles/condensed_css.css"),
+      condensedCSSExplanation, { flag: 'a' });
+  
+    cssPaths.forEach(function (cssPath) {
+      if (fs.statSync(cssPath).isDirectory()) {
+        return;
+      }
+  
+      let cssFile = fs.readFileSync(cssPath, 'utf8');
+      fs.writeFileSync(path.join(__dirname,
+        "portfolio_need/styles/condensed_css.css"),
+        cssFile, { flag: 'a' });
+    });
+  
+  
+  }

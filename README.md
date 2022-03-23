@@ -1,6 +1,6 @@
 # portfolio-builder
 
-This program gets information about my projects, through [project_builder](), and uses it to create my portfolio page and send it to github.
+ 
 
 ## Technologies: 
 
