@@ -55,7 +55,9 @@ function send_changes()
 
     let args = '{"paths" : ["' + builderPath + 'index.html", '+
            '"' + builderPath + 'bootstrap-5.1.0-dist",'+
-           ' "'+  builderPath + 'portfolio_need"] }';
+           ' "'+  builderPath + 'portfolio_need", "'  + 
+           builderPath + 'READMESP' + '",' +
+           ' "'+  builderPath + 'README-PORTFOLIO.md" '  + '] }';
  
     console.log(args);
 
