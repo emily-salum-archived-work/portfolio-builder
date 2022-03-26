@@ -76,7 +76,7 @@ function inicializeProgram(project_lists) {
 
 
   registerReload();
-
+  buildCondensedCSS();
 
   save_images(project_lists);
 
