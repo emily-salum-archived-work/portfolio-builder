@@ -1,6 +1,6 @@
 .contacts__label
 {
-  color: hsl(120, 92%, 62%);
+  color: var(--main);
   display: block;
   font-size: 3vmin;
   font-weight: bold;

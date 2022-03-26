@@ -3,7 +3,7 @@
 .header__root-folder {
  
       
-    border-left: 2px #7ad185 solid;
+    border-left: 2px var(--light-main) solid;
     margin: 1.3vw;
     padding-bottom: 0;
     transition: 1.3s;

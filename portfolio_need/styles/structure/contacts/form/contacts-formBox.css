@@ -9,7 +9,7 @@
     padding-left: 1vw;
     padding-right: 1vw;
     padding-top: 2vh;
-  background-color: #333131;
+  background-color: var(--classy-black);
   left: 30vw;
   position: relative;
   text-align: center;

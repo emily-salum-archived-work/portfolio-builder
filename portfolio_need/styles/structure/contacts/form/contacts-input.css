@@ -1,11 +1,11 @@
 .contacts__input {
    
   
-    -webkit-text-stroke-color: #51df64;
-    -webkit-text-stroke-width: 0.07px;
+    -webkit-text-stroke-color: var(--main);
+    -webkit-text-stroke-width: 0.02px;
     background-color: var(--darky);
-    caret-color: #51df64;
-    color: #4e4833;
+    caret-color: var(--main);
+    color: var(--classy-black);
     display: block; 
     font-family: var(--default-font);
     font-size: 4vmin;

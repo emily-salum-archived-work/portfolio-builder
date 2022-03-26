@@ -1,9 +1,9 @@
 
 .header__file::before {
-  
+    background-image:url('../res/header_icons/file_icon.png');
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/file_icon.png');
+     
     content: "";
     height: 2.4vmax; 
     margin-left: -3vmax;

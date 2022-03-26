@@ -5,7 +5,7 @@
 {
  
  
-  color: #83e490;
+  color: var(--light-main);
   display: block;
   font-size: 1.7vmax;
   padding-bottom: 2vh;
@@ -13,19 +13,22 @@
   text-decoration: none;
   text-transform:capitalize;
   transition: 0.45s;
-padding-right:0.1vw;
-text-align: left;
+  padding-right:0.1vw;
+  text-align: left;
+
+  cursor: pointer;
+
 }
 
 .header__button:hover
 {  
-  color: #00ff22;
+  color: var(--strong-main);
  
 }
 
 
 .header__button::before {
-     content: ""; 
+    content: ""; 
     height: 2.4vmax; 
     margin-left: -3vmax;
     position: absolute; 
@@ -35,24 +38,25 @@ text-align: left;
 
 
 .header__button--folder::before {
+    background-image:url('../res/header_icons/folder_icon.png') !important;  
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/folder_icon.png');  
+     
   }
 
 
 .header__button--profile::before {
-   
+    background-image:url('../res/header_icons/profile_icon.png') !important;
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/profile_icon.png');
+     
   }
   
 .header__button--contact::before {
-
+    
+    background-image:url('../res/header_icons/contact_icon.png') !important; 
     background-repeat: no-repeat;
-    background:url('../res/header_icons/contact_icon.png');
-  background-size:contain;
+    background-size:contain;
     
   }
   

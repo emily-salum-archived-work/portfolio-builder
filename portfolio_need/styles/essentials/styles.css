@@ -6,36 +6,34 @@
 /* TODO: Review variables, if they are being used, if they could have better names */
 :root {
 
---main: #5eff73;
---secundary: #adf790;
---darky: #525252;
---dark: #172018;
+  --strong-main: #00ff22;
+  --main: #5eff73; 
+  --light-main:#9af3a6;
 
---light-main:#9af3a6;
---light-secundary: #FFA62B;
---light-darky: #28442c; 
+
+  --dark: #172018;
+  --classy-black: rgb(36, 36, 24);
+  --darky: #525252;
+  --black-glass: rgba(24, 23, 23, 0.473);
+  --light-darky: #28442c; 
+
+  --light-secundary: #FFA62B;
+
  
-
---background: rgba(16, 19, 18, 0.945);
---background: linear-gradient(#0e6b44,#236b4d, #256b4e);
---section-color:var(--background);
-
---section-color: #00000000;
- 
---classy-black: rgb(36, 36, 24);
+  
+  --background: linear-gradient(#0e6b44,#236b4d, #256b4e);
+  --section-color:var(--background);
+  
 
  --code: #00ff22;
  --pretty-green: rgb(154, 218, 90);
 
+  
+  --project-width:  14vw;
+  --header-width: 3vw;
 
---projects-offset: 0vw;
---project-offset: 1vw;
---project-width:  14vw;
-
---header-width: 3vw;
-
---title-font:  "Quicksand";
---default-font: 'Quicksand';
+  --title-font:  "Quicksand";
+  --default-font: 'Quicksand';
  
 }
 

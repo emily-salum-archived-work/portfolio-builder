@@ -141,7 +141,7 @@ table {
 
 .screen-cover--unfocus {
 
-  background-color: rgba(24, 23, 23, 0.473);
+  background-color: var(--black-glass);
 }
 
 
@@ -235,36 +235,34 @@ table {
 /* TODO: Review variables, if they are being used, if they could have better names */
 :root {
 
---main: #5eff73;
---secundary: #adf790;
---darky: #525252;
---dark: #172018;
+  --strong-main: #00ff22;
+  --main: #5eff73; 
+  --light-main:#9af3a6;
 
---light-main:#9af3a6;
---light-secundary: #FFA62B;
---light-darky: #28442c; 
+
+  --dark: #172018;
+  --classy-black: rgb(36, 36, 24);
+  --darky: #525252;
+  --black-glass: rgba(24, 23, 23, 0.473);
+  --light-darky: #28442c; 
+
+  --light-secundary: #FFA62B;
+
  
-
---background: rgba(16, 19, 18, 0.945);
---background: linear-gradient(#0e6b44,#236b4d, #256b4e);
---section-color:var(--background);
-
---section-color: #00000000;
- 
---classy-black: rgb(36, 36, 24);
+  
+  --background: linear-gradient(#0e6b44,#236b4d, #256b4e);
+  --section-color:var(--background);
+  
 
  --code: #00ff22;
  --pretty-green: rgb(154, 218, 90);
 
+  
+  --project-width:  14vw;
+  --header-width: 3vw;
 
---projects-offset: 0vw;
---project-offset: 1vw;
---project-width:  14vw;
-
---header-width: 3vw;
-
---title-font:  "Quicksand";
---default-font: 'Quicksand';
+  --title-font:  "Quicksand";
+  --default-font: 'Quicksand';
  
 }
 
@@ -358,7 +356,7 @@ body {
     padding-left: 1vw;
     padding-right: 1vw;
     padding-top: 2vh;
-  background-color: #333131;
+  background-color: var(--classy-black);
   left: 30vw;
   position: relative;
   text-align: center;
@@ -370,11 +368,11 @@ body {
 .contacts__input {
    
   
-    -webkit-text-stroke-color: #51df64;
-    -webkit-text-stroke-width: 0.07px;
+    -webkit-text-stroke-color: var(--main);
+    -webkit-text-stroke-width: 0.02px;
     background-color: var(--darky);
-    caret-color: #51df64;
-    color: #4e4833;
+    caret-color: var(--main);
+    color: var(--classy-black);
     display: block; 
     font-family: var(--default-font);
     font-size: 4vmin;
@@ -393,7 +391,7 @@ body {
 }
   .contacts__label
 {
-  color: hsl(120, 92%, 62%);
+  color: var(--main);
   display: block;
   font-size: 3vmin;
   font-weight: bold;
@@ -464,7 +462,7 @@ transition: 3s;
 {
  
  
-  color: #83e490;
+  color: var(--light-main);
   display: block;
   font-size: 1.7vmax;
   padding-bottom: 2vh;
@@ -472,19 +470,22 @@ transition: 3s;
   text-decoration: none;
   text-transform:capitalize;
   transition: 0.45s;
-padding-right:0.1vw;
-text-align: left;
+  padding-right:0.1vw;
+  text-align: left;
+
+  cursor: pointer;
+
 }
 
 .header__button:hover
 {  
-  color: #00ff22;
+  color: var(--strong-main);
  
 }
 
 
 .header__button::before {
-     content: ""; 
+    content: ""; 
     height: 2.4vmax; 
     margin-left: -3vmax;
     position: absolute; 
@@ -494,33 +495,34 @@ text-align: left;
 
 
 .header__button--folder::before {
+    background-image:url('../res/header_icons/folder_icon.png') !important;  
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/folder_icon.png');  
+     
   }
 
 
 .header__button--profile::before {
-   
+    background-image:url('../res/header_icons/profile_icon.png') !important;
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/profile_icon.png');
+     
   }
   
 .header__button--contact::before {
-
+    
+    background-image:url('../res/header_icons/contact_icon.png') !important; 
     background-repeat: no-repeat;
-    background:url('../res/header_icons/contact_icon.png');
-  background-size:contain;
+    background-size:contain;
     
   }
   
   
 .header__file::before {
-  
+    background-image:url('../res/header_icons/file_icon.png');
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/header_icons/file_icon.png');
+     
     content: "";
     height: 2.4vmax; 
     margin-left: -3vmax;
@@ -566,7 +568,7 @@ text-align: left;
 .header__root-folder {
  
       
-    border-left: 2px #7ad185 solid;
+    border-left: 2px var(--light-main) solid;
     margin: 1.3vw;
     padding-bottom: 0;
     transition: 1.3s;
