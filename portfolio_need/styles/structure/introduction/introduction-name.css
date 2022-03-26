@@ -2,14 +2,14 @@
 
 
 .introduction__name {
+    color: var(--main);
+    font-family: 'Quicksand';
     font-size: 14vmin;
     margin: auto;
-    text-align: center;
-    width: 100%;
-    color: var(--main);
-    user-select: none;
     padding-bottom: 2%;
-    font-family: 'Quicksand';
+    text-align: center;
+    user-select: none;
+    width: 100%;
   }
 
   

@@ -1,26 +1,25 @@
 
 .profile {
+ 
     background-color: var(--classy-black);
-    width: 85%;
-    margin: auto;
-
-    border: 8px solid #214637;
     border-radius: 3%;
+    border: 8px solid #214637;
+    height: fit-content;
+    margin-bottom: 15vh;
+    margin: auto;
     overflow-x: hidden;
     overflow-y: hidden;
     text-overflow:clip;
     white-space: nowrap; 
-
-    height: fit-content;
-    margin-bottom: 15vh;
+    width: 85%;
   }
 
 
 .profile--pretty {
  
-    padding-top: 5vh;
-    height: 60vh;
     background-color: rgb(25, 54, 49);
+    height: 60vh;
+    padding-top: 5vh;
   }
 
  

@@ -11,10 +11,10 @@
 }
     
 .profile__value--pretty {
-    text-align: center;
   
-    font-size: 4vmin !important;
     color: rgb(145, 255, 2) !important;
+    font-size: 4vmin !important;
+    text-align: center;
    
   }
   
@@ -24,14 +24,14 @@
    
   
 .from_value::before {
-    content: "";
-    background:url('../res/flags/portugues.png');
-    background-size:contain;
     background-repeat: no-repeat;
-    position: absolute;
-    width: 2vmax;
+    background-size:contain;
+    background:url('../res/flags/portugues.png');
+    content: "";
     height: 2vmax; 
     margin-left: -2.5vmax;
+    position: absolute;
+    width: 2vmax;
   }
 
 
@@ -39,12 +39,11 @@
 @media screen and (max-width: 768px) {
 
   .profile__value--pretty {  
- 
-      text-align: center;
-      margin: auto;
+  
       display: block;
-      
       margin-bottom: 3vh !important;
+      margin: auto;
+      text-align: center;
   }
 
 
@@ -52,10 +51,10 @@
   
   .from_value::before {
  
-    width: 3vmax;
     height: 3vmax; 
     margin-left: -4vmax;
     margin-top: 0.8vh;
+    width: 3vmax;
   }
 
 

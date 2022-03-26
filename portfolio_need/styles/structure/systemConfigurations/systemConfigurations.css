@@ -1,17 +1,16 @@
 
 .system-configurations {
-    margin: 0;
-    z-index: 10;
-    position: fixed;
-
-    text-align: center;
-    color: rgb(251, 255, 242);
-
-    text-transform: lowercase;
+ 
     background-color: rgb(39, 44, 40);
-    width: 100vw;
+    color: rgb(251, 255, 242);
     height: 100vh;
+    margin: 0;
+    position: fixed;
+    text-align: center;
+    text-transform: lowercase;
     transition: 0s !important;
+    width: 100vw;
+    z-index: 10;
     
 }
  

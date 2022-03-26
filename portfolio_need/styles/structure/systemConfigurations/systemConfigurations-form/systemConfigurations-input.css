@@ -1,23 +1,23 @@
 
 .system-configurations__input {
-    display: block;
-    position: relative;  
+ 
+ 
     background-color: var(--classy-black);
- 
-    border: 1px solid rgb(165, 163, 163);
-    border-right: 0;
     border-left: 0;
+    border-right: 0;
+    border: 1px solid rgb(165, 163, 163);
     color: var(--pretty-green);
+    display: block;
     font-size: 3vmax;
- 
+    position: relative;  
 }
 
 
 .system-configurations__input:hover {
 
-    border: 1px solid rgb(92, 91, 91);
-    border-right: 0;
     border-left: 0;
+    border-right: 0;
+    border: 1px solid rgb(92, 91, 91);
 }
 
 

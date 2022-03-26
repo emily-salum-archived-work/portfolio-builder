@@ -6,13 +6,13 @@
    
    .section__title 
    {
+   
+     color: var(--main);
      font-family: var(--title-font);
      font-size: 8vmin;
-     text-align: center;
-     color: var(--main);
-     margin: auto;
-   
      margin-bottom: 6vh;
+     margin: auto;
+     text-align: center;
    }
     
    

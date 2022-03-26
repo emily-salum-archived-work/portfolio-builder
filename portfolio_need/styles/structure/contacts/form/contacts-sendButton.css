@@ -9,10 +9,9 @@
 
 .contacts__send-button--powered
 { 
-transition: 3s;
-
-margin: none;
-
+ 
 background-color: var(--dark);
+margin: none;
+transition: 3s;
 
 }

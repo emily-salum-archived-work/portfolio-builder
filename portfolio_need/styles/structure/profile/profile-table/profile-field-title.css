@@ -2,13 +2,13 @@
 
 .profile__field-title {
 
-    color: rgb(53, 255, 154) !important;
-     
-    font-size: 3vmax !important; 
-    width: 50%;
-    margin-right: 20vw;
     
+     
+    color: rgb(53, 255, 154) !important;
+    font-size: 3vmax !important; 
+    margin-right: 20vw;
     text-transform: capitalize;
+    width: 50%;
   }
   
   @media screen and (max-width: 768px) {

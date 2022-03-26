@@ -1,24 +1,20 @@
 
 .techs__name {
-
-    font-family: var(--default-font);
+ 
     background-color: rgb(37, 37, 37);
-    font-size: 4vw;
     color: var(--pretty-green);
-  
+    font-family: var(--default-font);
+    font-size: 4vw;
     font-weight: bold;
-   
-    width: 26vw; 
-    text-align: center;
-  
-    padding-top: auto;
+    margin-bottom: 1vh;
     padding-bottom: auto;
     padding-left: 2vw;
     padding-right: 2vw;
-    user-select: none;
-    margin-bottom: 1vh;
-  
+    padding-top: auto;
+    text-align: center;
     text-transform: capitalize;
+    user-select: none;
+    width: 26vw; 
   }
   
   

@@ -1,11 +1,8 @@
 
 .contacts__element:focus
-{
-  
-  transform: scale(1.1); 
-  outline:none;
- 
+{ 
   border: 3px solid var(--classy-dark);
+  outline:none;
+  transform: scale(1.1); 
   z-index: 2;
-  
 } 

@@ -5,6 +5,7 @@ button
     border-radius: 20%;
     height: 30px;
     color: rgb(208, 225, 240);
+    display: block;
 }
 
 

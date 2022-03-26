@@ -1,10 +1,10 @@
 
 .header__explorer {
+    
     background-color: #363636;
     height: 100vh;
+    margin-left: 1.3vw;
     margin-top: 2vh;
     padding-top: 1vh; 
     width: 100vw;
-    
-    margin-left: 1.3vw;
   }

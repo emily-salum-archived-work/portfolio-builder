@@ -1,11 +1,11 @@
 
 
 .contacts__call_me_in {
-    text-align: center;
-    margin: auto;
-    padding-top: 4vh;
-    padding-bottom: 4vh;
-    width: 100vw;
     font-size: 4vmax;
+    margin: auto;
+    padding-bottom: 4vh;
+    padding-top: 4vh;
+    text-align: center;
+    width: 100vw;
     
   }

@@ -1,7 +1,7 @@
 
 .contacts__midia
 {
-  width: 8vmax;
-  margin: auto;
   display: inline;
+  margin: auto;
+  width: 8vmax;
 }

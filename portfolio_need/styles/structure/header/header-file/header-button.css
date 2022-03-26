@@ -4,20 +4,17 @@
 .header__button
 {
  
-  transition: 0.45s;
-
-  text-transform:capitalize;
-
-  display: block;
-text-align: left;
-padding-right:0.1vw;
-  font-size: 1.7vmax;
-  color: #83e490;
  
-  padding-left: 4vw; 
+  color: #83e490;
+  display: block;
+  font-size: 1.7vmax;
   padding-bottom: 2vh;
-
+  padding-left: 4vw; 
   text-decoration: none;
+  text-transform:capitalize;
+  transition: 0.45s;
+padding-right:0.1vw;
+text-align: left;
 }
 
 .header__button:hover
@@ -29,33 +26,33 @@ padding-right:0.1vw;
 
 .header__button::before {
      content: ""; 
-    width: 2.4vmax;
     height: 2.4vmax; 
-    position: absolute; 
     margin-left: -3vmax;
+    position: absolute; 
+    width: 2.4vmax;
   
 }
 
 
 .header__button--folder::before {
-    background:url('../res/header_icons/folder_icon.png');  
-    background-size:contain;
     background-repeat: no-repeat;
+    background-size:contain;
+    background:url('../res/header_icons/folder_icon.png');  
   }
 
 
 .header__button--profile::before {
    
-    background:url('../res/header_icons/profile_icon.png');
-    background-size:contain;
     background-repeat: no-repeat;
+    background-size:contain;
+    background:url('../res/header_icons/profile_icon.png');
   }
   
 .header__button--contact::before {
 
+    background-repeat: no-repeat;
     background:url('../res/header_icons/contact_icon.png');
   background-size:contain;
-    background-repeat: no-repeat;
     
   }
   

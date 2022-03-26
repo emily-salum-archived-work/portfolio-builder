@@ -1,11 +1,9 @@
 
 .projects__project-index { 
- 
-  font-size: 3vmin;
-z-index: 3;
+  
   color: var(--light-secundary);
-
-  user-select: none;
-
+  font-size: 3vmin;
   grid-area: index;
+  user-select: none;
+  z-index: 3;
 }

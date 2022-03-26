@@ -1,19 +1,18 @@
 
 
 .introduction__text {
-    padding-bottom: 30vh;
-    text-align: center;
-    user-select: none;
 
-    color: var(--light-main);
-    margin-top: 2vw;
   
+   
+    color: var(--light-main);
+    font-family: "monolisa";
+    font-size: 3.5vmin;
     font-weight: bold;
     margin-left: auto;
     margin-right: auto;
-    font-size: 3.5vmin;
-  
-    font-family: "monolisa";
-  
+    margin-top: 2vw;
+    padding-bottom: 30vh;
+    text-align: center;
+    user-select: none;
     width: 80vw;
 }

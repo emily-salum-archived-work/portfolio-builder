@@ -1,12 +1,12 @@
 .screen-cover {
 
+
+    pointer-events: none;
+    user-select: none;
     z-index: 1;
+  height: 100vh;
   position: fixed;
   width: 100vw;
-  height: 100vh;
-
-    user-select: none;
-    pointer-events: none;
 }
 
 .screen-cover--unfocus {

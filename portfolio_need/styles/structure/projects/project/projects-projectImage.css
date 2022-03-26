@@ -2,16 +2,14 @@
 .projects__project-image
 {
  
-  border-radius: 1em; 
-  height: var(--project-width);
-  width: var(--project-width);
-  filter: brightness(50%);
-
-  grid-area: image;
-
   
-  padding-top: 0;
+  border-radius: 1em; 
+  filter: brightness(50%);
+  grid-area: image;
+  height: var(--project-width);
   margin-top: 0;
+  padding-top: 0;
+  width: var(--project-width);
 
 }  
 

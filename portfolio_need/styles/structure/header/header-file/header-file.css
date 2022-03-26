@@ -1,34 +1,30 @@
 
 .header__file::before {
- 
-  background:url('../res/header_icons/file_icon.png');
-
-    content: "";
-    background-size:contain;
+  
     background-repeat: no-repeat;
-    width: 2.4vmax;
+    background-size:contain;
+    background:url('../res/header_icons/file_icon.png');
+    content: "";
     height: 2.4vmax; 
-    position: absolute;
-    
     margin-left: -3vmax;
+    position: absolute;
+    width: 2.4vmax;
+  
 }
 
 
 .header__file--opened {
 
-    padding-top: 0.25vh;
-    font-size: 1vmax;
    
-  
+    font-size: 1vmax;
     margin-bottom: 2vh;
+    padding-top: 0.25vh;
   }
   
 .header__file--closed {
+   
     font-size: 0 !important; 
-    padding-top: 0;
-  
-    
-    padding-bottom: 0 !important;
-  
     opacity: 0;
+    padding-bottom: 0 !important;
+    padding-top: 0;
   }

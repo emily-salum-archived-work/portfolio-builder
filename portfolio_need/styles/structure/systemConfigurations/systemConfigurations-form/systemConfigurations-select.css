@@ -1,12 +1,12 @@
 
 
 .system-configurations__select {
-    margin-left: 30vw;
-    width: 40vw;
 
-    text-align: center;
-    margin-top: 1%;
     background-color: rgb(36, 35, 35);
+    margin-left: 30vw;
+    margin-top: 1%;
+    text-align: center;
+    width: 40vw;
 }
 
 @media screen and (max-width: 768px) {
