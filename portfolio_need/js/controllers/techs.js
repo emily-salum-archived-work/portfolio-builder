@@ -22,37 +22,32 @@ class TechController {
 
             const nameOfTech = techName.getAttribute("tech-name");
 
-            let techLogo = this.techsView.getTechLogoFromName(nameOfTech);
-
-            let tech = new Tech(techName, techLogo);
+            let tech = new Tech(nameOfTech);
             this.techs.push(tech);
 
         });
 
     }
 
-    onTechNameOver(tech) {
+    onTechNameOver(_techName, techImage) {
 
         this.techsView.unselectTechs();
-        tech.imageElement.classList.remove("techs__image--unselected");
+        techImage.classList.remove("techs__image--unselected");
 
     }
 
-    onTechNameOut() {
+    onTechNameOut(_techName, _techImage) {
         this.techsView.removeUnselectFromTechLogos();
     }
 
 
     listenForTechHover() {
 
-        this.techs.forEach((tech) => {
-
-            let techName = tech.nameElement
-
-            this.techsView.listenForTechHover(techName,
-                this.onTechNameOver.bind(this, tech),
+ 
+     this.techsView.listenForTechNameHover(
+                this.onTechNameOver.bind(this),
                 this.onTechNameOut.bind(this));
-        });
+       
 
     }
 

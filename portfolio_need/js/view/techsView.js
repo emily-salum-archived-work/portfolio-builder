@@ -1,60 +1,95 @@
 
 
+class TechDisplay {
 
+    constructor(nameElement, imageElement) {
+        this.techName = nameElement;
+        this.techImage = imageElement;
+    }
+
+}
 
 export class TechsView {
 
 
     constructor(controller) {
-                
-     this.techsController = controller;
-     
-     this.techLogos = Array.from(
-        document.querySelectorAll(".techs__image"));
-    
-     this.techNames = Array.from(
+
+        this.techsController = controller;
+
+        this.techLogos = Array.from(
+            document.querySelectorAll(".techs__image"));
+
+        this.techNames = Array.from(
             document.querySelectorAll(".techs__name"));
-        
+
+        this.techDisplays = [];
+
+        this.buildTechObjects();
+
     }
 
-    listenForTechHover(techName, mouseover, mouseout) {
+    buildTechObjects() {
 
-        techName.addEventListener("mouseover", mouseover);
-    
-        techName.addEventListener("mouseout", mouseout);
+        this.techNames.forEach((techName) => {
 
+            const nameOfTech = techName.getAttribute("tech-name");
+
+            let techLogo = this.getTechLogoFromName(nameOfTech);
+
+            let techDisplay = new TechDisplay(techName, techLogo);
+            this.techDisplays.push(techDisplay);
+
+        });
+
+    }
+
+    listenForTechNameHover(mouseover, mouseout) {
+
+
+        this.techDisplays.forEach(
+            (techDisplay) => {
+
+                let techName = techDisplay.techName;
+                let techImage = techDisplay.techImage;
+
+                techName.addEventListener("mouseover",
+                    ()=>{mouseover(techName, techImage)});
+
+                techName.addEventListener("mouseout",
+                    ()=>{mouseout(techName, techImage)});
+            });
     }
 
     getTechLogoFromName(techName) {
-    
-        for(let i = 0; i < this.techLogos.length; i++) {
-        
+
+        for (let i = 0; i < this.techLogos.length; i++) {
+
             let techLogo = this.techLogos[i];
-    
+
             let techLogoName = techLogo.getAttribute("tech");
-    
-            if(techLogoName === techName) { 
+
+            if (techLogoName === techName) {
                 return techLogo
             }
         }
-    
+
     }
-    
+
 
     unselectTechs() {
-            
-            this.techLogos.forEach((techLogo) => {
-                techLogo.classList.add("techs__image--unselected");
-            });
-    
+
+        this.techLogos.forEach((techLogo) => {
+            techLogo.classList.add("techs__image--unselected");
+        });
+
     }
 
     removeUnselectFromTechLogos() {
-                
-                this.techLogos.forEach((techLogo) => {
-                    techLogo.classList.remove("techs__image--unselected");
-                });
-        
+
+        this.techLogos.forEach((techLogo) => {
+            techLogo.classList.remove("techs__image--unselected");
+        });
+
     }
 
 }

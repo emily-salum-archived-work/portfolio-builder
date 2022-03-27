@@ -3,9 +3,8 @@
 
 export class Tech {
 
-    constructor(nameElement, imageElement) { 
-        this.nameElement = nameElement;
-        this.imageElement = imageElement;
+    constructor(name) { 
+        this.name = name;
     }
 
 

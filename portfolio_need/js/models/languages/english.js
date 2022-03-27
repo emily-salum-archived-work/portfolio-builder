@@ -1,11 +1,8 @@
 
+import configuration from "../systemConfigurationsModel.js";
+ 
 
-import languageLoad from "../systemConfigurations/languageLoad.js";
-
-const addToLanguage = languageLoad.addToLanguage;
-
-
-addToLanguage("english", {
+configuration.addToLanguage("english", {
 
 
     "page_introduction": "Determined to be the best programmer I can be!",

@@ -1,9 +1,8 @@
 
-import languageLoad from "../systemConfigurations/languageLoad.js";
+import configuration from "../systemConfigurationsModel.js";
+ 
 
-const addToLanguage = languageLoad.addToLanguage;
-
-addToLanguage("portugues", {
+configuration.addToLanguage("portugues", {
     "page_introduction": "Determinada a ser a melhor programadora que eu puder ser!",
     "tech-title": "Tecnologias que conheço",
     "emailing": "Me mande um email!",

@@ -1,6 +1,30 @@
 
-import languageLoad from "../systemConfigurations/languageLoad.js";
-const translateWord = languageLoad.translateWord;
+import configuration from "../models/systemConfigurationsModel.js";
+ 
+
+
+class ProfileField {
+
+
+    constructor(fieldElement, titleElement, valueElement) {
+        this.fieldElement = fieldElement;
+
+        if(!titleElement) {
+            titleElement = fieldElement.querySelector(".profile__field-key");
+        }
+
+        if(!valueElement) {
+            valueElement = fieldElement.querySelector(".profile__value");
+        }
+
+        this.fieldTitle = titleElement;
+        this.fieldValue = valueElement;
+    }
+
+ 
+  
+}
+
 
 export class ProfileView {
 
@@ -13,12 +37,24 @@ export class ProfileView {
         this.profileBody = document.getElementById("profile__body");
         this.profileFields = this.profileBody.querySelectorAll(".profile__column");
         this.buildProfileButton = document.getElementById("profile_button");
+ 
+        this.profileFieldObjects = []
+    }
+
+    
+    buildProfileFields() {
+
+        this.profileFields.forEach(field => {
+            let newField = new ProfileField(field);
+            this.profileFieldObjects.push(newField);
+        });
 
     }
 
+
     addFieldToProfile(title, value, value_raw) {
 
-        let translatedTitle = translateWord(title);
+        let translatedTitle = configuration.translateWord(title);
 
         if (translatedTitle) {
             title = translatedTitle;
@@ -39,8 +75,13 @@ export class ProfileView {
 
         this.profileBody.appendChild(field);
 
-
-        return { "field": field, "fieldTitle": fieldTitle, "fieldValue": fieldValue };
+ 
+        let newProfile = new ProfileField(field, 
+            fieldTitle, 
+            fieldValue)
+   
+        this.profileFieldObjects.push(newProfile); 
+        
     }
 
 
@@ -67,7 +108,10 @@ export class ProfileView {
 
     }
 
-    prettifyField(fieldTitle, fieldValue) {
+    prettifyField(field) {
+
+        let fieldTitle = field.fieldTitle;
+        let fieldValue = field.fieldValue;
 
         this.prettifyTitleElement(fieldTitle);
         this.prettifyValueElement(fieldValue);
@@ -79,6 +123,12 @@ export class ProfileView {
         this.profile.classList.remove("profile--raw");
         this.profileBody.classList.add("profile__body--pretty");
 
+
+        this.profileFieldObjects.forEach(field => {
+             
+            this.prettifyField(field);
+
+        });
     }
 
     prettifyTitleElement(titleElement) {
@@ -94,7 +144,7 @@ export class ProfileView {
         
         let notRawValue = valueElement.getAttribute("not-raw");
         
-        notRawValue = translateWord(notRawValue) || notRawValue;
+        notRawValue = configuration.translateWord(notRawValue) || notRawValue;
         
         valueElement.innerHTML = notRawValue;
 
@@ -126,7 +176,7 @@ function buildFieldTitle(title) {
     let fieldTitle = document.createElement("td");
     fieldTitle.innerHTML = title;
 
-    let translatedTitle = translateWord(title);
+    let translatedTitle = configuration.translateWord(title);
     if (!translatedTitle) {
         fieldTitle.setAttribute("to-translate", title);
     }

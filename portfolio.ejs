@@ -84,16 +84,19 @@
 
                     <a href="#profile" 
                     class='header__button header__file header__button--profile' to-translate="profile">
+                    </a> 
+                    
+                    
+                    <a href="#cv" 
+                    class='header__button header__file header__button--contact'>
+                        CV
                     </a>
 
                     <a href="#contacts" 
                     class='header__button header__file header__button--contact' to-translate="contact">
                     </a>
 
-                    <a href="#cv" 
-                    class='header__button header__file header__button--contact'>
-                        CV
-                    </a>
+                    
 
                 </div>
 
@@ -329,17 +332,15 @@
 
 
 <% for(let language of data.languages) { %>
-<script src="portfolio_need/js/languages/<%=language.name%>.js" type="module"></script>
+<script src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
 <% } %>
+ 
 
-<script src="portfolio_need/js/systemConfigurations/main.js" type="module"></script>
-
-<script src="portfolio_need/js/contact.js" type="module"> </script>
-<script src="portfolio_need/js/header/headerControl.js" type="module"> </script>
-<script src="portfolio_need/js/header/projectFilesControl.js" type="module"> </script>
-
-
-
+<script src="portfolio_need/js/controllers/contact.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/header.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/systemConfigurations.js" type="module"></script>
+<script src="portfolio_need/js/controllers/languageConfigurations.js" type="module"></script>
+<script src="portfolio_need/js/controllers/projectFiles.js" type="module"> </script>
 <script src="portfolio_need/js/controllers/techs.js" type="module"> </script>
 <script src="portfolio_need/js/controllers/profile.js" type="module"> </script>
 
