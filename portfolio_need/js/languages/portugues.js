@@ -11,6 +11,7 @@ addToLanguage("portugues", {
     "message_to_send": "Me envie uma Mensagem!",
     "call_me_in": "Ou me chame em..",
     "contacting": "Para me contatar",
+
     "build_profile": "construirMeuPerfil",
     "to_know_me": "Para você saber um pouco sobre mim...",
     "projects": "Projetos",
@@ -19,7 +20,9 @@ addToLanguage("portugues", {
     "from": "País",
     "likes": "gostos",
     "age": "idade",
+    "stuffILike": "Rpg, musica classica e discord",
 
+    "cv_download": "Voce tambem pode fazer download do meu CV",
 
     "email_sent": "Email enviado!", 
     "thank_you": "Obrigada pelo seu tempo!", 
@@ -34,4 +37,6 @@ addToLanguage("portugues", {
 
 
     "send": "Enviar",
+
+    "click_here": "Clique aqui",
 });

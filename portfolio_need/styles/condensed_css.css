@@ -442,6 +442,29 @@ transition: 3s;
   width: 8vmax;
 }
 
+
+.cv__button {
+
+
+    
+    background-color: var(--classy-black);
+    border-radius: 15%;
+    color: var(--main);
+    margin: auto;
+    padding-bottom: 1%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.cv__title {
+    font-size: 2vmax;
+}
+
+.cv {
+    text-align: center;
+}
 .header__container {
 
     
@@ -739,7 +762,7 @@ header:hover
 
     color: var(--code);
     display: block;
-    font-size: 7vmax;
+    font-size: 5vmax;
     margin-bottom: 2.5%;
     margin-left: 15%; 
     padding: 1%;
@@ -822,9 +845,12 @@ header:hover
      
     color: rgb(53, 255, 154) !important;
     font-size: 3vmax !important; 
-    margin-right: 20vw;
+    margin-right: 10vw;
+    margin-left: 10vw;
     text-transform: capitalize;
     width: 50%;
+
+    float: left;
   }
   
   @media screen and (max-width: 768px) {
@@ -834,25 +860,23 @@ header:hover
         display: block;
         font-size: 5.5vmax !important;
         margin: auto !important;
-    }
+        float: none;
+
+      }
   
 }.profile__table {
     
     height: 30vh;
-    margin-left: 10%;
+    width: 100%;
+
+    margin-left: 0;
     margin-right: 0;
- 
+
   }
-
-
-
-
-
   
   @media screen and (max-width: 768px) {
 
-    .profile__table {
-      margin-left:0; 
+    .profile__table { 
     }
     
   }
@@ -883,7 +907,7 @@ header:hover
 .from_value::before {
     background-repeat: no-repeat;
     background-size:contain;
-    background:url('../res/flags/portugues.png');
+    background-image:url('../res/flags/portugues.png');
     content: "";
     height: 2vmax; 
     margin-left: -2.5vmax;
@@ -920,7 +944,8 @@ header:hover
 .profile__title {
 
 
-    font-size: 3vmin;
+    font-size: 3vmax;
+    margin-top: 2vh;
     margin-bottom: 4vh;
     transition: 7s;
 }

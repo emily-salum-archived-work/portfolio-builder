@@ -15,6 +15,7 @@ addToLanguage("english", {
     "message_to_send": "Give me a Message!",
     "call_me_in": "Or call me in...",
     "contacting": "Contacting",
+
     "build_profile": "buildMyProfile",
     "to_know_me": "For you to know a bit about me...",
     "projects": "Projects",
@@ -23,7 +24,10 @@ addToLanguage("english", {
     "from": "Country", 
     "age": "My age",
     "likes": "I like",
+    "stuffILike": "Rpg, classical music and discord",
 
+    "cv_download": "You can also download my CV",
+    "click_here": "Click here!",
 
     "email_sent": "Email sent!", 
     "thank_you": "Thank you for your time!", 

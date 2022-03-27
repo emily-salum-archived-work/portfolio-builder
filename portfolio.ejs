@@ -89,6 +89,12 @@
                     <a href="#contacts" 
                     class='header__button header__file header__button--contact' to-translate="contact">
                     </a>
+
+                    <a href="#cv" 
+                    class='header__button header__file header__button--contact'>
+                        CV
+                    </a>
+
                 </div>
 
 
@@ -245,7 +251,15 @@
                 to-translate="build_profile"></button>
 
 
-                </section'>
+                </section>
+
+                <section id= "cv" class="cv section">
+                    <h2 class="cv__title section__title" to-translate="cv_download"></h2>
+                    <a href="portfolio_need/res/cv/cv_br.pdf" download="cv.pdf">
+                        <button class="cv__button" to-translate="click_here"></button>
+                    </a>
+                </section>
+                
 
     </main>
 
@@ -325,11 +339,8 @@
 <script src="portfolio_need/js/header/projectFilesControl.js" type="module"> </script>
 
 
-<script src="portfolio_need/js/techs.js" type="module"> </script>
 
-
-
-
-<script src="portfolio_need/js/profile.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/techs.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/profile.js" type="module"> </script>
 
 </html>

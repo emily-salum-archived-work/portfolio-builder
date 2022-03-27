@@ -24,16 +24,19 @@
 
     return likesString;
   }
-
+  
   exports.getProfile =  function getProfile() {
 
-    const stuffILike =  ["Rpg", "automation", "classical music", "discord"];
-    let stuffILikeText = getStuffILikeText(stuffILike);
+    /* Steps to add or remove from stuffILike:
+      * 1. Add or remove from this array.
+      * 2. Add or remove from the translation files key "stuffILike"
+     */
+    const stuffILike =  ["Rpg", "classical music", "discord"]; 
 
     return {
   
       "from": {'raw': "COUNTRIES.Brazil", 'not_raw': "Brasil"},
-      "likes": {'raw': `${stuffILikeString(stuffILike)}`, "not_raw": stuffILikeText }  
+      "likes": {'raw': `${stuffILikeString(stuffILike)}`, "not_raw": "stuffILike" }  
        
     }
   }
