@@ -5,6 +5,8 @@ import languageConfigurations from './languageConfigurations.js';
 
 import SystemConfigurationsView from '../view/systemConfigurationsView.js';
 
+import mainController from './mainController.js';
+
 class SystemConfigurationsController {
 
     constructor() {
@@ -24,8 +26,8 @@ class SystemConfigurationsController {
             let systemConfigurationsHTML = this.systemConfigurationsView.template(this.configurations.getLanguageTranslations());
             document.body.innerHTML = systemConfigurationsHTML + document.body.innerHTML;
             
-            this.systemConfigurationsView.startedConfigurations();
-            languageConfigurations.startedConfigurations();
+
+            mainController.mainEventController.emit("startedConfigurations");
 
             this.systemConfigurationsView.listenForm(
                 (event)=>{this.submitConfigurations(event)});

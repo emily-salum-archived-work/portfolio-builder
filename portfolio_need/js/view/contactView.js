@@ -1,36 +1,54 @@
 
+import View from "./view.js";
 
-export default class ContactView {
+export default class ContactView extends View {
 
 
     constructor(controller) {
 
-        this.contactFormBox = document.getElementById("contact-form-box")
+        super(controller);
 
-        this.controller = controller;
-        this.contactForm = document.getElementById("contact-form");
-
-        this.inputs = Array.from(
-            this.contactForm.querySelectorAll(".contacts__element"));
-    }
-
-
-    listenForContactForm(onSubmit) {
+        this.contactFormSubmitListeners = [];
 
         this.contactForm.addEventListener("submit", (event) => {
 
+            console.log("contactForm.addEventListener");
             event.preventDefault();
 
             const submitInfo = this.getSubmitInfo();
 
-            onSubmit(event, submitInfo);
+            this.contactFormSubmitListeners.forEach((listener) => {
+                listener(event, submitInfo);
+            })
         });
+
+    }
+
+
+    inicializeElements() {
+        this.contactFormBox = document.getElementById("contact-form-box")
+
+        this.contactForm = document.getElementById("contact-form");
+
+        this.inputs = Array.from(
+            this.contactForm.querySelectorAll(".contacts__element"));
+
+
+
+    }
+
+    listenForContactForm(onSubmit) {
+
+        console.log("listenForContactForm");
+
+        this.contactFormSubmitListeners.push(onSubmit);
+
     }
 
     emailSent() {
-        
+
         this.contactFormBox.classList.add("contacts--closed");
-  
+
     }
 
     getSubmitInfo() {

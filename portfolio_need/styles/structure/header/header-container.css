@@ -2,5 +2,7 @@
 .header__container {
 
     
+    height: 100%;
     padding-left: 1vw;
+    width: 100%;
 }

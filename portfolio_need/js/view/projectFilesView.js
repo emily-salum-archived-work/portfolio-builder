@@ -1,13 +1,17 @@
 
 
 import headerController from "../controllers/header.js";
+import View from "./view.js";
 
 
 
-export default class ProjectFilesView {
+export default class ProjectFilesView extends View {
 
     constructor(controller) {
-        this.controller = controller;
+        super(controller);
+    }
+
+    inicializeElements() {
 
         this.projectsBox = document.querySelector("#project-box");
 
@@ -20,6 +24,7 @@ export default class ProjectFilesView {
         this.projectFiles = Array.from(
             this.projectsFolderContainer.querySelectorAll('a'));
 
+        console.log("projectFilesView.inicializeElements");
     }
 
     markProjectAsSelected(project) {

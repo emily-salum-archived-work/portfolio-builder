@@ -7,19 +7,22 @@ const HEADER_ID = "header";
 /* todo: class for controlling coverScreen? */
 const coverScreen = document.querySelector(".screen-cover");
 
+import View from "./view.js";
 
-export default class HeaderView {
+export default class HeaderView extends View {
 
 
 
     constructor(controller) {
 
-        this.controller = controller;
-        this.header = document.getElementById(HEADER_ID);
-        
+        super(controller);
     }
 
-  
+   
+    inicializeElements() { 
+        this.header = document.getElementById(HEADER_ID);
+        console.log("headerView.inicializeElements");
+    }
 
     clickHeader(event) {
 

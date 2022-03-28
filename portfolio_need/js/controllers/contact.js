@@ -1,5 +1,4 @@
-
-import configuration from "../models/systemConfigurationsModel.js";
+ 
 import ContactView from "../view/contactView.js";
 import PopupView from "../view/popupView.js";
 
@@ -29,8 +28,8 @@ class ContactController {
 
     var data = new FormData(event.target);
 
-    fetch(event.target.action, {
-      method: this.contactView.contactForm.method,
+    fetch("https://formspree.io/f/mdobzrbv", {
+      method: "POST",
       body: data,
       headers: {
         'Accept': 'application/json'
@@ -76,7 +75,10 @@ class ContactController {
 
   listenContacts() {
 
-    this.contactView.listenForContactForm(this.sendEmail.bind(this));
+    this.contactView.listenForContactForm(
+      (event, submitInfo)=>{
+        this.sendEmail(event, submitInfo)
+      });
 
   }
 

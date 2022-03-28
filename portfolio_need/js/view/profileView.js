@@ -1,5 +1,6 @@
 
 import configuration from "../models/systemConfigurationsModel.js";
+import View from "./view.js";
  
 
 
@@ -26,19 +27,25 @@ class ProfileField {
 }
 
 
-export class ProfileView {
+
+export class ProfileView extends View {
 
 
     constructor(controller) {
-        this.controller = controller
+    
+        super(controller);     
+        this.profileFieldObjects = []
+    }
 
+
+    inicializeElements() {
 
         this.profile = document.getElementById("profile");
         this.profileBody = document.getElementById("profile__body");
         this.profileFields = this.profileBody.querySelectorAll(".profile__column");
         this.buildProfileButton = document.getElementById("profile_button");
  
-        this.profileFieldObjects = []
+
     }
 
     

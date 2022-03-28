@@ -9,22 +9,26 @@ class TechDisplay {
 
 }
 
-export class TechsView {
+import View from "./view.js";
+
+export class TechsView extends View {
 
 
     constructor(controller) {
 
-        this.techsController = controller;
+        super(controller);
+        this.techDisplays = [];
 
+        this.buildTechObjects();
+
+    }
+
+    inicializeElements() {
         this.techLogos = Array.from(
             document.querySelectorAll(".techs__image"));
 
         this.techNames = Array.from(
             document.querySelectorAll(".techs__name"));
-
-        this.techDisplays = [];
-
-        this.buildTechObjects();
 
     }
 

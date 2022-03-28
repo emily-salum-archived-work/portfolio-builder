@@ -1,14 +1,16 @@
+import View from "./view.js";
+
+
 
 const LANGUAGE_SELECT_ID = "language-choice-select";
 const LANGUAGE_SWITCH_ID = "language-switch";
 
-export default class LanguageConfigurationView {
+export default class LanguageConfigurationView extends View {
 
 
-    constructor(languageConfigurationController) {
+    constructor(controller) {
 
-
-        this.languageConfigurationController = languageConfigurationController;
+        super(controller, "startedConfigurations");
         
     }
 
@@ -29,6 +31,7 @@ export default class LanguageConfigurationView {
     getToMoveElements() {
         return [this.languageSelect];
     }
+
 
     changedLanguage(selectedLanguage, fastStyle=false) {
 

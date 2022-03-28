@@ -468,7 +468,9 @@ transition: 3s;
 .header__container {
 
     
+    height: 100%;
     padding-left: 1vw;
+    width: 100%;
 }
 .header__explorer {
     
@@ -608,13 +610,12 @@ transition: 3s;
   background-color: #0c721a77;
   border-right: 4px solid rgb(85, 150, 105);
   filter: brightness(74%);
-  height: 100vh;
-  overflow-x: hidden;
-  overflow: hidden;
+  height: 100vh; 
+  overflow:hidden;
   position: fixed;
   text-align: left;
   top: 0;
-  transition: 0.7s;
+  transition: 0.7s !important;
   transition: 3s;
   white-space: nowrap;
   width: 2.5vw;
@@ -623,8 +624,7 @@ transition: 3s;
 }
 
 
-.header--closed {
-  width: 2.2vw !important;
+.header--closed { 
 }
 
 .header--opened {

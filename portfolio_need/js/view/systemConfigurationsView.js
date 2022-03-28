@@ -1,31 +1,22 @@
-  
-
+import View from "./view.js";
 
 const FORM_ID = 'configuration-form';
 const BODY_CONFIG_MODE = "body--config"
 
 
-export default class SystemConfigurationsView {
+export default class SystemConfigurationsView extends View {
 
-    constructor(systemConfigurationsController) {
+    constructor(controller) {
 
-        this.systemConfigurationsController = systemConfigurationsController;
-
-
-
+         super(controller, "startedConfigurations");
     }
 
     inicializeElements() {
+
         this.configurationForm = document.getElementById(FORM_ID);
-
-    }
-
-
-    startedConfigurations() {
         document.body.classList.add(BODY_CONFIG_MODE);
-        
-        this.inicializeElements();
     }
+ 
 
     loadedConfigurations(fastStyle) {
 
