@@ -7,17 +7,17 @@ const ejse = require('ejs-electron')
 var ejs = require('ejs');
 const path = require('path');
 
-const github_main = require("./builder_pages/update_github/main");  
+const github_main = require("./backend/builder_pages/update_github/main");  
 
-const loader_main = require("./builder_pages/choose_loader/main");
+const loader_main = require("./backend/builder_pages/choose_loader/main");
 
-const { save_images } = require("./data_loading/helper_loader.js");
+const { save_images } = require("./backend/data_loading/helper_loader.js");
  
 
-const { buildCondensedCSS } = require("./data_loading/css_loader.js");
+const { buildCondensedCSS } = require("./backend/data_loading/css_loader.js");
 
 
-const { getPortfolioData } = require("./data_loading/portfolio_loader.js");
+const { getPortfolioData } = require("./backend/data_loading/portfolio_loader.js");
 
 var win;
 
@@ -81,10 +81,11 @@ function inicializeProgram(project_lists) {
   save_images(project_lists);
 
 
-  data = getPortfolioData(project_lists, __dirname);  
+  const data = getPortfolioData(project_lists, __dirname);  
   
+  console.log("Data ", data);
 
-  loadEJSPortfolio();
+  loadEJSPortfolio(data);
 
 
 }
@@ -92,12 +93,16 @@ function inicializeProgram(project_lists) {
 
 
 function loadEJSPortfolio(data) {
+
+  for(key of Object.keys(data)) {
+    ejse.data(key, data[key]);
+  }
   ejse.data('data', data)
 
   var portfolio_path = '/portfolio.ejs';
 
   var template = fs.readFileSync('.' + portfolio_path, 'utf-8');
-  var html_to_save = ejs.render(template, data);
+  var html_to_save = ejs.render(template, {...data});
 
 
   win.loadURL('file://' + __dirname + portfolio_path);

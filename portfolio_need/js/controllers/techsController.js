@@ -1,6 +1,6 @@
 
 
-import { Tech } from "../models/tech.js";
+import { Tech } from "../models/techModel.js";
 
 import { TechsView } from "../view/techsView.js";
 

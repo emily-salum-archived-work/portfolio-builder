@@ -2,11 +2,11 @@
 .projects
 {  
  
-  margin-bottom: 15vh;
-  margin-top: 15vh;
+  margin-bottom: 10vh !important;
+  margin-top: 10vh !important;
   margin: auto;
   text-align: center;
-  width:63vw; 
+  width: 80vw; 
 }
  
 .projects::-webkit-scrollbar {

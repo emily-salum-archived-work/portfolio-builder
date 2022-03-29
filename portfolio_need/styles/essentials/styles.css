@@ -21,21 +21,35 @@
 
  
   
-  --background: linear-gradient(#0e6b44,#236b4d, #256b4e);
-  --section-color:var(--background);
+  --background: #1e724f;
+  --section-color: none;
   
 
  --code: #00ff22;
  --pretty-green: rgb(154, 218, 90);
 
   
-  --project-width:  14vw;
+  --project-width: 16vw;
   --header-width: 3vw;
 
   --title-font:  "Quicksand";
   --default-font: 'Quicksand';
  
 }
+
+
+/*
+.body--light-mode {
+
+  --strong-main: #00ff22;
+  --main: #9af3a6; 
+  --light-main: #5eff73;
+ 
+  --dark: #4a634c; 
+
+  --background: #1e7a54;
+}
+*/
 
 /* Smooth elements transition! */
 * {
@@ -49,6 +63,7 @@ html {
  
 body {
 
+  transition: 2s;
   
   background: var(--background);
   box-shadow:  inset 12px 0px  14px -4px var(--light-darky), inset -12px 0px  15px -4px var(--light-darky);
@@ -64,6 +79,13 @@ body {
 }
 
    
+
+.change-mode {
+  position: fixed;
+
+  left: 20%;
+  top: 20%; 
+}
  
  
   

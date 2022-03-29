@@ -40,11 +40,16 @@
 
 </head>
 
-<body>
+<body class="body--light-mode">
 
 
+    <div id="configurations-div"></div>
     <div class="screen-cover"> </div>
 
+
+    <!--
+    <button id="change-mode_button" class="change-mode">Change mode</button>
+    -->
     <header class="header" id="header">
 
         <div class="header__container" id="header-container">
@@ -60,9 +65,9 @@
 
                     <!-- Will hold buttons related to every project -->
                     <div class="header__folder header__folder--closed header__folder--projects" id="projects-buttons">
-                        <% for(programming_language of Object.keys(data.project_lists)){ %>
+                        <% for(programming_language of Object.keys(project_lists)){ %>
 
-                        <%let project_list=data.project_lists[programming_language] ; %>
+                        <%let project_list=project_lists[programming_language] ; %>
                            <% for(let i=0; i < project_list.length; i++){ %>
                         <% let project=project_list[i] %>
 
@@ -81,20 +86,15 @@
                     </div>
 
 
-
-                    <a href="#profile" 
-                    class='header__button header__file header__button--profile' to-translate="profile">
+                    <% for(let fileId of fileIds) { %>
+                    
+                        <a href="#<%=fileId%>" 
+                    class='header__button header__file header__button--<%=fileId%>' to-translate="<%=fileId%>">
                     </a> 
                     
-                    
-                    <a href="#cv" 
-                    class='header__button header__file header__button--contact'>
-                        CV
-                    </a>
+                    <%}%>
 
-                    <a href="#contacts" 
-                    class='header__button header__file header__button--contact' to-translate="contact">
-                    </a>
+                   
 
                     
 
@@ -129,7 +129,7 @@
 
         <!-- Technologies I know! -->
         <div class="techs section" id="techs">
-            <h3 class='section__title' to-translate="tech-title"></h3>
+            <h3 class='section__title techs__title' to-translate="tech-title"></h3>
 
 
 
@@ -137,7 +137,7 @@
                 <!-- tech_list is an array with strings -->
 
                 <div class="techs__name-list">
-                    <% for(let i=0; i < data.tech_list.length; i++){ let tech=data.tech_list[i]; %>
+                    <% for(let i=0; i < tech_list.length; i++){ let tech=tech_list[i]; %>
                     <p class="techs__name" tech-name="<%=tech%>">
                         <%=tech%>
                     </p>
@@ -146,7 +146,7 @@
 
                 <div class="techs__image-list">
 
-                    <% for(let i=0; i < data.tech_list.length; i++){ let tech=data.tech_list[i]; %>
+                    <% for(let i=0; i < tech_list.length; i++){ let tech=tech_list[i]; %>
 
                     <img tech="<%=tech%>" class="techs__image" 
                     src="portfolio_need/res/techs/<%=tech%>-logo.png">
@@ -175,8 +175,8 @@
                 <% let counter=0;%>
 
                     <!-- project_lists is a dict with languages paired to projects (str array) -->
-                    <% for(language of Object.keys(data.project_lists)){%>
-                    <% let project_list=data.project_lists[language] %>
+                    <% for(language of Object.keys(project_lists)){%>
+                    <% let project_list=project_lists[language] %>
                     <% if(project_list.length==0){continue;} %>
 
                     <% for(let i=0; i < project_list.length; i++){%>
@@ -229,7 +229,7 @@
                 <table class='profile__table profile__element'>
                     <tbody id="profile__body">
 
-                        <% for(let [name, value] of Object.entries(data.profile)) { %>
+                        <% for(let [name, value] of Object.entries(profile)) { %>
                         <tr class="profile__element profile__column">
 
                             <td class="profile__element profile__field-key" 
@@ -258,7 +258,7 @@
 
                 <section id= "cv" class="cv section">
                     <h2 class="cv__title section__title" to-translate="cv_download"></h2>
-                    <a href="portfolio_need/res/cv/cv_br.pdf" download="cv.pdf">
+                    <a id="cv_link"href="portfolio_need/res/cv/cv_portugues.pdf" download="cv.pdf">
                         <button class="cv__button" to-translate="click_here"></button>
                     </a>
                 </section>
@@ -321,6 +321,32 @@
 
         </div>
 
+
+
+        <section id="portfolio_metadata">
+
+            <table>
+
+                <% for(let metadataKey of Object.keys(metadata)) {%>
+        
+                    <tr>
+
+
+                        <td>  </td>
+
+                    </tr>
+
+                <%}%>
+
+                </table>
+             
+        </section>
+
+
+
+        <section id="portfolio_creation"></section>
+
+
     </footer>
 
     </div>
@@ -331,17 +357,14 @@
 </body>
 
 
-<% for(let language of data.languages) { %>
+<% for(let language of languages) { %>
 <script src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
 <% } %>
  
 
-<script src="portfolio_need/js/controllers/contact.js" type="module"> </script>
-<script src="portfolio_need/js/controllers/header.js" type="module"> </script>
-<script src="portfolio_need/js/controllers/systemConfigurations.js" type="module"></script>
-<script src="portfolio_need/js/controllers/languageConfigurations.js" type="module"></script>
-<script src="portfolio_need/js/controllers/projectFiles.js" type="module"> </script>
-<script src="portfolio_need/js/controllers/techs.js" type="module"> </script>
-<script src="portfolio_need/js/controllers/profile.js" type="module"> </script>
+<% for(let controllerName of JSControllerNames) { %>
+    <script src="portfolio_need/js/controllers/<%=controllerName%>" type="module"> </script>
+<%}%>
+ 
 
 </html>

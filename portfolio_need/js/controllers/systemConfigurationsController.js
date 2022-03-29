@@ -1,7 +1,7 @@
 
 
 import systemConfigurations from '../models/systemConfigurationsModel.js';
-import languageConfigurations from './languageConfigurations.js';
+import languageConfigurations from './languageConfigurationsController.js';
 
 import SystemConfigurationsView from '../view/systemConfigurationsView.js';
 
@@ -24,7 +24,11 @@ class SystemConfigurationsController {
         if (!loadedConfigurations) {
 
             let systemConfigurationsHTML = this.systemConfigurationsView.template(this.configurations.getLanguageTranslations());
-            document.body.innerHTML = systemConfigurationsHTML + document.body.innerHTML;
+            
+            let configurationsDiv = document.getElementById("configurations-div")
+
+            configurationsDiv.innerHTML = systemConfigurationsHTML;
+            
             
 
             mainController.mainEventController.emit("startedConfigurations");
@@ -50,6 +54,9 @@ class SystemConfigurationsController {
         window.addEventListener("load", () => {
             languageConfigurations.loadLanguage(savedSelectedLanguage, true);
             this.systemConfigurationsView.loadedConfigurations(true);
+
+            mainController.mainEventController.emit("finishedConfigurations");
+
         });
 
         return true;
@@ -74,10 +81,13 @@ class SystemConfigurationsController {
 
         this.systemConfigurationsView.loadedConfigurations(false);
 
+        mainController.mainEventController.emit("finishedConfigurations");
+
+
+
 
     }
-
-
+ 
 
     saveConfigurations(selectedLanguage, saveConfigurationsSelect) {
 

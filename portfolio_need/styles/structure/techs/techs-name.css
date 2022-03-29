@@ -1,7 +1,7 @@
 
 .techs__name {
  
-    background-color: rgb(37, 37, 37);
+    background-color: var(--classy-black);
     color: var(--pretty-green);
     font-family: var(--default-font);
     font-size: 4vw;

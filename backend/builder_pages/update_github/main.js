@@ -1,43 +1,43 @@
 let changes_sent = false;
 
 const path = require('path');
-const loader_main =   require("../../builder_pages/choose_loader/main");
+const loader_main = require("../../builder_pages/choose_loader/main");
 
-const { app,BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 var fs = require('fs');
 let confirm_win;
 let html_to_save;
 
-function open_window(html,win)
-{
+function open_window(html, win) {
     html_to_save = html;
-     confirm_win = new BrowserWindow({
+    confirm_win = new BrowserWindow({
         width: 300,
-        height:250,
-        resizable:false,
-        webPreferences:{
-             
-             nodeIntegration: true,  contextIsolation: false,
+        height: 250,
+        resizable: false,
+        webPreferences: {
+
+            nodeIntegration: true, contextIsolation: false,
         }
     });
 
     confirm_win.loadURL(__dirname + "\\main.html").then(
         () => {
- 
+
             ipcMain.on('save_changes', send_changes);
 
-            ipcMain.on("github_close", (e,a) => {
+            ipcMain.on("github_close", (e, a) => {
                 confirm_win.close();
             });
 
-            ipcMain.on("choose_loader_again", () => {loader_main.open_window(win);
+            ipcMain.on("choose_loader_again", () => {
+                loader_main.open_window(win);
             })
-            
 
 
-        confirm_win.webContents.send('init_update_github');    
 
-  });
+            confirm_win.webContents.send('init_update_github');
+
+        });
 
 }
 exports.open_window = open_window;
@@ -51,8 +51,8 @@ function stringifyArray(arr) {
     for (let i = 0; i < arr.length; i++) {
 
         let element = arr[i];
-        
-        if(typeof element === "object") {
+
+        if (typeof element === "object") {
             element = JSON.stringify(element);
         }
         str += element;
@@ -79,35 +79,54 @@ function getBuilderPaths(initialPaths) {
         } else {
             paths.push(builderPath + path);
         }
-   
+
     }
 
     return paths;
 }
 
-function send_changes() 
-{
-    let {PythonShell} = require('python-shell');
+function send_changes() {
+    let { PythonShell } = require('python-shell');
     fs.writeFileSync("./index.html", html_to_save, 'utf8');
-    
+
 
     const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
 
- 
+
     /* Paths to every file that will be added to the portfolio repository */
     let paths = getBuilderPaths([
-        "index.html", 
-    "bootstrap-5.1.0-dist", 
-    "portfolio_need", 
-    {"str": "README-PORTFOLIO.md", "replace": "README.md"},
-    "READMESP"]);
 
-    let args = '{"paths" : '+ JSON.stringify(paths) + '}';
- 
+        {
+            "str": "index.html",
+            "options": {
+                "replace": { "portfolio_need": "" }
+            }
+        }, // get index.html, replace "portfolio_need" text to empty
+
+        "bootstrap-5.1.0-dist",
+
+        {
+            "str": "portfolio_need",
+            "options": {
+                "extract": true, "fileOptions": {
+                    "staticConfigurations.js": {"replace": {"portfolio_need": ""}}
+                }
+            }
+        }, // gets portfolio_need, extracts it 
+
+        {
+            "str": "README-PORTFOLIO.md",
+            "replace": "README.md"
+        }, // gets the readme of portfolio, renames it to README.md
+
+        "READMESP"]);
+
+    let args = '{"paths" : ' + JSON.stringify(paths) + '}';
+
     console.log(args);
- 
 
-    if (changes_sent){ return;}
+
+    if (changes_sent) { return; }
     changes_sent = true;
     let options = {
         pythonPath: pythonPath,
@@ -126,4 +145,4 @@ function send_changes()
     });
 
 }
-  
+

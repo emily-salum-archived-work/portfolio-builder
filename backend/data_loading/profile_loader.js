@@ -1,19 +1,5 @@
 
 
-  function getStuffILikeText(stuffILike) {
-    let stuffILikeText = "";
-    
-    stuffILike.forEach((el) => {stuffILikeText += el + ", ";});
-    stuffILikeText = stuffILikeText.substring(0, stuffILikeText.length - 2);
-
-    stuffILikeText += "!";
-
-    let lastItem = stuffILikeText.lastIndexOf(",")
-    stuffILikeText = stuffILikeText.substring(0, lastItem) + " and" + stuffILikeText.substring(lastItem + 1, stuffILikeText.length);
-
-    return stuffILikeText;
-  }
-  
   function stuffILikeString(stuffILike) {
 
     let likesString = "[";

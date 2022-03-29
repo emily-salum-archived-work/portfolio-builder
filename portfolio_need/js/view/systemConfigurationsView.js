@@ -1,5 +1,8 @@
 import View from "./view.js";
 
+
+import staticConfiguration from "../models/staticConfigurationsModel.js";
+
 const FORM_ID = 'configuration-form';
 const BODY_CONFIG_MODE = "body--config"
 
@@ -92,7 +95,7 @@ export default class SystemConfigurationsView extends View {
                 
                 <p class="system-configurations__switch-result"> 
                     return <img class="system-configurations__switch-image"
-                        src="portfolio_need/res/flags/${language}.png">;
+                        src="${staticConfiguration.initialPath()}/res/flags/${language}.png">;
                 </p>`
 
 

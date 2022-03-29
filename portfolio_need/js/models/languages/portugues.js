@@ -15,7 +15,7 @@ configuration.addToLanguage("portugues", {
     "to_know_me": "Para você saber um pouco sobre mim...",
     "projects": "Projetos",
     "profile": "Perfil",
-    "contact": "Contatos",
+    "contacts": "Contatos",
     "from": "País",
     "likes": "gostos",
     "age": "idade",

@@ -21,9 +21,11 @@ class ProjectCreator {
  * @param {String} nome 
  * @param {String} imagem 
  * @param {String} link 
+ * @param {String} github
+ * 
  */
-    addProject(nome, imagem, link) {
-        projectLists[this.name].push(makeProject(nome, imagem, this.name, link));
+    addProject(nome, imagem, link, github) {
+        projectLists[this.name].push(makeProject(nome, imagem, this.name, link, github));
     }
 
 }

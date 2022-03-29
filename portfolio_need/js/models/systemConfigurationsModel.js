@@ -30,7 +30,7 @@ const languageTranslations = {};
         if(!languageTranslation) {
             return null;
         }
-        return languageTranslation[key];
+        return languageTranslation[key] || key;
     }
 
 }

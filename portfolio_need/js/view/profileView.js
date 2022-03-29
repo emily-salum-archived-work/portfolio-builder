@@ -120,6 +120,7 @@ export class ProfileView extends View {
         let fieldTitle = field.fieldTitle;
         let fieldValue = field.fieldValue;
 
+        field.fieldElement.classList.add("profile__column--pretty");
         this.prettifyTitleElement(fieldTitle);
         this.prettifyValueElement(fieldValue);
     } 
@@ -136,6 +137,8 @@ export class ProfileView extends View {
             this.prettifyField(field);
 
         });
+
+
     }
 
     prettifyTitleElement(titleElement) {

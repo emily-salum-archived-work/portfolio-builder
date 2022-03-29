@@ -13,3 +13,49 @@
 
   background-color: var(--black-glass);
 }
+
+
+.screen-cover--loading {
+
+  z-index: 30 !important;
+  user-select:all;
+  background-color: var(--classy-black);
+  transition: 0s;
+
+}
+
+.screen-cover--loaded {
+
+  transition: 1.5s;
+  background-color: rgba(12, 73, 45, 0.884);
+  animation: load 6s 1s forwards;
+
+}
+
+@keyframes load {
+  
+
+   100% {
+     background-color: #70707000;
+   }
+
+}
+
+
+
+.loading__title {
+  z-index: 31;
+  color: var(--main);
+  background-color: var(--blacky);
+  position: fixed;
+  font-size: 5vmax;
+  width: 60%;
+  height: 60%;
+  left: 20%;
+  top: 20%;
+}
+
+.loading__title--loaded {
+  left: -200vh;
+  transition: 3s;
+}

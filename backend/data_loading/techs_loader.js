@@ -1,8 +1,7 @@
 
 
 
-/* I decided that at the current moment, its not worth automating much of the process
-    of adding a new tech. 
+/*
     Steps to add a new tech: 
     
         1- put the name in the array 

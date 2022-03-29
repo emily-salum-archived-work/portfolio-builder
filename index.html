@@ -40,11 +40,15 @@
 
 </head>
 
-<body>
+<body class="body--light-mode">
 
 
     <div class="screen-cover"> </div>
 
+
+    <!--
+    <button id="change-mode_button" class="change-mode">Change mode</button>
+    -->
     <header class="header" id="header">
 
         <div class="header__container" id="header-container">
@@ -126,11 +130,20 @@
 
                     <a href="#profile" 
                     class='header__button header__file header__button--profile' to-translate="profile">
+                    </a> 
+                    
+                    
+                    <a href="#cv" 
+                    class='header__button header__file header__button--contact'>
+                        CV
                     </a>
 
                     <a href="#contacts" 
                     class='header__button header__file header__button--contact' to-translate="contact">
                     </a>
+
+                    
+
                 </div>
 
 
@@ -162,7 +175,7 @@
 
         <!-- Technologies I know! -->
         <div class="techs section" id="techs">
-            <h3 class='section__title' to-translate="tech-title"></h3>
+            <h3 class='section__title techs__title' to-translate="tech-title"></h3>
 
 
 
@@ -430,8 +443,8 @@
 
                             <td field_class="likes_value" 
                                 class="profile__element profile--raw-value profile__value"
-                                not-raw='Rpg, automation, classical music and discord!'>
-                                [&#34;Rpg&#34;,&#34;automation&#34;,&#34;classical music&#34;,&#34;discord&#34;]
+                                not-raw='stuffILike'>
+                                [&#34;Rpg&#34;,&#34;classical music&#34;,&#34;discord&#34;]
                             </td>
                         </tr>
 
@@ -447,7 +460,15 @@
                 to-translate="build_profile"></button>
 
 
-                </section'>
+                </section>
+
+                <section id= "cv" class="cv section">
+                    <h2 class="cv__title section__title" to-translate="cv_download"></h2>
+                    <a id="cv_link"href="portfolio_need/res/cv/cv_portugues.pdf" download="cv.pdf">
+                        <button class="cv__button" to-translate="click_here"></button>
+                    </a>
+                </section>
+                
 
     </main>
 
@@ -462,7 +483,7 @@
             <h3 class="section__subtitle" to-translate="emailing"></h3>
 
             <form class="contacts__form"
-             id="contact-form" action="https://formspree.io/f/mdobzrbv" method="POST">
+             id="contact-form">
 
                 <label class="contacts__label" for="name" to-translate="name"></label>
 
@@ -506,6 +527,32 @@
 
         </div>
 
+
+
+        <section id="portfolio_metadata">
+
+            <table>
+
+                
+        
+                    <tr>
+
+
+                        <td> last_updated </td>
+
+                    </tr>
+
+                
+
+                </table>
+             
+        </section>
+
+
+
+        <section id="portfolio_creation"></section>
+
+
     </footer>
 
     </div>
@@ -517,23 +564,19 @@
 
 
 
-<script src="portfolio_need/js/languages/portugues.js" type="module"></script>
+<script src="portfolio_need/js/models/languages/portugues.js" type="module"></script>
 
-<script src="portfolio_need/js/languages/english.js" type="module"></script>
+<script src="portfolio_need/js/models/languages/english.js" type="module"></script>
 
+ 
 
-<script src="portfolio_need/js/systemConfigurations/main.js" type="module"></script>
-
-<script src="portfolio_need/js/contact.js" type="module"> </script>
-<script src="portfolio_need/js/header/headerControl.js" type="module"> </script>
-<script src="portfolio_need/js/header/projectFilesControl.js" type="module"> </script>
-
-
-<script src="portfolio_need/js/techs.js" type="module"> </script>
-
-
-
-
-<script src="portfolio_need/js/profile.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/contact.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/header.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/modeController.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/systemConfigurations.js" type="module"></script>
+<script src="portfolio_need/js/controllers/languageConfigurations.js" type="module"></script>
+<script src="portfolio_need/js/controllers/projectFiles.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/techs.js" type="module"> </script>
+<script src="portfolio_need/js/controllers/profile.js" type="module"> </script>
 
 </html>

@@ -1,6 +1,6 @@
 
 
-import headerController from "../controllers/header.js";
+import headerController from "../controllers/headerController.js";
 import View from "./view.js";
 
 
@@ -45,19 +45,19 @@ export default class ProjectFilesView extends View {
         project_file.addEventListener('click',
            ()=>{
             this.moveUserToProject(project)
-           } );
+            } );
     }
 
 
     /* Function that gets called when the file (project link) is clicked */
     moveUserToProject(project) {
 
-        headerController.headerView.closeHeader();
+        headerController.closeHeader();
 
         this.projectsBox.scrollLeft = project.offsetLeft - this.projectsBox.offsetLeft;
         project.scrollIntoView();
 
-        this.headerView.markProjectAsSelected(project);
+        this.markProjectAsSelected(project);
 
 
     }

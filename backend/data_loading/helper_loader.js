@@ -9,10 +9,14 @@ const pathf = require('path');
  * @param {String} open_link 
  * @returns {Object}
  */
-function makeProject(name, image, techs, open_link="#") {
+function makeProject(name, image, techs, open_link, github) {
     
 
-    return { 'name': name, 'image': image, 'open_link': open_link, 'techs': techs };
+    return { 'name': name,
+     'image': image, 
+     'open_link': open_link, 
+     'github': github, 
+     'techs': techs };
 }
 exports.makeProject = makeProject;
 

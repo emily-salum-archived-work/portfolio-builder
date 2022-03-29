@@ -5,6 +5,7 @@
 const { getProfile } = require("./profile_loader.js");
 const { getTechs } = require("./techs_loader.js");
 const { getLanguagesISpeak } = require("./languages_loader.js");
+const { getControllerNames } = require("./controllers_loader.js");
 
 
 exports.getPortfolioData = function getPortfolioData(project_lists, __dirname) {
@@ -14,7 +15,9 @@ exports.getPortfolioData = function getPortfolioData(project_lists, __dirname) {
       'tech_list': getTechs(),
       'profile': getProfile(),
       'languages': getLanguagesISpeak(),
-  
+      'fileIds': ["profile", "cv", "contacts"],
+      'JSControllerNames': getControllerNames(),
+    'metadata': {"last_updated": new Date().toISOString()},
   
       'root': __dirname
     }

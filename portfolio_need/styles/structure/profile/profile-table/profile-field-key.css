@@ -1,5 +1,9 @@
 
 
+.profile__field-key {
+  
+}
+
 .profile__field-key::before {
     content: '"';
   }

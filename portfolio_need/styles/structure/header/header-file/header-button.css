@@ -33,31 +33,35 @@
     margin-left: -3vmax;
     position: absolute; 
     width: 2.4vmax;
-  
+    background-repeat: no-repeat;
+    background-size:contain;
 }
 
 
 .header__button--folder::before {
     background-image:url('../res/header_icons/folder_icon.png') !important;  
-    background-repeat: no-repeat;
-    background-size:contain;
+ 
      
   }
 
 
 .header__button--profile::before {
     background-image:url('../res/header_icons/profile_icon.png') !important;
-    background-repeat: no-repeat;
-    background-size:contain;
+ 
      
   }
   
-.header__button--contact::before {
+.header__button--contacts::before {
     
     background-image:url('../res/header_icons/contact_icon.png') !important; 
-    background-repeat: no-repeat;
-    background-size:contain;
+ 
     
   }
   
+    
+.header__button--cv::before {
+    
+  background-image:url('../res/header_icons/contact_icon.png') !important; 
+   
   
+}

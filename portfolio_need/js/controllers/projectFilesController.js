@@ -11,7 +11,7 @@ class ProjectFilesController {
     buildProjectFiles() {
 
         this.projectFilesView.projectFiles.forEach(
-            this.projectFilesView.setupProjectFile);
+            (p)=>{this.projectFilesView.setupProjectFile(p)});
 
 
 
