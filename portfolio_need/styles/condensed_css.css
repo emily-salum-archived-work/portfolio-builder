@@ -273,6 +273,11 @@ table {
   
 }
 
+
+@font-face {
+  font-family: Quicksand;
+  src:url("../res/fonts/Quicksand-VariableFont_wght.ttf");
+}
  
 
 @import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
@@ -588,21 +593,21 @@ transition: 3s;
 
 
 .header__button--folder::before {
-    background-image:url('../res/header_icons/folder_icon.png') !important;  
+    background-image:url('../res/images/header_icons/folder_icon.png') !important;  
  
      
   }
 
 
 .header__button--profile::before {
-    background-image:url('../res/header_icons/profile_icon.png') !important;
+    background-image:url('../res/images/header_icons/profile_icon.png') !important;
  
      
   }
   
 .header__button--contacts::before {
     
-    background-image:url('../res/header_icons/contact_icon.png') !important; 
+    background-image:url('../res/images/header_icons/contact_icon.png') !important; 
  
     
   }
@@ -610,12 +615,12 @@ transition: 3s;
     
 .header__button--cv::before {
     
-  background-image:url('../res/header_icons/contact_icon.png') !important; 
+  background-image:url('../res/images/header_icons/contact_icon.png') !important; 
    
   
 }
 .header__file::before {
-    background-image:url('../res/header_icons/file_icon.png');
+    background-image:url('../res/images/header_icons/file_icon.png');
     background-repeat: no-repeat;
     background-size:contain;
      

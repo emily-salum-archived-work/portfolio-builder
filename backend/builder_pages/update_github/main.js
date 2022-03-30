@@ -12,6 +12,7 @@ const { updateRes } = require("../../distConstructor/resLoader.js");
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 var fs = require('fs');
+const { updateCSS } = require('../../distConstructor/css_loader');
 let confirm_win;
 let html_to_save;
 
@@ -81,6 +82,8 @@ function send_changes() {
     }
     
     updateHTML(html_to_save);
+
+    updateCSS();
 
     const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
 
@@ -152,6 +155,10 @@ function setupOnEvents() {
 
     ipcMain.on("update_html", (e, a) => {
         updateHTML(html_to_save);
+    });  
+    
+    ipcMain.on("update_css", (e, a) => {
+        updateCSS();
     });
 
 

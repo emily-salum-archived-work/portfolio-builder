@@ -18,7 +18,7 @@ writes all their content to a new file, "condensed_css" */
 exports.buildCondensedCSS = async function buildCondensedCSS() {
 
   const condensedCSS = path.join(__dirname,
-    "../../dist/styles/condensed_css.css");
+    "../../portfolio_need/styles/condensed_css.css");
 
 
   /* Delete condensed_css file */
@@ -52,19 +52,27 @@ exports.buildCondensedCSS = async function buildCondensedCSS() {
       cssFile, { flag: 'a' });
   });
 
-
-  console.log("after writing condensed css")
-  
-  const output = await postcss([cssnano, autoprefixer])
-  .process(fs.readFileSync(condensedCSS, 'utf-8'))
- 
-  const minifiedCss = output.css
-
-
-  fs.writeFileSync(condensedCSS, minifiedCss, { flag: 'w' });
-
  
     
+}
+
+exports.updateCSS =  async function updateCSS() {
+  const condensedCSS = path.join(__dirname,
+    "../../portfolio_need/styles/condensed_css.css");
+  
+  const distCondensedCSS = path.join(__dirname,
+      "../../dist/styles/condensed_css.css");
+
+
+
+      const output = await postcss([cssnano, autoprefixer])
+      .process(fs.readFileSync(condensedCSS, 'utf-8'))
+     
+      const minifiedCss = output.css
+
+    fs.writeFileSync(distCondensedCSS, minifiedCss, { flag: 'w' });
+      
+  
 }
 
 function getCSSData(css_path) {

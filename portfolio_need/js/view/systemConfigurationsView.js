@@ -95,7 +95,7 @@ export default class SystemConfigurationsView extends View {
                 
                 <p class="system-configurations__switch-result"> 
                     return <img class="system-configurations__switch-image"
-                        src="${staticConfiguration.initialPath()}/res/flags/${language}.png">;
+                        src="${staticConfiguration.initialPath()}/res/images/flags/${language}.png">;
                 </p>`
 
 
