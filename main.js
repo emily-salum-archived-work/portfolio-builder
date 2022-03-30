@@ -14,16 +14,18 @@ const loader_main = require("./backend/builder_pages/choose_loader/main");
 const { save_images } = require("./backend/data_loading/helper_loader.js");
  
 
-const { buildCondensedCSS } = require("./backend/data_loading/css_loader.js");
+const { buildCondensedCSS } = require("./backend/distConstructor/css_loader.js");
 
 
 const { getPortfolioData } = require("./backend/data_loading/portfolio_loader.js");
 
 var win;
 
+ 
+
 
 function createWindow() {
-
+ 
   win = new BrowserWindow({
 
     webPreferences: {
@@ -61,6 +63,7 @@ let firstTime = true;
 
 
 function registerReload() {
+ 
   globalShortcut.register('commandOrControl+R', () => {
 
     buildCondensedCSS();
@@ -73,8 +76,7 @@ function registerReload() {
 
  
 function inicializeProgram(project_lists) {
-
-
+ 
   registerReload();
   buildCondensedCSS();
 
@@ -93,6 +95,7 @@ function inicializeProgram(project_lists) {
 
 
 function loadEJSPortfolio(data) {
+ 
 
   for(key of Object.keys(data)) {
     ejse.data(key, data[key]);

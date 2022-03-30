@@ -1,0 +1,1 @@
+import mainController from"../controllers/mainController.js";export default class View{constructor(i,l){this.controller=i,l?mainController.mainEventController.on(l,()=>{this.inicializeElements()}):this.inicializeElements()}inicializeElements(){}};

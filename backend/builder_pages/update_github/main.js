@@ -1,17 +1,29 @@
 let changes_sent = false;
-
+ 
 const path = require('path');
 const loader_main = require("../../builder_pages/choose_loader/main");
+
+
+const { minifyJS } = require("../../distConstructor/jsMinify.js"); 
+const { updateHTML } = require('../../distConstructor/htmlLoader.js');
+const { updateRes } = require("../../distConstructor/resLoader.js");
+
+
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 var fs = require('fs');
 let confirm_win;
 let html_to_save;
 
+
+var updatedRES = false;
+var updatedJS = false;
+
+
 function open_window(html, win) {
     html_to_save = html;
     confirm_win = new BrowserWindow({
-        width: 300,
+        width: 600,
         height: 250,
         resizable: false,
         webPreferences: {
@@ -23,16 +35,7 @@ function open_window(html, win) {
     confirm_win.loadURL(__dirname + "\\main.html").then(
         () => {
 
-            ipcMain.on('save_changes', send_changes);
-
-            ipcMain.on("github_close", (e, a) => {
-                confirm_win.close();
-            });
-
-            ipcMain.on("choose_loader_again", () => {
-                loader_main.open_window(win);
-            })
-
+            setupOnEvents()
 
 
             confirm_win.webContents.send('init_update_github');
@@ -41,28 +44,6 @@ function open_window(html, win) {
 
 }
 exports.open_window = open_window;
-
-
-
-
-/* Receives an array and turns it into string-formatted version of it.  */
-function stringifyArray(arr) {
-    let str = "[";
-    for (let i = 0; i < arr.length; i++) {
-
-        let element = arr[i];
-
-        if (typeof element === "object") {
-            element = JSON.stringify(element);
-        }
-        str += element;
-        if (i != arr.length - 1) {
-            str += ",";
-        }
-    }
-    str += "]";
-    return str;
-}
 
 
 /* Receives an array of paths, returns an array with builderPath + path for each path; 
@@ -85,10 +66,21 @@ function getBuilderPaths(initialPaths) {
     return paths;
 }
 
+ 
+
+
 function send_changes() {
     let { PythonShell } = require('python-shell');
-    fs.writeFileSync("./index.html", html_to_save, 'utf8');
-
+        
+    if(!updatedJS) {
+        minifyJS();
+    }
+    
+    if(!updatedRES) {
+        updateRes();
+    }
+    
+    updateHTML(html_to_save);
 
     const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
 
@@ -96,30 +88,20 @@ function send_changes() {
     /* Paths to every file that will be added to the portfolio repository */
     let paths = getBuilderPaths([
 
-        {
-            "str": "index.html",
-            "options": {
-                "replace": { "portfolio_need": "" }
-            }
-        }, // get index.html, replace "portfolio_need" text to empty
-
+         
         "bootstrap-5.1.0-dist",
 
         {
-            "str": "portfolio_need",
+            "str": "dist",
             "options": {
                 "extract": true, "fileOptions": {
-                    "staticConfigurations.js": {"replace": {"portfolio_need": ""}}
+                    "staticConfigurationsModel.js": {"replace": {"portfolio_need": "."}},
+                    "index.html": {"replace": {"portfolio_need": "."}},
                 }
             }
-        }, // gets portfolio_need, extracts it 
+        }, // gets dist, extracts it 
 
-        {
-            "str": "README-PORTFOLIO.md",
-            "replace": "README.md"
-        }, // gets the readme of portfolio, renames it to README.md
-
-        "READMESP"]);
+    ]);
 
     let args = '{"paths" : ' + JSON.stringify(paths) + '}';
 
@@ -146,3 +128,35 @@ function send_changes() {
 
 }
 
+
+
+
+function setupOnEvents() {
+    ipcMain.on('save_changes', send_changes);
+
+    ipcMain.on("github_close", () => {
+        confirm_win.close();
+    });
+
+    ipcMain.on("minify_js", ()=> {
+        minifyJS();
+        updatedJS = true
+    });
+
+    
+    ipcMain.on("update_res", ()=> {
+        updateRes();
+        updatedRES = true;
+    });
+
+
+    ipcMain.on("update_html", (e, a) => {
+        updateHTML(html_to_save);
+    });
+
+
+    ipcMain.on("choose_loader_again", () => {
+        loader_main.open_window(win);
+    })
+
+}

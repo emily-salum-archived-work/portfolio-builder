@@ -15,11 +15,22 @@ export default class ModeView extends View {
     }
 
 
+    setCoverScreenMode(mode) {
+        console.log("Adding screen-cover--" + mode);
+        this.coverScreen.classList.add("screen-cover--" + mode);
+       
+    }
+
+    removeCoverScreenMode(mode) {
+        console.log("Removing screen-cover--" + mode);
+        this.coverScreen.classList.remove("screen-cover--" + mode);
+       
+    }
+
     applyLoadingMode() {
 
-        console.log("Adding screen-cover--loading")
-        this.coverScreen.classList.add("screen-cover--loading");
-        console.log(this.coverScreen.classList)
+        this.setCoverScreenMode("loading");
+         
         
         let loadingTitle =  this.createLoadingTitle();
         
@@ -34,8 +45,10 @@ export default class ModeView extends View {
             setTimeout(() => {
 
                 loadingTitle.remove();
-                this.coverScreen.classList.add("screen-cover--loaded");
-    
+                this.setCoverScreenMode("loaded"); 
+                setTimeout(()=>{ 
+                this.removeCoverScreenMode("loading");}, 3000)
+                 
             }, 2000);
     
         }
@@ -46,7 +59,7 @@ export default class ModeView extends View {
 
     createLoadingTitle() {
         let loadingTitle = document.createElement('h2');
-        loadingTitle.innerHTML = 'Loading Portfolio.exe'
+        loadingTitle.innerHTML = 'Building Portfolio.exe'
         loadingTitle.classList.add("loading__title");
 
         return loadingTitle;
@@ -59,12 +72,11 @@ export default class ModeView extends View {
     changeUnfocus(doUnfocus) {
 
         if (doUnfocus) {
-            this.coverScreen.classList.add("screen-cover--unfocus");
+            this.setCoverScreenMode("unfocus"); 
             return;
         }
 
-        this.coverScreen.classList.remove("screen-cover--unfocus");
-
+        this.removeCoverScreenMode("unfocus"); 
 
 
     }

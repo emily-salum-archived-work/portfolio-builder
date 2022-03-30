@@ -7,7 +7,7 @@ class ContactController {
 
 
   constructor() {
-
+ 
     this.contactView = new ContactView(this);
   }
 

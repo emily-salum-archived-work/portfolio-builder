@@ -10,11 +10,23 @@
 </head>
 <body>
     
-    <button id = "commitButton"> Send to github </button>
 
-    <button id = "closeButton"> Nah, close this instead </button>
+    <div id="commit" control-box>
+        <button id = "save_changes"> Send to github </button>
+        <button id = "github_close"> Close window </button>
+    </div>
 
-    <button id = "loadAgainButton"> Choose loader again </button>
+    <div id="configure" control-box>
+        <button id = "choose_loader_again"> Choose loader again </button>
+    </div>
+    
+    <div id="build" control-box>
+        
+        <button id = "minify_js"> Minify JS </button>    
+        <button id = "update_res"> Update RES </button>
+        <button id = "update_html"> Update HTML </button> 
+
+    </div>
 
     <script src="./renderer.js"></script>
 </body>

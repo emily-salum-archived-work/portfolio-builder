@@ -4,22 +4,29 @@
   "description": "Program with the purpose of creating the main page of my portfolio through an ejs file.",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": ".\\node_modules\\electron\\dist\\electron.exe .",
     "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Emily Salum",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^13.2.2",
+    "electron": "^13.6.9",
     "electron-builder": "^22.11.7"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.4",
+    "chalk": "^4.1.2",
     "clipboard": "^2.0.8",
+    "cssnano": "^5.1.5",
     "ejs-electron": "^2.1.1",
     "eslint": "^8.9.0",
     "express": "^4.17.2",
+    "fs-extra": "^10.0.1",
+    "node-minify": "^3.6.0",
+    "postcss": "^8.4.12",
     "python-shell": "^3.0.0",
+    "uglify-js": "^3.15.3",
     "victormono": "^1.5.1"
   }
 }

@@ -1,5 +1,4 @@
-
-const EventEmitter = require('events');
+import EventEmitter from '../helpers/eventEmitter.js';
 
 
 /* Proposal:

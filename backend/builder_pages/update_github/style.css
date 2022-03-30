@@ -12,4 +12,31 @@ button
 body
 {
     background-color: antiquewhite;
+    display: grid;
+
+    grid-template-columns: 30% 30% 30%;
+
+    grid-template-areas: "build" "commit" "configure";
+}
+
+
+#build {
+    grid-area: "build";    
+}
+
+#commit {
+    grid-area: "commit";
+}
+
+#configure {
+    grid-area: "configure";
+}
+
+
+.close-button {
+    background-color: rgb(117, 104, 100);
+}
+
+.closed *:not(.close-button) {
+    display: none;
 }

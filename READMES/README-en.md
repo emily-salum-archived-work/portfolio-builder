@@ -15,6 +15,7 @@ and hosting it statically was an interesting idea to me.
 ## Current Functionality
 - Creates the portfolio page using ejs.
 - Opens an Electron Interface to view and mess with the page.
+- HTML, CSS e JS files are minified for better page performance.
 - github_init can be called via interface, to send the page to its repository.
 
 
