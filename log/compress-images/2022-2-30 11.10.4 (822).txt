@@ -1,0 +1,9 @@
+File from: [./portfolio_need/res/techs/unity-logo.png]
+
+File to: [./dist/res/techs/unity-logo.png]
+
+Compression algorithm: [pngquant]
+
+Description: Error: Command failed: C:\Users\user\Desktop\emily\projects\@site_projects\portfolio-builder\node_modules\pngquant-bin\vendor\pngquant.exe --quality=20-50 -o ./dist/res/techs/unity-logo.png ./portfolio_need/res/techs/unity-logo.png
+  error: Not a PNG file (libpng failed)
+  error: cannot decode image portfolio_need\res\techs\unity-logo.png

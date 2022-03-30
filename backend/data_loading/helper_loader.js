@@ -22,7 +22,7 @@ exports.makeProject = makeProject;
 
  
 
-const baseImagePath = './portfolio_need/res/project-images/';
+const baseImagePath = './portfolio_need/res/images/project-images/';
 
 function save_images(project_lists) {
 

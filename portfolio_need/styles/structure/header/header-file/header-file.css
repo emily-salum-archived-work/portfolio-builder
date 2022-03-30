@@ -1,6 +1,6 @@
 
 .header__file::before {
-    background-image:url('../res/header_icons/file_icon.png');
+    background-image:url('../res/images/header_icons/file_icon.png');
     background-repeat: no-repeat;
     background-size:contain;
      
