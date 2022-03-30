@@ -22,14 +22,12 @@ class ModeController {
             this.view.changeUnfocus(headerState);
         });
 
+        console.log("Going to apply loading mode in screen cover")
+        this.view.applyLoadingMode();
+
         mainController.mainEventController.on(
             "startedConfigurations", ()=>{
-            {
-                console.log("Going to apply loading mode in screen cover")
-                this.view.applyLoadingMode();
-            }
-        
-        });
+            {}});
    
         if (this.view.changeModeButton) {
 

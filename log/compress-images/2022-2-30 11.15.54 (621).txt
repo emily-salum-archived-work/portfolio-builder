@@ -1,7 +1,0 @@
-File from: [./dist/res/**/*.png]
-
-File to: [-]
-
-Compression algorithm: [-]
-
-Description:  Directory is empty!: 

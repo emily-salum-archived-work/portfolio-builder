@@ -16,16 +16,14 @@ const { updateCSS } = require('../../distConstructor/css_loader');
 let confirm_win;
 let html_to_save;
 
-
-var updatedRES = false;
-var updatedJS = false;
+ 
 
 
 function open_window(html, win) {
     html_to_save = html;
     confirm_win = new BrowserWindow({
-        width: 600,
-        height: 250,
+        width: 700,
+        height: 220,
         resizable: false,
         webPreferences: {
 
@@ -68,23 +66,26 @@ function getBuilderPaths(initialPaths) {
 }
 
  
+function updateAll() {
+     
+    updateRes();
+    
+    updateContent();
 
+}
+
+
+function updateContent() {
+
+    minifyJS();
+    updateHTML(html_to_save);
+    updateCSS();
+}
 
 function send_changes() {
     let { PythonShell } = require('python-shell');
         
-    if(!updatedJS) {
-        minifyJS();
-    }
     
-    if(!updatedRES) {
-        updateRes();
-    }
-    
-    updateHTML(html_to_save);
-
-    updateCSS();
-
     const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
 
 
@@ -125,8 +126,12 @@ function send_changes() {
 
     PythonShell.run(githubInitPath, options, function (err, results) {
         if (err)
-            throw err;
+        {console.log(err);
+            throw err;}
+
         console.log('github.py finished.');
+
+        console.log(results);
     });
 
 }
@@ -135,7 +140,14 @@ function send_changes() {
 
 
 function setupOnEvents() {
-    ipcMain.on('save_changes', send_changes);
+    ipcMain.on('send_changes', send_changes);
+
+    ipcMain.on("save_and_send_changes", ()=> {
+        updateContent();
+        send_changes();
+    });
+
+    ipcMain.on("update_all", updateAll);
 
     ipcMain.on("github_close", () => {
         confirm_win.close();

@@ -3,7 +3,7 @@ button
 {
     background-color: rgb(54, 54, 47);
     border-radius: 20%;
-    height: 30px;
+    height: fit-content;
     color: rgb(208, 225, 240);
     display: block;
 }
@@ -33,10 +33,23 @@ body
 }
 
 
+[control-box] {
+
+ 
+    
+    background-color: rgb(192, 192, 192);
+    height: 80%;
+    overflow-y: scroll;
+
+}	
+
+
 .close-button {
     background-color: rgb(117, 104, 100);
 }
 
+
 .closed *:not(.close-button) {
     display: none;
+
 }
