@@ -1,0 +1,14 @@
+{
+    "compilerOptions":{
+        "outDir": "portfolio_need/js/",
+        "target": "ES6",
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "experimentalDecorators": true,
+    },
+    "include": ["backend/ts/**/*.ts"]
+
+
+}
