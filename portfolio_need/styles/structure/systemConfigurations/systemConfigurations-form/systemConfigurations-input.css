@@ -9,7 +9,8 @@
     color: var(--pretty-green);
     display: block;
     font-size: 3vmax;
-    position: relative;  
+    position: relative;   
+    cursor: pointer;
 }
 
 

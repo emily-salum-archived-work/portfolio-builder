@@ -1,67 +1,37 @@
- 
-import { ProfileView } from "../view/profileView.js";
-
- 
-class ProfileController {
-
-
+import ProfileView from "../view/profileView.js";
+import Controller from "../classes/controller.js";
+class ProfileController extends Controller {
     constructor() {
-
-        this.profileView = new ProfileView(this); 
- 
+        super(ProfileView);
     }
-
+    startBehaviour() {
+        profileController.addAgeToProfile();
+        profileController.buildProfile();
+        profileController.listenProfileButton();
+    }
     buildProfile() {
-    
-        this.profileView.buildProfileFields();
+        this.view.buildProfileFields();
     }
-    
     listenProfileButton() {
-
-       this.profileView.listenProfileButton(this.prettify.bind(this));
-
+        this.view.listenProfileButton(this.prettify.bind(this));
     }
-
     prettify() {
-
         this.prettifyProfile();
-        this.profileView.hideRawElements();
-        this.profileView.showHiddenFromRawElements();
+        this.view.hideRawElements();
+        this.view.showHiddenFromRawElements();
     }
-
-
     addAgeToProfile() {
-
-        const myAge = moment("26-11-2003", "DD-MM-YYYY").fromNow().substring(0, 2);
-        
-        this.profileView.addFieldToProfile("age", myAge);
-        
-
+        const now = new Date();
+        const birthDate = new Date(2003, 11, 26);
+        let myAge = now.getFullYear() - birthDate.getFullYear();
+        const month = now.getMonth() - birthDate.getMonth();
+        if (month < 0 || (month === 0 && now.getDate() < birthDate.getDate())) {
+            myAge--;
+        }
+        this.view.addFieldToProfile("age", myAge.toString(), null);
     }
-
-
-    
-
     prettifyProfile() {
-        
-        this.profileView.prettifyProfile();
-
-       
+        this.view.prettifyProfile();
     }
-
-
- 
 }
-
- 
-
 let profileController = new ProfileController();
-
-profileController.addAgeToProfile();
-profileController.buildProfile();
-profileController.listenProfileButton();
-
-
-
-
-

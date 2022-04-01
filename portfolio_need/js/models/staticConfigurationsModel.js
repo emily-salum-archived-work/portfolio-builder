@@ -1,11 +1,7 @@
-
-
-class StaticConfigurations
-{
-
+class StaticConfigurations {
     initialPath() {
-        return "portfolio_need"
+        return "portfolio_need";
     }
 }
-
-export default new StaticConfigurations;
+const staticConfiguration = new StaticConfigurations();
+export default staticConfiguration;

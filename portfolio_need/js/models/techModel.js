@@ -1,12 +1,6 @@
-
-
-
-export class Tech {
-
-    constructor(name) { 
+class Tech {
+    constructor(name) {
         this.name = name;
     }
-
-
-
 }
+export default Tech;

@@ -1,30 +1,31 @@
 
 .header__file::before {
-    background-image:url('../res/images/header_icons/file_icon.png');
-    background-repeat: no-repeat;
-    background-size:contain;
      
-    content: "";
-    height: 2.4vmax; 
-    margin-left: -3vmax;
-    position: absolute;
-    width: 2.4vmax;
   
+  background-position-y: -15px;
 }
 
 
 .header__file--opened {
 
    
-    font-size: 1vmax;
+    font-size: 1.45vmax;
     margin-bottom: 2vh;
     padding-top: 0.25vh;
   }
   
 .header__file--closed {
    
-    font-size: 0 !important; 
-    opacity: 0;
-    padding-bottom: 0 !important;
-    padding-top: 0;
+    display: none;
   }
+
+
+  
+@media (max-width: 1000px) {
+
+  .header__file--opened {
+
+    font-size: 1.6vmax;
+  }
+
+}

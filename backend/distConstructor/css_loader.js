@@ -13,6 +13,8 @@ const cssnano = require('cssnano')
 const autoprefixer = require('autoprefixer')
 
 
+
+
 /* Gets the list of paths of css files, reads those css files and
 writes all their content to a new file, "condensed_css" */
 exports.buildCondensedCSS = async function buildCondensedCSS() {
@@ -31,15 +33,21 @@ exports.buildCondensedCSS = async function buildCondensedCSS() {
 
   console.log("after trying to condense css")
 
-  const cssPaths = getCSSPaths();
+
+  buildCSS(condensedCSS);
+
+ 
+  
+
+}
+
+
+function buildCSS(condensedCSS, prefix="") {	
+
+  const cssPaths = getCSSPaths("../../portfolio_need/styles/" + prefix);
   console.log("got css paths")
 
-  const condensedCSSExplanation = "/*\n WARNING \n This file is auto generated  \n  If you wish to look \n or modify the structure, look at the other files \n */ \n";
-
-
-  fs.writeFileSync(
-    condensedCSS,
-    condensedCSSExplanation, { flag: 'a' });
+  
 
   cssPaths.forEach(function (cssPath) {
     if (fs.statSync(cssPath).isDirectory()) {
@@ -52,9 +60,16 @@ exports.buildCondensedCSS = async function buildCondensedCSS() {
       cssFile, { flag: 'a' });
   });
 
- 
-    
+
 }
+
+async function cleanCSS(cssToClean) {
+
+  return await postcss([cssnano, autoprefixer])
+      .process(cssToClean,  { from: undefined })
+}
+
+exports.cleanCSS = cleanCSS;
 
 exports.updateCSS =  async function updateCSS() {
   const condensedCSS = path.join(__dirname,
@@ -64,11 +79,14 @@ exports.updateCSS =  async function updateCSS() {
       "../../dist/styles/condensed_css.css");
 
 
+       buildCSS(distCondensedCSS, "structure/");
 
       const output = await postcss([cssnano, autoprefixer])
-      .process(fs.readFileSync(condensedCSS, 'utf-8'))
+      .process(fs.readFileSync(distCondensedCSS, 'utf-8'))
      
-      const minifiedCss = output.css
+      let minifiedCss = output.css
+
+     // minifiedCss = minifiedCss.replace("__", "")
 
     fs.writeFileSync(distCondensedCSS, minifiedCss, { flag: 'w' });
       
@@ -127,4 +145,4 @@ function getCSSPaths(startPath = '../../portfolio_need/styles') {
 }
 
 exports.getCSSPaths = getCSSPaths;
-
+exports.getCSSData = getCSSData;

@@ -1,1 +1,1 @@
-class StaticConfigurations{initialPath(){return"portfolio_need"}}export default new StaticConfigurations;
+class StaticConfigurations{initialPath(){return"."}}const staticConfiguration=new StaticConfigurations;export default staticConfiguration;

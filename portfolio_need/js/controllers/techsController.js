@@ -1,60 +1,34 @@
-
-
-import { Tech } from "../models/techModel.js";
-
-import { TechsView } from "../view/techsView.js";
-
-class TechController {
-
-
+import Tech from "../models/techModel.js";
+import TechsView from "../view/techsView.js";
+import Controller from "../classes/controller.js";
+class TechController extends Controller {
     constructor() {
-
-
-        this.techsView = new TechsView(this);
-
-        this.techs = []
-
+        super(TechsView);
+        this.techs = [];
     }
-
+    startBehaviour() {
+        techController.buildTechObjects();
+        techController.listenForTechHover();
+    }
     buildTechObjects() {
-
-        this.techsView.techNames.forEach((techName) => {
-
+        this.view.techNames.forEach((techName) => {
             const nameOfTech = techName.getAttribute("tech-name");
-
+            if (!nameOfTech) {
+                throw new Error("nameOfTech (String) not found in techName (element)");
+            }
             let tech = new Tech(nameOfTech);
             this.techs.push(tech);
-
         });
-
     }
-
     onTechNameOver(_techName, techImage) {
-
-        this.techsView.unselectTechs();
-        techImage.classList.remove("techs__image--unselected");
-
+        this.view.unselectTechs();
+        this.view.selectTechImage(techImage);
     }
-
     onTechNameOut(_techName, _techImage) {
-        this.techsView.removeUnselectFromTechLogos();
+        this.view.removeUnselectFromTechLogos();
     }
-
-
     listenForTechHover() {
-
- 
-     this.techsView.listenForTechNameHover(
-                this.onTechNameOver.bind(this),
-                this.onTechNameOut.bind(this));
-       
-
+        this.view.listenForTechNameHover(this.onTechNameOver.bind(this), this.onTechNameOut.bind(this));
     }
-
-
 }
-
-
 let techController = new TechController();
-techController.buildTechObjects()
-techController.listenForTechHover()

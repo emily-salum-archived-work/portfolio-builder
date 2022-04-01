@@ -3,10 +3,20 @@
 var minify = require('html-minifier').minify;
 
 const fs = require('fs');
+const { getCSSPaths, getCSSData, cleanCSS } = require('./css_loader');
+ 
 
 exports.updateHTML = function updateHTML(htmlToSave) {
+ 
 
+    try {
+     
+    fs.unlinkSync("./dist/index.html");   
+    } catch (error) {
+        
+    }
 
+    htmlToSave = htmlToSave.replace(/<!--ECSS-->/, '!ECSS')
     htmlToSave = minify(htmlToSave, {
         collapseWhitespace: true, // Removes all white space characters
         removeComments: true, // Removes all comments
@@ -17,6 +27,27 @@ exports.updateHTML = function updateHTML(htmlToSave) {
         useShortDoctype: true, // Uses short doctype
     });
 
-    fs.writeFileSync("./dist/index.html", 
-    htmlToSave, 'utf8');
+    console.log("Writting to index dist");
+
+    let css = ""
+    getCSSPaths("../../portfolio_need/styles/essentials").forEach(function (cssPath) {
+    
+        if (fs.statSync(cssPath).isDirectory()) {
+            return;
+        }
+        css += getCSSData(cssPath);
+    });
+    
+    cleanCSS(css).then(function (css) {
+
+        htmlToSave = htmlToSave.replace("!ECSS", `<style>${css}</style>`);
+
+
+        //htmlToSave = htmlToSave.replace("__", "")
+
+        let html = htmlToSave.replace(/portfolio_need/g, "."); 
+        fs.writeFileSync("./dist/index.html", 
+        html, 'utf8');
+
+        })
 }

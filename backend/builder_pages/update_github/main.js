@@ -92,16 +92,11 @@ function send_changes() {
     /* Paths to every file that will be added to the portfolio repository */
     let paths = getBuilderPaths([
 
-         
-        "bootstrap-5.1.0-dist",
-
+          
         {
             "str": "dist",
             "options": {
-                "extract": true, "fileOptions": {
-                    "staticConfigurationsModel.js": {"replace": {"portfolio_need": "."}},
-                    "index.html": {"replace": {"portfolio_need": "."}},
-                }
+                "extract": true
             }
         }, // gets dist, extracts it 
 

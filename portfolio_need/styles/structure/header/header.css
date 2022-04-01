@@ -28,7 +28,7 @@
 
 .header--opened {
   background-color: #6ac04d;
-  width: 24vw !important;
+  width: 24vw ;
  
 }
 
@@ -46,7 +46,7 @@ header:hover
   }
 
   .header--opened {
-    width: 30vw !important;
+    width: 55vw !important;
   }
 } 
 

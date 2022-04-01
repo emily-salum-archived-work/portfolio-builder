@@ -1,59 +1,32 @@
-
-
-
-import systemConfigurations from '../models/systemConfigurationsModel.js';
+import configuration from '../models/systemConfigurationsModel.js';
 import LanguageConfigurationView from "../view/languageConfigurationView.js";
-
-class LanguageConfigurationsController {
-
-
+import Controller from "../classes/controller.js";
+class LanguageConfigurationsController extends Controller {
     constructor() {
-        this.languageConfigurationsView = new LanguageConfigurationView();
-        this.configurations = systemConfigurations;
+        super(LanguageConfigurationView);
     }
-
-
+    startBehaviour() {
+    }
     startedConfigurations() {
-        this.languageConfigurationsView.inicializeElements();
+        this.view.inicializeElements();
     }
-
     getLanguage() {
-        return this.languageConfigurationsView.languageSelect.value.toLowerCase()
+        return this.view.languageSelect.value.toLowerCase();
     }
-    
     loadLanguage(newSelectedLanguage, fastStyle = false) {
-
-
-     
-        this.configurations.setLanguage(newSelectedLanguage);
-
-
+        configuration.setLanguage(newSelectedLanguage);
         this.setLanguage(fastStyle);
-
     }
-
-    
     setLanguage(fastStyle) {
-
-
-        this.languageConfigurationsView.changedLanguage(
-            this.configurations.selectedLanguage, fastStyle);
-
-
-        const toTranslateObjects = this.languageConfigurationsView.getElementsToTranslate();
-
+        this.view.changedLanguage(configuration.selectedLanguage, fastStyle);
+        const toTranslateObjects = this.view.getElementsToTranslate();
         toTranslateObjects.forEach((element) => {
-
-            element.innerHTML = this.configurations.translateWord(element.getAttribute(
-                "to-translate"));
-
+            let toTranslate = element.getAttribute("to-translate");
+            if (toTranslate !== undefined) {
+                element.innerHTML = configuration.translateWord(toTranslate);
+            }
         });
     }
-
 }
-
-
-
 const languageConfigurations = new LanguageConfigurationsController();
-
-export default languageConfigurations
+export default languageConfigurations;

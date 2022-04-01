@@ -19,16 +19,17 @@
 
   z-index: 30 !important;
   user-select:all;
-  background-color: var(--classy-black);
-  transition: 0s;
+  
 
+  background-color: #000000;
+   animation: loading-screen-cover 6s forwards;
 }
 
-.screen-cover--loaded {
+ 
 
-  transition: 1.5s;
-  background-color: rgba(12, 73, 45, 0.884);
-  animation: load 3.5s 1s forwards;
+.screen-cover--loaded {
+  background-color: #000000;
+  animation: load 2s forwards;
 
 }
 
@@ -37,25 +38,11 @@
 
    100% {
      background-color: #70707000;
+      
    }
 
 }
 
 
 
-.loading__title {
-  z-index: 31;
-  color: var(--main);
-  background-color: var(--blacky);
-  position: fixed;
-  font-size: 5vmax;
-  width: 60%;
-  height: 60%;
-  left: 20%;
-  top: 20%;
-}
-
-.loading__title--loaded {
-  left: -200vh;
-  transition: 3s;
-}
+ 

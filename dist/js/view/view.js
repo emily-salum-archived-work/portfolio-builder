@@ -1,1 +1,1 @@
-import mainController from"../controllers/mainController.js";export default class View{constructor(i,l){this.controller=i,l?mainController.mainEventController.on(l,()=>{this.inicializeElements()}):this.inicializeElements()}inicializeElements(){}};
+import mainController from"../controllers/mainController.js";class View{constructor(e,n){this.controller=e,n?mainController.mainEventController.on(n,()=>{this.inicializeElements()}):document.addEventListener("DOMContentLoaded",()=>{this.inicializeElements()})}inicializeElements(){}}export default View;

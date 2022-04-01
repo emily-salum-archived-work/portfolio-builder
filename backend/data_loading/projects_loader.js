@@ -44,25 +44,30 @@ function loadProjects() {
     const javaProjects = new ProjectCreator("java");
 
 
+
+    /** C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png */
     godotProjects.addProject(
         "heart_beat",
-        "C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png",
+        "https://raw.githubusercontent.com/emilymarquessalum/HeartBeat/main/md_res/heart_beat_presentation_image.png",
+        
+        
+        
         "https://gotm.io/emilysalum/heart-beat")
 
 
 
     frontStackProjects.addProject(
         "barbearia_alura",
-        "C:\\Users\\user\\Desktop\\emily\\alura\\alura-barbershop\\readmeres\\frontpage2.png",
+        "https://raw.githubusercontent.com/emilymarquessalum/alura-barbearia/main/readmeres/barbearia_alura_presentation_image.png",
         "https://emilymarquessalum.github.io/alura-barbearia/")
 
 
     javaProjects.addProject("Perfect Seven",
-        "C:/Users/user/Desktop/emily/projects/res/perfect_seven/logo.png",
+        "https://i.ibb.co/vZBF0d3/Perfect-Seven-presentation-image.png",
         "https://youtu.be/CWss5f941eA");
 
     javaProjects.addProject("Crumb Hunt",
-        "C:/Users/user/Desktop/emily/projects/res/game_prints/crumbt_hunt_start.png",
+        "https://raw.githubusercontent.com/emilymarquessalum/CrumbHunt/main/res/Crumb%20Hunt_presentation_image.png",
         "https://youtu.be/urmSuQsfpsE"
     )
 

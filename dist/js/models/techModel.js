@@ -1,1 +1,1 @@
-export class Tech{constructor(c){this.name=c}};
+class Tech{constructor(c){this.name=c}}export default Tech;

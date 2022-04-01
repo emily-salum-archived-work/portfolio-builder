@@ -1,0 +1,40 @@
+/*
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+*/
+
+.loading__binary {
+
+
+    position: fixed;  
+    z-index: 35; 
+
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    color: var(--code);
+
+
+   /* font-family: 'Righteous', cursive;*/
+    font-size: 5vh;
+}
+
+.loading__binary--animated {
+
+    animation: binary-dance 3s forwards;
+
+}
+ 
+@keyframes binary-dance {
+
+   
+    15% {
+        opacity: 1;
+    }
+    100% {
+        
+        opacity: 0;
+        top: -100%;
+    }
+}
+
+  
+ 

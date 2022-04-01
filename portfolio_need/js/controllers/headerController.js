@@ -1,63 +1,31 @@
-
 import HeaderView from "../view/headerView.js";
-
-
-import mainController from "./mainController.js";
- 
-
-class HeaderController {
-
-
-
+import mainController from "../classes/mainController.js";
+import Controller from "../classes/controller.js";
+class HeaderController extends Controller {
     constructor() {
-
-        this.headerView = new HeaderView(this);
-
-
- 
-
+        super(HeaderView);
     }
-
+    startBehaviour() {
+        this.listenHeader();
+    }
     listenHeader() {
-
-        document.body.addEventListener("click",
-            (event)=>{
-                
-                let headerState = this.headerView.headerIsOpen();
-                this.headerView.clickHeader(event);
-                let newHeaderState = this.headerView.headerIsOpen();
-                
-                let changedState = headerState != newHeaderState;
-
-                if(changedState) {
-                    
-                    mainController.mainEventController.emit("headerChangedState", 
-                    newHeaderState)
-            
-                }
-
-            },
-            true);
+        document.body.addEventListener("click", (event) => {
+            let headerState = this.view.headerIsOpen();
+            this.view.clickHeader(event);
+            let newHeaderState = this.view.headerIsOpen();
+            let changedState = headerState != newHeaderState;
+            if (changedState) {
+                mainController.mainEventController.emit("headerChangedState", newHeaderState);
+            }
+        }, true);
     }
-
-
     closeHeader() {
-        
-        let changedState = this.headerView.closeHeader();
-
-        if(!changedState) {
+        let changedState = this.view.closeHeader();
+        if (!changedState) {
             return;
         }
-        mainController.mainEventController.emit("headerChangedState", 
-        false)
+        mainController.mainEventController.emit("headerChangedState", false);
     }
- 
 }
-
-
-
 const headerController = new HeaderController();
-
-headerController.listenHeader();
-
 export default headerController;

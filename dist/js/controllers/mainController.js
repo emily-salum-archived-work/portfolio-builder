@@ -1,1 +1,1 @@
-import EventEmitter from"../helpers/eventEmitter.js";class MainController{constructor(){this.mainEventController=new EventEmitter}}const controller=new MainController;export default controller;
+import EventEmitter from"../helpers/eventEmitter.js";class MainController{constructor(){this.mainEventController=new EventEmitter}}const mainController=new MainController;export default mainController;

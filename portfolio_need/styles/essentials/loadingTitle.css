@@ -1,0 +1,15 @@
+.loading__title {
+    z-index: 31;
+    color: var(--code); 
+    position: fixed;
+    font-size: 6vw;
+    width: 60%;
+    height: 60%;
+    left: 25%;
+    top: 25%;
+  }
+  
+  .loading__title--loaded {
+    opacity: 0;
+    transition: 1.5s;
+  }

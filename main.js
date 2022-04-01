@@ -17,12 +17,14 @@ const { save_images } = require("./backend/data_loading/helper_loader.js");
 const { buildCondensedCSS } = require("./backend/distConstructor/css_loader.js");
 
 
+const { buildCondensedJS } = require("./backend/distConstructor/jsMinify.js");
+
 const { getPortfolioData } = require("./backend/data_loading/portfolio_loader.js");
 
 var win;
 
  
-
+const chokidar = require('chokidar');
 
 function createWindow() {
  
@@ -67,6 +69,7 @@ function registerReload() {
   globalShortcut.register('commandOrControl+R', () => {
 
     buildCondensedCSS();
+    buildCondensedJS();
 
     win.reload();
 
@@ -74,13 +77,44 @@ function registerReload() {
 }
 
 
- 
+ var changing_css = false;
+  var changing_js = false;
+
 function inicializeProgram(project_lists) {
  
-  registerReload();
   buildCondensedCSS();
+  buildCondensedJS();
+ // registerReload();
+ const jsWatcher = chokidar.watch(__dirname + "/portfolio_need/js", { persistent: true });
 
-  save_images(project_lists);
+  jsWatcher.on('change', (path) => {
+  
+    if(!changing_js) {
+      changing_js = true;
+      buildCondensedJS();
+      setTimeout(()=> {
+      changing_js = false;} , 2000);
+      win.reload();
+    }
+  })
+
+
+  const cssWatcher = chokidar.watch(__dirname + "/portfolio_need/styles", { persistent: true });
+
+
+  cssWatcher.on('change', (path) => {
+    
+    if(!changing_css) {
+      changing_css = true;
+      buildCondensedCSS();
+      setTimeout(()=> {
+      changing_css = false;} , 2000);
+      win.reload();
+    }
+  });
+ 
+ 
+ // save_images(project_lists);
 
 
   const data = getPortfolioData(project_lists, __dirname);  

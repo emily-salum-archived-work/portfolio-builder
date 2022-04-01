@@ -1,31 +1,19 @@
-
 import ProjectFilesView from "../view/projectFilesView.js";
-
-class ProjectFilesController {
+import Controller from "../classes/controller.js";
+class ProjectFilesController extends Controller {
     constructor() {
-        this.projectFilesView = new ProjectFilesView(this);
-
+        super(ProjectFilesView);
     }
-
-
+    startBehaviour() {
+        projectFilesController.buildProjectFiles();
+    }
     buildProjectFiles() {
-
-        this.projectFilesView.projectFiles.forEach(
-            (p)=>{this.projectFilesView.setupProjectFile(p)});
-
-
-
-        this.projectFilesView.folderButtons.forEach((folderButton) => {
-            folderButton.addEventListener("click",
-
-                () => { 
-                    this.projectFilesView.changeFilesSize(folderButton) }
-            );
-        })
+        this.view.projectFiles.forEach((p) => { this.view.setupProjectFile(p); });
+        this.view.folderButtons.forEach((folderButton) => {
+            folderButton.addEventListener("click", () => {
+                this.view.changeFilesSize(folderButton);
+            });
+        });
     }
-
 }
-
-
 let projectFilesController = new ProjectFilesController();
-projectFilesController.buildProjectFiles();

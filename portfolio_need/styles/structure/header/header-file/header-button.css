@@ -9,7 +9,7 @@
   display: block;
   font-size: 1.7vmax;
   padding-bottom: 2vh;
-  padding-left: 4vw; 
+  padding-left: 40px; 
   text-decoration: none;
   text-transform:capitalize;
   transition: 0.45s;
@@ -29,16 +29,36 @@
 
 .header__button::before {
     content: ""; 
-    height: 2.4vmax; 
-    margin-left: -3vmax;
+    height: 15px; 
+    margin-left: -30px;
     position: absolute; 
-    width: 2.4vmax;
+    width: 25px;
     background-repeat: no-repeat;
-    background-size:contain;
+    background-size:cover;
+     
+    background-image:url('../res/images/header_icons/icons.png') !important;  
 }
 
 
-.header__button--folder::before {
+.header__button--folder::before { 
+    background-position-y: -38px !important;
+  }
+
+
+.header__button--profile::before { 
+     background-position-y: -57px !important;
+  }
+  
+.header__button--contacts::before { 
+    background-position-y: 0 !important;
+  }
+  
+    
+.header__button--cv::before {
+  background-position-y: 0 !important;
+}
+
+/*.header__button--folder::before {
     background-image:url('../res/images/header_icons/folder_icon.png') !important;  
  
      
@@ -64,4 +84,4 @@
   background-image:url('../res/images/header_icons/contact_icon.png') !important; 
    
   
-}
+}*/

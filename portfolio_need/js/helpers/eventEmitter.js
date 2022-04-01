@@ -1,8 +1,6 @@
-
-
-export default class EventEmitter {
+class EventEmitter {
     constructor() {
-      this.events = {};
+        this.events = {};
     }
     on(event, listener) {
         if (typeof this.events[event] !== 'object') {
@@ -12,22 +10,24 @@ export default class EventEmitter {
         return () => this.removeListener(event, listener);
     }
     removeListener(event, listener) {
-      if (typeof this.events[event] === 'object') {
-          const idx = this.events[event].indexOf(listener);
-          if (idx > -1) {
-            this.events[event].splice(idx, 1);
-          }
-      }
+        if (typeof this.events[event] === 'object') {
+            const idx = this.events[event].indexOf(listener);
+            if (idx > -1) {
+                this.events[event].splice(idx, 1);
+            }
+        }
     }
     emit(event, ...args) {
-      if (typeof this.events[event] === 'object') {
-        this.events[event].forEach(listener => listener.apply(this, args));
-      }
+        if (typeof this.events[event] === 'object') {
+            this.events[event].forEach((listener) => listener.apply(this, args));
+        }
     }
     once(event, listener) {
-      const remove = this.on(event, (...args) => {
-          remove();
-          listener.apply(this, args);
-      });
+        const remove = this.on(event, (...args) => {
+            remove();
+            listener.apply(this, args);
+        });
     }
-  };
+}
+;
+export default EventEmitter;

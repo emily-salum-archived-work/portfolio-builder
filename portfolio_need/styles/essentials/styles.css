@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: Quicksand;
-  src:url("../res/others/fonts/Quicksand-VariableFont_wght.ttf");
+  src:url("./res/others/fonts/Quicksand-Medium.woff");
 }
  
 
@@ -17,6 +17,7 @@
 
 
   --dark: #172018;
+  --blacky: #1b1b1b;
   --classy-black: rgb(36, 36, 24);
   --darky: #525252;
   --black-glass: rgba(24, 23, 23, 0.473);
@@ -59,11 +60,15 @@
 /* Smooth elements transition! */
 * {
   transition: 2s;
+  
+  scroll-behavior: smooth;
 }
 
 
 html {
   overflow-x: hidden;
+  
+  scroll-behavior: smooth;
 }
  
 body {
@@ -73,6 +78,8 @@ body {
   background: var(--background);
   box-shadow:  inset 12px 0px  14px -4px var(--light-darky), inset -12px 0px  15px -4px var(--light-darky);
   overflow-x: hidden;
+
+  scroll-behavior: smooth;
 }
 
  

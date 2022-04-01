@@ -1,40 +1,24 @@
-
-
 const languageTranslations = {};
-
-
- class SystemConfigurations {
+class SystemConfigurations {
     constructor() {
         this.selectedLanguage = "";
-
     }
-
-
     addToLanguage(newLanguage, translations) {
-        /*console.log("calling addToLanguage, " + newLanguage);*/
         languageTranslations[newLanguage] = translations;
     }
-    
     getLanguageTranslations() {
         return languageTranslations;
     }
-
     setLanguage(newLanguage) {
         this.selectedLanguage = newLanguage;
     }
-    
     translateWord(key) {
-        /*console.log("translating " + key + " with " + selectedLanguage);*/
-    
         const languageTranslation = languageTranslations[this.selectedLanguage];
-        if(!languageTranslation) {
-            return null;
+        if (!languageTranslation) {
+            return key;
         }
         return languageTranslation[key] || key;
     }
-
 }
-
-const systemConfigurations = new SystemConfigurations();
-
-export default systemConfigurations;
+const configuration = new SystemConfigurations();
+export default configuration;

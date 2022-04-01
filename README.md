@@ -9,7 +9,7 @@
 
 ## Techs: 
 
-Electron
+Electron, Typescript
 
 
 ## Related:

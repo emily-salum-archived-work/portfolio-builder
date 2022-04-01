@@ -9,24 +9,28 @@
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <link rel="stylesheet" href="bootstrap-5.1.0-dist/css/bootstrap.css">
-    <script scr="bootstrap-5.1.0-dist/js/bootstrap.js"></script>
+ 
   
   
+    <!--ECSS-->
 
     <link rel="stylesheet" href="portfolio_need/styles/condensed_css.css">
 
+     
+  
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    
-
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-
+    <!--import js-->
+    <!--
+        <% for(let language of languages) { %>
+            <script src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
+            <% } %>
+             
+            
+            <% for(let controllerName of JSControllerNames) { %>
+                <script src="portfolio_need/js/controllers/<%=controllerName%>" type="module"> </script>
+            <%}%>
+        -->
+    <!--end-import js-->
 </head>
 
 <body class="body--light-mode">
@@ -34,8 +38,12 @@
 
     <div id="configurations-div"></div>
     <div class="screen-cover screen-cover--loading"> </div>
+    <h2 class="loading__title" id="loading-title">Portfolio.exe</h2>
 
 
+    <div id="loading__binaries"> 
+    </div>
+   
     <!--
     <button id="change-mode_button" class="change-mode">Change mode</button>
     -->
@@ -342,18 +350,11 @@
 
 
 
+  <script src="portfolio_need/js/compressed_js.js"></script>
 
 </body>
 
 
-<% for(let language of languages) { %>
-<script src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
-<% } %>
  
-
-<% for(let controllerName of JSControllerNames) { %>
-    <script src="portfolio_need/js/controllers/<%=controllerName%>" type="module"> </script>
-<%}%>
  
-
 </html>

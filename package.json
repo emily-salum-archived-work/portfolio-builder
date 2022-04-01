@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": ".\\node_modules\\electron\\dist\\electron.exe .",
-    "dist": "electron-builder",
+    "compile": "tsc",
+    "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Emily Salum",
@@ -13,11 +14,14 @@
   "devDependencies": {
     "compress-images": "^2.0.5",
     "electron": "^13.6.9",
-    "electron-builder": "^22.11.7"
+    "electron-builder": "^22.11.7",
+    "gulp-useref": "^5.0.0"
   },
   "dependencies": {
     "autoprefixer": "^10.4.4",
+    "babel-minify": "^0.5.1",
     "chalk": "^4.1.2",
+    "chokidar": "^3.5.3",
     "clipboard": "^2.0.8",
     "cssnano": "^5.1.5",
     "ejs-electron": "^2.1.1",
@@ -25,11 +29,16 @@
     "express": "^4.17.2",
     "fs-extra": "^10.0.1",
     "gifsicle": "^5.2.1",
+    "gm": "^1.23.1",
+    "live-server": "^1.2.1",
     "node-minify": "^3.6.0",
+    "node-sprite-generator": "^0.10.2",
     "pngquant-bin": "^6.0.1",
     "postcss": "^8.4.12",
     "python-shell": "^3.0.0",
-    "uglify-js": "^3.15.3",
+    "svgo": "^2.8.0",
+    "typescript": "^4.6.3",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "victormono": "^1.5.1"
   }
 }
