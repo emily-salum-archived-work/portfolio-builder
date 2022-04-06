@@ -1,0 +1,32 @@
+
+
+
+.log {
+ 
+}
+
+.log__call {
+
+    color: rgb(32, 224, 106);
+}
+
+
+
+.log__extra {
+    cursor: pointer;
+    text-decoration: overline;
+}
+
+.log__finish {
+    
+        color: rgb(231, 231, 231);
+}
+
+.log__warning {
+    color: rgb(240, 236, 9);
+}
+
+
+.log__error {
+    color: rgb(255, 0, 0);
+}

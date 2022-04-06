@@ -1,0 +1,11 @@
+
+
+
+.settings__item {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%; 
+    margin: auto;
+    background-color: aqua;
+}
+

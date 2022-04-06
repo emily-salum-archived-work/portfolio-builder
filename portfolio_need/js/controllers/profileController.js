@@ -2,7 +2,7 @@ import ProfileView from "../view/profileView.js";
 import Controller from "../classes/controller.js";
 class ProfileController extends Controller {
     constructor() {
-        super(ProfileView);
+        super(ProfileView, 2000);
     }
     startBehaviour() {
         profileController.addAgeToProfile();

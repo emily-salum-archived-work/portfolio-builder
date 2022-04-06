@@ -25,9 +25,8 @@ class SystemConfigurationsView extends View {
  
 
     loadedConfigurations(fastStyle: boolean) {
-
-        if (fastStyle) {
-            document.body.classList.remove(BODY_CONFIG_MODE);
+        window.scrollTo(0, 0);  // scroll to top of page is not working with width 0, find a fix
+        if (fastStyle) { 
             return;
         }
 

@@ -1,9 +1,9 @@
 class Controller {
-    constructor(viewClass) {
+    constructor(viewClass, waitTime = 0) {
         this.view = new viewClass(this);
         setTimeout(() => {
             this.startBehaviour();
-        }, 0);
+        }, waitTime);
     }
 }
 export default Controller;

@@ -1,11 +1,4 @@
-
-
-@font-face {
-  font-family: Quicksand;
-  src:url("./res/others/fonts/Quicksand-Medium.woff");
-}
  
-
 @import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
 
 /* TODO: Review variables, if they are being used, if they could have better names */

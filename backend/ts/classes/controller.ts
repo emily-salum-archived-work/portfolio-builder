@@ -9,7 +9,7 @@ abstract class Controller<CView extends View> {
     protected view: CView;
  
     
-    constructor(viewClass : Newable<CView>) {
+    constructor(viewClass : Newable<CView>, waitTime: number = 0) {
 
         this.view = new viewClass(this);
          
@@ -17,7 +17,7 @@ abstract class Controller<CView extends View> {
         // Timeout was added to make sure that the imported resources are loaded before the controller is initialized
         setTimeout(() => {
             this.startBehaviour();
-        }, 0);
+        }, waitTime);
        // });
     
     }   

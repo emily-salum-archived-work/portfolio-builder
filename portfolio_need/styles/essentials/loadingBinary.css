@@ -1,6 +1,4 @@
-/*
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-*/
+ 
 
 .loading__binary {
 
@@ -12,14 +10,16 @@
     text-orientation: upright;
     color: var(--code);
 
-
-   /* font-family: 'Righteous', cursive;*/
+ 
+    user-select: none;
+    cursor: none; 
     font-size: 5vh;
 }
 
 .loading__binary--animated {
 
-    animation: binary-dance 3s forwards;
+    /* Animation duration controlled by ModeView for random speeds */
+    animation: binary-dance 1s forwards;
 
 }
  
@@ -32,7 +32,8 @@
     100% {
         
         opacity: 0;
-        top: -100%;
+        /*top: -160%;*/
+        transform: translateY(-185%);
     }
 }
 

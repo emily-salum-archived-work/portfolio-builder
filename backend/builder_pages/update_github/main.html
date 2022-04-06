@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./style.css">
+    
+    <link rel="stylesheet" href="./log.css">
     <title> Confirmation </title>
 </head>
 <body>
     
 
+    <div id="log-box"></div>
     <div id="commit" control-box>
         <button id = "send_changes"> Send to github </button>
         <button id = "save_and_send_changes"> Update content and send to github (except RES) </button>
@@ -24,8 +27,13 @@
     <div id="build" control-box>  
         
         <button id = "update_all"> Update ALL </button> 
+        
+        <!-- TODO: make class-based actions instead of this dummy thing -->
+        <button id = "update_html_and_js"> Update HTML and JS </button>
         <button id = "update_html"> Update HTML </button> 
-        <button id = "minify_js"> Minify JS </button>    
+        
+        <button id = "update_ejs"> Update EJS </button> 
+        <button id = "minify_js"> Update JS </button>    
         <button id = "update_css"> Update CSS </button> 
         <button id = "update_res"> Update RES </button>
     </div>

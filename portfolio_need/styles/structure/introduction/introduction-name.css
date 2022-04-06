@@ -2,14 +2,49 @@
 
 
 .introduction__name {
-    color: var(--main);
-    font-family: 'Quicksand';
-    font-size: 14vmin;
+
+ 
+    color: rgb(161, 161, 161);
+    font-family: GameCube;
+    font-size: 12vmin; 
     margin: auto;
-    padding-bottom: 2%;
+    padding-bottom: 3.5vh;
     text-align: center;
+    text-decoration-style: double; 
+    text-decoration: solid underline 1vh;
+    text-underline-offset: 3.5vh;
     user-select: none;
+    user-select: none; 
     width: 100%;
+    width: 100%;
+
+
   }
 
+.introduction__name--animation {
+  animation: introduction-name-shine 2s forwards;
+    
+}
+
+@keyframes introduction-name-shine {
   
+    0% {
+        color: rgb(161, 161, 161);
+    }
+     
+    100% {
+        color: var(--code);
+        font-size: 14vmin;
+    }
+}
+
+
+
+  @media screen and (max-width: 800px) {
+    .introduction__name {
+      font-size: 10vmin;
+    }
+ 
+
+   
+  } 

@@ -11,6 +11,8 @@ function open_window(win)
         var loaders = { 'local' : loadProjects };
         
         loaders[arg]();
+        
+        win.close();
 
     });
 

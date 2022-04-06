@@ -18,24 +18,21 @@ class LanguageConfigurationView extends View {
     @domInjector("#language-choice-select")
     languageSelect: HTMLSelectElement;
 
-    inicializeElements() {
-      
-    
-    }
+    inicializeElements() { }
     
     
-    getElementsToTranslate() {
+    public getElementsToTranslate() {
         return Array.from(
             document.querySelectorAll("[to-translate]"));
 
     }
 
-    getToMoveElements() {
+    public getToMoveElements() {
         return [this.languageSelect];
     }
 
 
-    changedLanguage(selectedLanguage: string, fastStyle=false) {
+    public changedLanguage(selectedLanguage: string, fastStyle=false) {
 
         if (fastStyle) {
             return;

@@ -1,30 +1,25 @@
 const { app, BrowserWindow, ipcMain, globalShortcut
   , getCurrentWindow } = require('electron')
  
-
-var fs = require('fs');
-const ejse = require('ejs-electron')
-var ejs = require('ejs');
+ 
 const path = require('path');
-
-const github_main = require("./backend/builder_pages/update_github/main");  
-
-const loader_main = require("./backend/builder_pages/choose_loader/main");
-
-const { save_images } = require("./backend/data_loading/helper_loader.js");
  
 
-const { buildCondensedCSS } = require("./backend/distConstructor/css_loader.js");
+const loader_main = require("./backend/builder_pages/choose_loader/main");
+ 
 
-
-const { buildCondensedJS } = require("./backend/distConstructor/jsMinify.js");
+const { buildCondensedCSS, updateCSS } = require("./backend/distConstructor/cssLoader.js");
+const { buildCondensedJS, minifyJS } = require("./backend/distConstructor/jsLoader.js");
 
 const { getPortfolioData } = require("./backend/data_loading/portfolio_loader.js");
 
 var win;
 
- 
+require("./backend/builder_pages/update_github/main"); 
+
 const chokidar = require('chokidar');
+const { updateEJS, loadEJSListeners } = require('./backend/builder_pages/ejsLoader');
+const { updateHTML } = require('./backend/distConstructor/htmlLoader');
 
 function createWindow() {
  
@@ -55,13 +50,7 @@ function createWindow() {
 app.whenReady().then(createWindow)
 
 
-
-
-
-let firstTime = true;
-
  
-
 
 
 function registerReload() {
@@ -71,7 +60,7 @@ function registerReload() {
     buildCondensedCSS();
     buildCondensedJS();
 
-    win.reload();
+    reloadEJSWindow();
 
   });
 }
@@ -79,6 +68,7 @@ function registerReload() {
 
  var changing_css = false;
   var changing_js = false;
+var html_to_save ="" 
 
 function inicializeProgram(project_lists) {
  
@@ -92,14 +82,15 @@ function inicializeProgram(project_lists) {
     if(!changing_js) {
       changing_js = true;
       buildCondensedJS();
+      minifyJS();
       setTimeout(()=> {
-      changing_js = false;} , 2000);
-      win.reload();
+      changing_js = false;} , 4000);
+      reloadEJSWindow();
     }
   })
 
 
-  const cssWatcher = chokidar.watch(__dirname + "/portfolio_need/styles", { persistent: true });
+  const cssWatcher = chokidar.watch(__dirname + "/portfolio_need/styles/structure", { persistent: true });
 
 
   cssWatcher.on('change', (path) => {
@@ -107,46 +98,33 @@ function inicializeProgram(project_lists) {
     if(!changing_css) {
       changing_css = true;
       buildCondensedCSS();
+      updateCSS();
+
       setTimeout(()=> {
-      changing_css = false;} , 2000);
-      win.reload();
+      changing_css = false;} , 4000);
+      reloadEJSWindow();
     }
   });
+
+  let essentialCSSWatcher = chokidar.watch(__dirname + "/portfolio_need/styles/essentials", { persistent: true });
  
- 
- // save_images(project_lists);
+  essentialCSSWatcher.on('change', (path) => {
 
+    updateHTML(html_to_save);
+  });
 
-  const data = getPortfolioData(project_lists, __dirname);  
-  
-  console.log("Data ", data);
-
-  loadEJSPortfolio(data);
-
+  updateEJS(project_lists);
 
 }
 
-
-
-function loadEJSPortfolio(data) {
+loadEJSListeners.push((html) => {html_to_save = html; });
  
-
-  for(key of Object.keys(data)) {
-    ejse.data(key, data[key]);
-  }
-  ejse.data('data', data)
-
+function openEJSWindow() {
+  
   var portfolio_path = '/portfolio.ejs';
-
-  var template = fs.readFileSync('.' + portfolio_path, 'utf-8');
-  var html_to_save = ejs.render(template, {...data});
-
-
   win.loadURL('file://' + __dirname + portfolio_path);
+}
 
-  if (firstTime) {
-    firstTime = false;
-    github_main.open_window(html_to_save, win);
-  }
-
+function reloadEJSWindow() {
+  ///win.reload();
 }

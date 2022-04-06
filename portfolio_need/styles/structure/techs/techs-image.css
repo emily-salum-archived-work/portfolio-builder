@@ -1,7 +1,7 @@
 .techs__image {
   display: inline;
   margin-right: 1vw;
-  width: 9vw;
+  width: 100px;
 }
 
 
@@ -13,10 +13,8 @@
 
 @media screen and (max-width: 768px) {
   .techs__image {
-
-    display: block;
+ 
     margin-bottom: 5vh;
-    margin-left: 35vw;
-    width: 30vw; 
+    margin-left:  5vw; 
   }
 }

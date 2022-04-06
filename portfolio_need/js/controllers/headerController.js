@@ -3,7 +3,7 @@ import mainController from "../classes/mainController.js";
 import Controller from "../classes/controller.js";
 class HeaderController extends Controller {
     constructor() {
-        super(HeaderView);
+        super(HeaderView, 500);
     }
     startBehaviour() {
         this.listenHeader();

@@ -9,9 +9,10 @@
    
      color: var(--main);
      font-family: var(--title-font);
-     font-size: 8vmin;
+     font-size: 6vmin;
      margin-bottom: 6vh;
      margin: auto;
+     font-weight: bold;
      text-align: center;
    }
     

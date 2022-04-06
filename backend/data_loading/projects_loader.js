@@ -17,15 +17,12 @@ class ProjectCreator {
     }
 
     /**
- * 
  * @param {String} nome 
- * @param {String} imagem 
- * @param {String} link 
- * @param {String} github
+ * @param {Object} links 
  * 
  */
-    addProject(nome, imagem, link, github) {
-        projectLists[this.name].push(makeProject(nome, imagem, this.name, link, github));
+    addProject(nome,  links) {
+        projectLists[this.name].push(makeProject(nome,  this.name, links));
     }
 
 }
@@ -47,29 +44,24 @@ function loadProjects() {
 
     /** C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png */
     godotProjects.addProject(
-        "heart_beat",
-        "https://raw.githubusercontent.com/emilymarquessalum/HeartBeat/main/md_res/heart_beat_presentation_image.png",
-        
-        
-        
-        "https://gotm.io/emilysalum/heart-beat")
+        "Heart Beat",
+         {"open": "https://gotm.io/emilysalum/heart-beat"})
 
 
 
     frontStackProjects.addProject(
-        "barbearia_alura",
-        "https://raw.githubusercontent.com/emilymarquessalum/alura-barbearia/main/readmeres/barbearia_alura_presentation_image.png",
-        "https://emilymarquessalum.github.io/alura-barbearia/")
+        "alura-barbearia",
+         {"open": "https://emilymarquessalum.github.io/alura-barbearia/"})
 
 
+
+    /**"https://i.ibb.co/vZBF0d3/Perfect-Seven-presentation-image.png" */
     javaProjects.addProject("Perfect Seven",
-        "https://i.ibb.co/vZBF0d3/Perfect-Seven-presentation-image.png",
-        "https://youtu.be/CWss5f941eA");
+         {"watch": "https://www.youtube.com/embed/CWss5f941eA"});
+
 
     javaProjects.addProject("Crumb Hunt",
-        "https://raw.githubusercontent.com/emilymarquessalum/CrumbHunt/main/res/Crumb%20Hunt_presentation_image.png",
-        "https://youtu.be/urmSuQsfpsE"
-    )
+         {"watch": "https://www.youtube.com/embed/urmSuQsfpsE"})
 
 
 

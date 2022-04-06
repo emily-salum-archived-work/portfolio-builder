@@ -10,8 +10,7 @@ class LanguageConfigurationView extends View {
     constructor(controller) {
         super(controller, "startedConfigurations");
     }
-    inicializeElements() {
-    }
+    inicializeElements() { }
     getElementsToTranslate() {
         return Array.from(document.querySelectorAll("[to-translate]"));
     }

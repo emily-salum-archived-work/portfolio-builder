@@ -6,7 +6,7 @@ import Controller from "../classes/controller.js";
 class HeaderController  extends Controller<HeaderView> {
 
     constructor() {
-        super(HeaderView);
+        super(HeaderView, 500);
         
     }
 
@@ -46,7 +46,12 @@ class HeaderController  extends Controller<HeaderView> {
         }
         mainController.mainEventController.emit("headerChangedState", 
         false)
+            
     }
+
+
+     
+
  
 }
 

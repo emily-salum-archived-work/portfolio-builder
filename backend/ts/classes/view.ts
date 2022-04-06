@@ -6,14 +6,14 @@ abstract class View {
 
     controller: Controller<View>;
 
-    constructor(controller: Controller<View>, inicializeEvent: string | null = null) {
+    constructor(controller: Controller<View>, inicializeEvent: string | undefined | null = undefined) {
         
         this.controller = controller;
         this.inicializeEvent(inicializeEvent);
 
     }
 
-    private inicializeEvent(inicializeEvent: string | null): void {
+    private inicializeEvent(inicializeEvent: string | null | undefined): void {
 
         if (inicializeEvent) {
             mainController.mainEventController.on(inicializeEvent, () => {
@@ -21,11 +21,18 @@ abstract class View {
             });
             return;
         }
- 
-        document.addEventListener('DOMContentLoaded', () => {
-            this.inicializeElements();
-        });
 
+        if(inicializeEvent === null) {
+            return;
+        }
+ 
+        setTimeout(() => {
+
+        //document.addEventListener('DOMContentLoaded', () => {
+            this.inicializeElements();
+        //});
+
+        }, 0);
     }
 
 

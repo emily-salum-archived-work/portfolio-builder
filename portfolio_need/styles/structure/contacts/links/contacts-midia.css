@@ -1,7 +1,18 @@
 
+/*images of social medias */
 .contacts__midia
 {
   display: inline;
   margin: auto;
-  width: 8vmax;
+  width: 200px; /* static size*/
 }
+
+
+
+@media screen and (max-width: 800px) {
+  .contacts__midia
+  {  
+    display: block;
+  }
+}
+  

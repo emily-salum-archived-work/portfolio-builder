@@ -47,11 +47,11 @@ function domInjector(seletor) {
     };
 }
 class Controller {
-    constructor(viewClass) {
+    constructor(viewClass, waitTime = 0) {
         this.view = new viewClass(this);
         setTimeout(() => {
             this.startBehaviour();
-        }, 0);
+        }, waitTime);
     }
 }
 class MainController {
@@ -61,7 +61,7 @@ class MainController {
 }
 const mainController = new MainController();
 class View {
-    constructor(controller, inicializeEvent = null) {
+    constructor(controller, inicializeEvent = undefined) {
         this.controller = controller;
         this.inicializeEvent(inicializeEvent);
     }
@@ -72,9 +72,12 @@ class View {
             });
             return;
         }
-        document.addEventListener('DOMContentLoaded', () => {
+        if (inicializeEvent === null) {
+            return;
+        }
+        setTimeout(() => {
             this.inicializeElements();
-        });
+        }, 0);
     }
 }
 class StaticConfigurations {
@@ -275,12 +278,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+class IntroductionView extends View {
+    inicializeElements() {
+    }
+    introductionNameAnimation() {
+        console.log("Introduction name animation");
+        this.introductionName.classList.add("introduction__name--animation");
+    }
+}
+__decorate([
+    domInjector(".introduction__name")
+], IntroductionView.prototype, "introductionName", void 0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 class LanguageConfigurationView extends View {
     constructor(controller) {
         super(controller, "startedConfigurations");
     }
-    inicializeElements() {
-    }
+    inicializeElements() { }
     getElementsToTranslate() {
         return Array.from(document.querySelectorAll("[to-translate]"));
     }
@@ -311,8 +330,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 class ModeView extends View {
-    inicializeElements() {
+    constructor() {
+        super(...arguments);
+        this.binaryDanceListeners = [];
+        this.binaryAmmount = 6;
+        this.binaryCalls = 4;
     }
+    inicializeElements() { }
     setCoverScreenMode(mode) {
         console.log("Adding screen-cover--" + mode);
         this.coverScreen.classList.add("screen-cover--" + mode);
@@ -323,26 +347,52 @@ class ModeView extends View {
     }
     applyLoadingMode() {
         this.setCoverScreenMode("loading");
-        document.body.appendChild(this.loadingTitle);
-        setTimeout(this.finishedLoading.bind(this), 50);
+        console.log("Binary ammount: " + this.binaryAmmount);
+        setTimeout(() => {
+            let animation = this.loadingBar.getAnimations()[0];
+            console.log(animation);
+            if (animation.playState === "running") {
+                this.loadingBar.addEventListener('animationend', () => {
+                    console.log('Animation ended');
+                    this.finishedLoading();
+                });
+            }
+            else {
+                this.finishedLoading();
+            }
+        }, 0);
+    }
+    addListenerToFinishedBinaryDance(callback) {
+        this.binaryDanceListeners.push(callback);
+    }
+    applyLightMode() {
+        document.body.classList.toggle("body--light-mode");
+    }
+    changeUnfocus(doUnfocus) {
+        if (doUnfocus) {
+            this.setCoverScreenMode("unfocus");
+            return;
+        }
+        this.removeCoverScreenMode("unfocus");
     }
     finishedLoading() {
         setTimeout(() => {
             this.loadingTitle.classList.add("loading__title--loaded");
-        }, 300);
-        this.binaryDance();
-        for (let i = 0; i < 5; i++) {
-            setTimeout(this.binaryDance.bind(this), 60 + 90 * i);
+        }, 1000);
+        this.makeBinaryDance();
+        for (let i = 0; i < this.binaryCalls; i++) {
+            setTimeout(this.makeBinaryDance.bind(this), 80 * i);
         }
         setTimeout(this.loadingTitleFinishedAnimation.bind(this), 1500);
     }
-    binaryDance() {
+    makeBinaryDance() {
         let binaryTexts = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < this.binaryAmmount; i++) {
             let binaryText = this.makeBinaryText();
             binaryTexts.push(binaryText);
-            binaryText.style.left = (i * 20) + Math.round(Math.random() * 20) + "%";
-            binaryText.style.top = 110 + Math.floor(Math.random() * 50) + "%";
+            binaryText.style.left = (i * 20) + Math.round(Math.random() * 25) + "%";
+            binaryText.style.top = 105 + Math.floor(Math.random() * 30) + "%";
+            binaryText.style.animationDuration = (Math.random() * 1.2 + i / 2) + "s";
             this.binaryTextDiv.appendChild(binaryText);
         }
         this.binaryDanceStart(binaryTexts);
@@ -365,27 +415,16 @@ class ModeView extends View {
         nextText.classList.add("loading__binary--animated");
         setTimeout(() => {
             this.binaryDanceStart(binaryTexts);
-        }, Math.random() * 800);
+        }, Math.random() * 600);
     }
     loadingTitleFinishedAnimation() {
         this.loadingTitle.remove();
-        setTimeout(() => {
-            this.removeCoverScreenMode("loading");
-        }, 5000);
         setTimeout(this.setCoverScreenMode.bind(this, "loaded"), 1000);
         setTimeout(() => {
+            this.removeCoverScreenMode("loading");
             this.binaryTextDiv.remove();
-        }, 5000);
-    }
-    applyLightMode() {
-        document.body.classList.toggle("body--light-mode");
-    }
-    changeUnfocus(doUnfocus) {
-        if (doUnfocus) {
-            this.setCoverScreenMode("unfocus");
-            return;
-        }
-        this.removeCoverScreenMode("unfocus");
+            this.binaryDanceListeners.forEach(listener => listener());
+        }, 3000);
     }
 }
 __decorate([
@@ -400,6 +439,9 @@ __decorate([
 __decorate([
     domInjector("#loading__binaries")
 ], ModeView.prototype, "binaryTextDiv", void 0);
+__decorate([
+    domInjector("#loading__bar")
+], ModeView.prototype, "loadingBar", void 0);
 class PopupView {
     constructor() {
     }
@@ -409,6 +451,12 @@ class PopupView {
         this.removePopup();
         this.popupDiv = this.createPopup(title, text);
         document.body.appendChild(this.popupDiv);
+    }
+    removePopup() {
+        if (this.popupDiv) {
+            this.popupDiv.remove();
+            this.popupDiv = null;
+        }
     }
     createPopup(title, text) {
         let popupDiv = document.createElement("div");
@@ -420,12 +468,6 @@ class PopupView {
         textElement.innerHTML = text;
         popupDiv.appendChild(textElement);
         return popupDiv;
-    }
-    removePopup() {
-        if (this.popupDiv) {
-            this.popupDiv.remove();
-            this.popupDiv = null;
-        }
     }
 }
 const popupView = new PopupView();
@@ -600,6 +642,11 @@ class ProjectFilesView extends View {
             el.classList.toggle("header__file--closed");
         });
     }
+    update() {
+    }
+    template() {
+        return "!PTemplate";
+    }
 }
 __decorate([
     domInjector("#project-box")
@@ -622,8 +669,8 @@ class SystemConfigurationsView extends View {
         document.body.classList.add(BODY_CONFIG_MODE);
     }
     loadedConfigurations(fastStyle) {
+        window.scrollTo(0, 0);
         if (fastStyle) {
-            document.body.classList.remove(BODY_CONFIG_MODE);
             return;
         }
         const inputs = this.getToMoveElements();
@@ -782,7 +829,7 @@ class TechDisplay {
 }
 class ContactController extends Controller {
     constructor() {
-        super(ContactView);
+        super(ContactView, 3000);
     }
     startBehaviour() {
         this.listenContacts();
@@ -852,7 +899,7 @@ class ContactController extends Controller {
 let contactController = new ContactController();
 class HeaderController extends Controller {
     constructor() {
-        super(HeaderView);
+        super(HeaderView, 500);
     }
     startBehaviour() {
         this.listenHeader();
@@ -879,7 +926,7 @@ class HeaderController extends Controller {
 const headerController = new HeaderController();
 class LanguageConfigurationsController extends Controller {
     constructor() {
-        super(LanguageConfigurationView);
+        super(LanguageConfigurationView, 150);
     }
     startBehaviour() {
     }
@@ -907,26 +954,45 @@ class LanguageConfigurationsController extends Controller {
 const languageConfigurations = new LanguageConfigurationsController();
 class ModeController extends Controller {
     constructor() {
-        super(ModeView);
+        super(ModeView, 0);
+        this.hasControlOverConfigTag = true;
+        this.introductionView = new IntroductionView(this);
     }
     startBehaviour() {
         this.listenMode();
     }
     listenMode() {
-        mainController.mainEventController.on("headerChangedState", (headerState) => {
-            this.view.changeUnfocus(headerState);
-        });
+        this.onHeaderChange();
         console.log("Going to apply loading mode in screen cover");
         this.view.applyLoadingMode();
+        this.view.addListenerToFinishedBinaryDance(() => {
+            console.log("Finished binary dance");
+            if (this.hasControlOverConfigTag) {
+                document.body.classList.remove("body--config");
+                this.introductionView.introductionNameAnimation();
+            }
+            else {
+                mainController.mainEventController.on('finishedConfigurations', () => {
+                    setTimeout(() => {
+                        this.introductionView.introductionNameAnimation();
+                    }, 7000);
+                });
+            }
+        });
         mainController.mainEventController.on("startedConfigurations", () => {
-            { }
+            this.hasControlOverConfigTag = false;
+        });
+    }
+    onHeaderChange() {
+        mainController.mainEventController.on("headerChangedState", (headerState) => {
+            this.view.changeUnfocus(headerState);
         });
     }
 }
 new ModeController();
 class ProfileController extends Controller {
     constructor() {
-        super(ProfileView);
+        super(ProfileView, 2000);
     }
     startBehaviour() {
         profileController.addAgeToProfile();
@@ -961,9 +1027,10 @@ class ProfileController extends Controller {
 let profileController = new ProfileController();
 class ProjectFilesController extends Controller {
     constructor() {
-        super(ProjectFilesView);
+        super(ProjectFilesView, 1000);
     }
     startBehaviour() {
+        this.view.update();
         projectFilesController.buildProjectFiles();
     }
     buildProjectFiles() {
@@ -978,7 +1045,7 @@ class ProjectFilesController extends Controller {
 let projectFilesController = new ProjectFilesController();
 class SystemConfigurationsController extends Controller {
     constructor() {
-        super(SystemConfigurationsView);
+        super(SystemConfigurationsView, 50);
     }
     startBehaviour() {
         this.buildSystemConfigurations();
@@ -998,12 +1065,19 @@ class SystemConfigurationsController extends Controller {
         if (!savedSelectedLanguage) {
             return false;
         }
+        if (document.readyState === "complete") {
+            this.loadConfigurations(savedSelectedLanguage);
+            return true;
+        }
         window.addEventListener("load", () => {
-            languageConfigurations.loadLanguage(savedSelectedLanguage, true);
-            this.view.loadedConfigurations(true);
-            mainController.mainEventController.emit("finishedConfigurations");
+            this.loadConfigurations(savedSelectedLanguage);
         });
         return true;
+    }
+    loadConfigurations(savedSelectedLanguage) {
+        languageConfigurations.loadLanguage(savedSelectedLanguage, true);
+        this.view.loadedConfigurations(true);
+        mainController.mainEventController.emit("finishedConfigurations");
     }
     submitConfigurations(event) {
         let selectedLanguage = languageConfigurations.getLanguage();
@@ -1031,7 +1105,7 @@ class SystemConfigurationsController extends Controller {
 const systemConfigurationsController = new SystemConfigurationsController();
 class TechController extends Controller {
     constructor() {
-        super(TechsView);
+        super(TechsView, 2000);
         this.techs = [];
     }
     startBehaviour() {

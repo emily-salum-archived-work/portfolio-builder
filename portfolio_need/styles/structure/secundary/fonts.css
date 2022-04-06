@@ -1,0 +1,16 @@
+
+/* we load our fonts from this file so they take secundary priority. */
+
+@font-face {
+    font-family: Quicksand;
+    src:url("../res/others/fonts/Quicksand-Medium.woff");
+    font-display: swap;
+  }
+   
+  
+  @font-face {
+    font-family: "GameCube";
+    src: url("../res/others/fonts/Potra.ttf");
+    font-display: swap;
+  }
+  

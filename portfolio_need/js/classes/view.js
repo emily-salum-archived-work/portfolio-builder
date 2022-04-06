@@ -1,6 +1,6 @@
 import mainController from './mainController.js';
 class View {
-    constructor(controller, inicializeEvent = null) {
+    constructor(controller, inicializeEvent = undefined) {
         this.controller = controller;
         this.inicializeEvent(inicializeEvent);
     }
@@ -11,9 +11,12 @@ class View {
             });
             return;
         }
-        document.addEventListener('DOMContentLoaded', () => {
+        if (inicializeEvent === null) {
+            return;
+        }
+        setTimeout(() => {
             this.inicializeElements();
-        });
+        }, 0);
     }
 }
 export default View;

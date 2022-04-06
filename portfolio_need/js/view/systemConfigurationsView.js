@@ -16,8 +16,8 @@ class SystemConfigurationsView extends View {
         document.body.classList.add(BODY_CONFIG_MODE);
     }
     loadedConfigurations(fastStyle) {
+        window.scrollTo(0, 0);
         if (fastStyle) {
-            document.body.classList.remove(BODY_CONFIG_MODE);
             return;
         }
         const inputs = this.getToMoveElements();

@@ -1,98 +1,144 @@
 import View from "../classes/view.js";
 import domInjector from "../decorators/dom-injector.js";
 
- 
+
 
 class ModeView extends View {
 
     @domInjector("#change-mode_button")
-    changeModeButton: HTMLElement;
-    
+    private changeModeButton: HTMLElement;
+
     @domInjector(".screen-cover")
-    coverScreen: HTMLElement;
-    
+    private coverScreen: HTMLElement;
+
     @domInjector("#loading-title")
-    loadingTitle: HTMLElement;
-    
+    private loadingTitle: HTMLElement;
+
     @domInjector("#loading__binaries")
-    binaryTextDiv: HTMLElement;
+    private binaryTextDiv: HTMLElement;
 
-    inicializeElements() {
-    
-    }
+    private binaryDanceListeners: Array<() => void> = [];
 
+    @domInjector("#loading__bar")
+    private loadingBar: HTMLElement;
 
-    setCoverScreenMode(mode: string) {
+    inicializeElements() { }
+
+    public setCoverScreenMode(mode: string) {
         console.log("Adding screen-cover--" + mode);
         this.coverScreen.classList.add("screen-cover--" + mode);
-       
+
     }
 
-    removeCoverScreenMode(mode: string) {
+    public removeCoverScreenMode(mode: string) {
         console.log("Removing screen-cover--" + mode);
         this.coverScreen.classList.remove("screen-cover--" + mode);
-       
+
     }
 
-    applyLoadingMode() {
+    public applyLoadingMode() {
 
         this.setCoverScreenMode("loading");
-         
-         
-        document.body.appendChild(this.loadingTitle);
+        //document.body.appendChild(this.loadingTitle); 
 
-        setTimeout(this.finishedLoading.bind(this), 50)
-    }
+        console.log("Binary ammount: " + this.binaryAmmount);
+        setTimeout(()=> {
 
-
- 
-    finishedLoading() {
+            let animation = this.loadingBar.getAnimations()[0];
 
 
-        setTimeout(()=>{
+            console.log(animation); 
 
-        this.loadingTitle.classList.add("loading__title--loaded");
-
-        }, 300);
-
-            this.binaryDance(); 
-            for(let i = 0; i < 5; i++) {
-            setTimeout(this.binaryDance.bind(this), 60 + 90 * i);
+            if (animation.playState === "running") {
+    
+                this.loadingBar.addEventListener('animationend', () => {
+                    console.log('Animation ended');
+                    this.finishedLoading();
+                });
+            } else {
+                this.finishedLoading();
             }
-             
-            
-            setTimeout(this.loadingTitleFinishedAnimation.bind(this), 1500);
-      
+    
+
+        }, 0)
 
         
+    }
+
+
+    public addListenerToFinishedBinaryDance(callback: () => void) {
+
+        this.binaryDanceListeners.push(callback);
+    }
+
+    public applyLightMode() {
+        document.body.classList.toggle("body--light-mode");
+    }
+
+    public changeUnfocus(doUnfocus: boolean) {
+
+        if (doUnfocus) {
+            this.setCoverScreenMode("unfocus");
+            return;
+        }
+
+        this.removeCoverScreenMode("unfocus");
+
 
     }
 
-    binaryDance() {
-  
+    private finishedLoading() {
+
+
+        setTimeout(() => {
+
+            this.loadingTitle.classList.add("loading__title--loaded");
+
+        }, 1000);
+
+        this.makeBinaryDance();
+        for (let i = 0; i < this.binaryCalls; i++) {
+            setTimeout(this.makeBinaryDance.bind(this), 80 * i);
+        }
+
+
+        setTimeout(this.loadingTitleFinishedAnimation.bind(this), 1500);
+
+
+
+
+    }
+
+
+    private binaryAmmount: number = 6;
+    private binaryCalls: number = 4;
+
+    private makeBinaryDance() {
+
 
 
         let binaryTexts = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < this.binaryAmmount; i++) {
 
 
-            let binaryText = this.makeBinaryText(); 
+            let binaryText = this.makeBinaryText();
             binaryTexts.push(binaryText);
-              
-            binaryText.style.left = (i * 20) + Math.round(Math.random() * 20) + "%";
-            binaryText.style.top = 110 + Math.floor(Math.random() * 50) + "%";
 
+            binaryText.style.left = (i * 20) + Math.round(Math.random() * 25) + "%";
+            binaryText.style.top = 105 + Math.floor(Math.random() * 30) + "%";
+
+            binaryText.style.animationDuration = (Math.random() *1.2 + i / 2) + "s";
             this.binaryTextDiv.appendChild(binaryText);
 
         }
 
-        
+
         this.binaryDanceStart(binaryTexts);
 
     }
 
 
-    makeBinaryText() {
+    private makeBinaryText(): HTMLElement {
 
         let binaryText = document.createElement("p");
         binaryText.classList.add("loading__binary");
@@ -104,53 +150,37 @@ class ModeView extends View {
         return binaryText;
     }
 
-    binaryDanceStart(binaryTexts: Array<HTMLElement>) {
+    private binaryDanceStart(binaryTexts: Array<HTMLElement>) {
 
-        if(binaryTexts.length === 0) {
+        if (binaryTexts.length === 0) {
             return;
         }
 
-        let nextText = binaryTexts.splice(Math.round(Math.random() * binaryTexts.length) - 1, 1)[0];	
+        let nextText = binaryTexts.splice(Math.round(Math.random() * binaryTexts.length) - 1, 1)[0];
 
-        
+
         nextText.classList.add("loading__binary--animated");
 
         setTimeout(() => {
-        this.binaryDanceStart(binaryTexts);
-        }, Math.random() * 800);
+            this.binaryDanceStart(binaryTexts);
+        }, Math.random() * 600);
     }
 
-    loadingTitleFinishedAnimation() {
+    private loadingTitleFinishedAnimation() {
 
 
         this.loadingTitle.remove();
 
-        setTimeout(() => {
-            this.removeCoverScreenMode("loading");
-        }, 5000);
+
         setTimeout(this.setCoverScreenMode.bind(this, "loaded"), 1000);
 
         setTimeout(() => {
+            this.removeCoverScreenMode("loading");
             this.binaryTextDiv.remove();
-        }, 5000);
+            this.binaryDanceListeners.forEach(listener => listener());
+        }, 3000);
     }
 
-
-    applyLightMode() {
-        document.body.classList.toggle("body--light-mode");
-    }
-
-    changeUnfocus(doUnfocus: boolean) {
-
-        if (doUnfocus) {
-            this.setCoverScreenMode("unfocus"); 
-            return;
-        }
-
-        this.removeCoverScreenMode("unfocus"); 
-
-
-    }
 
 
 }

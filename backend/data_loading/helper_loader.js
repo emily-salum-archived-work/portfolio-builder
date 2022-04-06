@@ -9,12 +9,21 @@ const pathf = require('path');
  * @param {String} open_link 
  * @returns {Object}
  */
-function makeProject(name, image, techs, open_link, github) {
+function makeProject(name, techs, links) {
     
+
+    let noSpacesName = name.replace(" ", "")
+    let image = `https://raw.githubusercontent.com/emilymarquessalum/${noSpacesName}/main/readmeres/presentation.png`;
+
+    let github = `https://github.com/emilymarquessalum/${noSpacesName}`;
+
+    let open_link = links.open;
+    let watch_link = links.watch;
 
     return { 'name': name,
      'image': image, 
      'open_link': open_link, 
+        'watch_link': watch_link,
      'github': github, 
      'techs': techs };
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "start": ".\\node_modules\\electron\\dist\\electron.exe .",
     "compile": "tsc",
-    "watch": "tsc --watch",
+    "watch": "tsc --watch", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Emily Salum",

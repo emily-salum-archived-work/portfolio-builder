@@ -5,7 +5,7 @@ import Controller from "../classes/controller.js";
 class ContactController extends Controller<ContactView>{
  
   constructor() {
-    super(ContactView);
+    super(ContactView, 3000);
      
   }
  

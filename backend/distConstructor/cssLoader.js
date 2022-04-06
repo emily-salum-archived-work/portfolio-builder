@@ -12,37 +12,34 @@ const postcss = require('postcss')
 const cssnano = require('cssnano')
 const autoprefixer = require('autoprefixer')
 
-
-
+const {log, styles} = require("../utils/logger.js");
+ 
+const {deleteFile} = require("../utils/fileControl");
 
 /* Gets the list of paths of css files, reads those css files and
 writes all their content to a new file, "condensed_css" */
 exports.buildCondensedCSS = async function buildCondensedCSS() {
 
+ /* log("buildCondensedCSS", styles.called);
   const condensedCSS = path.join(__dirname,
     "../../portfolio_need/styles/condensed_css.css");
 
 
-  /* Delete condensed_css file */
-  try {
-    console.log("gonna delete condensed css")
-    fs.unlinkSync(condensedCSS);
-
-
-  } catch (err) { }
-
-  console.log("after trying to condense css")
-
+   Delete condensed_css file 
+   
+  deleteFile(condensedCSS);
 
   buildCSS(condensedCSS);
-
  
-  
-
+  log("buildCondensedCSS", styles.finished);*/
 }
 
+ 
 
 function buildCSS(condensedCSS, prefix="") {	
+
+  
+  log("buildCSS", styles.called, {prefix: prefix});
 
   const cssPaths = getCSSPaths("../../portfolio_need/styles/" + prefix);
   console.log("got css paths")
@@ -61,24 +58,27 @@ function buildCSS(condensedCSS, prefix="") {
   });
 
 
+  log("buildCSS", styles.finished);
 }
 
 async function cleanCSS(cssToClean) {
 
+  log("cleanCSS", styles.called);
   return await postcss([cssnano, autoprefixer])
       .process(cssToClean,  { from: undefined })
 }
 
 exports.cleanCSS = cleanCSS;
 
-exports.updateCSS =  async function updateCSS() {
-  const condensedCSS = path.join(__dirname,
-    "../../portfolio_need/styles/condensed_css.css");
+exports.updateCSS =  async function updateCSS() { 
   
+    
+  log("updateCSS", styles.called);
+
   const distCondensedCSS = path.join(__dirname,
       "../../dist/styles/condensed_css.css");
 
-
+      deleteFile(distCondensedCSS);
        buildCSS(distCondensedCSS, "structure/");
 
       const output = await postcss([cssnano, autoprefixer])
@@ -94,11 +94,13 @@ exports.updateCSS =  async function updateCSS() {
 }
 
 function getCSSData(css_path) {
+  
   var css_data = fs.readFileSync(css_path, 'utf-8');
 
   //.replace(/\s/g, "")
   //.replace(/\n/g, "")
   //css_data = css_data ;
+  
   return css_data;
 }
 

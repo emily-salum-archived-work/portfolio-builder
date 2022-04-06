@@ -1,0 +1,15 @@
+
+
+.settings {
+    position: fixed;
+    width: 10vw;
+    left: 90vw;
+
+    height: 40vh;
+    top: 0vh;
+
+    padding: auto;
+
+    background-color: rgb(149, 223, 149);
+    text-align: center;
+}

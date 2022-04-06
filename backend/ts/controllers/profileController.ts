@@ -6,7 +6,7 @@ class ProfileController extends Controller<ProfileView> {
 
 
     constructor() {
-        super(ProfileView);
+        super(ProfileView, 2000);
     }
 
     startBehaviour() {

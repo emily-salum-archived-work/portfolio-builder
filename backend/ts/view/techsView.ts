@@ -9,11 +9,10 @@ class TechsView extends View {
 
 
 
-    techDisplays: TechDisplay[];
+    techDisplays: TechDisplay[] = [];
 
     constructor(controller: Controller<TechsView>) {
-        super(controller);
-        this.techDisplays = [];
+        super(controller); 
     }
 
     techLogos: HTMLElement[];
@@ -32,7 +31,7 @@ class TechsView extends View {
 
         this.techNames.forEach((techName) => {
 
-            const nameOfTech = techName.getAttribute("tech-name")  as string;
+            const nameOfTech = techName.getAttribute("tech-name") as string;
 
             let techLogo = this.getTechLogoFromName(nameOfTech);
 

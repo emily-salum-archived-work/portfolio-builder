@@ -3,7 +3,7 @@ import LanguageConfigurationView from "../view/languageConfigurationView.js";
 import Controller from "../classes/controller.js";
 class LanguageConfigurationsController extends Controller {
     constructor() {
-        super(LanguageConfigurationView);
+        super(LanguageConfigurationView, 150);
     }
     startBehaviour() {
     }

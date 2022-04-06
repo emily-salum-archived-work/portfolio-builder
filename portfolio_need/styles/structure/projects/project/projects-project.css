@@ -19,6 +19,26 @@
 }
 
 
+.projects__project-link {
+}
+
+ 
+/*
+.projects__project-open-video { 
+  z-index: 2;
+  top: calc(var(--project-width)*0.8);
+  position: relative;
+}
+
+.projects__projectiframe {
+  position: absolute;
+  
+  width: var(--project-width );
+  
+  height: var(--project-width );
+  z-index: 2;
+}
+*/
 
 .projects__project--selected .projects__project-image {
   animation:  bright-switch 3.4s;

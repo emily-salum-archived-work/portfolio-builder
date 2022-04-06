@@ -8,7 +8,7 @@ class SystemConfigurationsController extends Controller<SystemConfigurationsView
 
     constructor() {
 
-        super(SystemConfigurationsView);  
+        super(SystemConfigurationsView, 50);  
        
     }
 
@@ -52,15 +52,31 @@ class SystemConfigurationsController extends Controller<SystemConfigurationsView
             return false;
         }
 
-        window.addEventListener("load", () => {
-            languageConfigurations.loadLanguage(savedSelectedLanguage, true);
-            this.view.loadedConfigurations(true);
 
-            mainController.mainEventController.emit("finishedConfigurations");
+        // load right away if page is completely loaded
+        /* Note that this code is always the one that runs in the current version of the system, 
+        but if we wanted to preload the loadCoonfigurations or something, the code would break
+        Consider making some "dist" solution for this one?  */
+        if(document.readyState === "complete") {
+
+            this.loadConfigurations(savedSelectedLanguage);
+            return true;
+        }
+
+        window.addEventListener("load", () => {
+             
+            this.loadConfigurations(savedSelectedLanguage);
 
         });
 
         return true;
+    }
+
+    private loadConfigurations(savedSelectedLanguage: string) {
+        languageConfigurations.loadLanguage(savedSelectedLanguage, true);
+        this.view.loadedConfigurations(true);
+
+        mainController.mainEventController.emit("finishedConfigurations");
     }
 
 

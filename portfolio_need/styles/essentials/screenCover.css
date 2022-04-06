@@ -18,18 +18,17 @@
 .screen-cover--loading {
 
   z-index: 30 !important;
-  user-select:all;
-  
+
+   
 
   background-color: #000000;
    animation: loading-screen-cover 6s forwards;
 }
-
  
-
 .screen-cover--loaded {
   background-color: #000000;
   animation: load 2s forwards;
+ 
 
 }
 

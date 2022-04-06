@@ -7,7 +7,7 @@ class LanguageConfigurationsController extends Controller<LanguageConfigurationV
 
 
     constructor() {
-        super(LanguageConfigurationView);
+        super(LanguageConfigurationView, 150);
  
     }
 

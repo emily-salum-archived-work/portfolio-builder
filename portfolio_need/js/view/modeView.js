@@ -7,8 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import View from "../classes/view.js";
 import domInjector from "../decorators/dom-injector.js";
 class ModeView extends View {
-    inicializeElements() {
+    constructor() {
+        super(...arguments);
+        this.binaryDanceListeners = [];
+        this.binaryAmmount = 6;
+        this.binaryCalls = 4;
     }
+    inicializeElements() { }
     setCoverScreenMode(mode) {
         console.log("Adding screen-cover--" + mode);
         this.coverScreen.classList.add("screen-cover--" + mode);
@@ -19,26 +24,52 @@ class ModeView extends View {
     }
     applyLoadingMode() {
         this.setCoverScreenMode("loading");
-        document.body.appendChild(this.loadingTitle);
-        setTimeout(this.finishedLoading.bind(this), 50);
+        console.log("Binary ammount: " + this.binaryAmmount);
+        setTimeout(() => {
+            let animation = this.loadingBar.getAnimations()[0];
+            console.log(animation);
+            if (animation.playState === "running") {
+                this.loadingBar.addEventListener('animationend', () => {
+                    console.log('Animation ended');
+                    this.finishedLoading();
+                });
+            }
+            else {
+                this.finishedLoading();
+            }
+        }, 0);
+    }
+    addListenerToFinishedBinaryDance(callback) {
+        this.binaryDanceListeners.push(callback);
+    }
+    applyLightMode() {
+        document.body.classList.toggle("body--light-mode");
+    }
+    changeUnfocus(doUnfocus) {
+        if (doUnfocus) {
+            this.setCoverScreenMode("unfocus");
+            return;
+        }
+        this.removeCoverScreenMode("unfocus");
     }
     finishedLoading() {
         setTimeout(() => {
             this.loadingTitle.classList.add("loading__title--loaded");
-        }, 300);
-        this.binaryDance();
-        for (let i = 0; i < 5; i++) {
-            setTimeout(this.binaryDance.bind(this), 60 + 90 * i);
+        }, 1000);
+        this.makeBinaryDance();
+        for (let i = 0; i < this.binaryCalls; i++) {
+            setTimeout(this.makeBinaryDance.bind(this), 80 * i);
         }
         setTimeout(this.loadingTitleFinishedAnimation.bind(this), 1500);
     }
-    binaryDance() {
+    makeBinaryDance() {
         let binaryTexts = [];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < this.binaryAmmount; i++) {
             let binaryText = this.makeBinaryText();
             binaryTexts.push(binaryText);
-            binaryText.style.left = (i * 20) + Math.round(Math.random() * 20) + "%";
-            binaryText.style.top = 110 + Math.floor(Math.random() * 50) + "%";
+            binaryText.style.left = (i * 20) + Math.round(Math.random() * 25) + "%";
+            binaryText.style.top = 105 + Math.floor(Math.random() * 30) + "%";
+            binaryText.style.animationDuration = (Math.random() * 1.2 + i / 2) + "s";
             this.binaryTextDiv.appendChild(binaryText);
         }
         this.binaryDanceStart(binaryTexts);
@@ -61,27 +92,16 @@ class ModeView extends View {
         nextText.classList.add("loading__binary--animated");
         setTimeout(() => {
             this.binaryDanceStart(binaryTexts);
-        }, Math.random() * 800);
+        }, Math.random() * 600);
     }
     loadingTitleFinishedAnimation() {
         this.loadingTitle.remove();
-        setTimeout(() => {
-            this.removeCoverScreenMode("loading");
-        }, 5000);
         setTimeout(this.setCoverScreenMode.bind(this, "loaded"), 1000);
         setTimeout(() => {
+            this.removeCoverScreenMode("loading");
             this.binaryTextDiv.remove();
-        }, 5000);
-    }
-    applyLightMode() {
-        document.body.classList.toggle("body--light-mode");
-    }
-    changeUnfocus(doUnfocus) {
-        if (doUnfocus) {
-            this.setCoverScreenMode("unfocus");
-            return;
-        }
-        this.removeCoverScreenMode("unfocus");
+            this.binaryDanceListeners.forEach(listener => listener());
+        }, 3000);
     }
 }
 __decorate([
@@ -96,4 +116,7 @@ __decorate([
 __decorate([
     domInjector("#loading__binaries")
 ], ModeView.prototype, "binaryTextDiv", void 0);
+__decorate([
+    domInjector("#loading__bar")
+], ModeView.prototype, "loadingBar", void 0);
 export default ModeView;

@@ -3,7 +3,7 @@ import popupView from "../view/popupView.js";
 import Controller from "../classes/controller.js";
 class ContactController extends Controller {
     constructor() {
-        super(ContactView);
+        super(ContactView, 3000);
     }
     startBehaviour() {
         this.listenContacts();

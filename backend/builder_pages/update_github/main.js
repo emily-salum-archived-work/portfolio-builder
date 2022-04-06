@@ -1,35 +1,42 @@
 let changes_sent = false;
  
-const path = require('path');
+ 
 const loader_main = require("../../builder_pages/choose_loader/main");
 
 
-const { minifyJS } = require("../../distConstructor/jsMinify.js"); 
+const { minifyJS } = require("../../distConstructor/jsLoader.js"); 
 const { updateHTML } = require('../../distConstructor/htmlLoader.js');
 const { updateRes } = require("../../distConstructor/resLoader.js");
 
-
+const { log, logListeners, styles } = require("../../utils/logger.js");
 
 const { app, BrowserWindow, ipcMain } = require('electron')
 var fs = require('fs');
-const { updateCSS } = require('../../distConstructor/css_loader');
+const { updateCSS } = require('../../distConstructor/cssLoader');
+const { loadEJSPortfolio, loadEJSListeners } = require('../ejsLoader.js');
 let confirm_win;
-let html_to_save;
+var html_to_save;
 
  
 
+function logEmit(message, style, extraInfo) {
+ 
+    if(!confirm_win) {
+        return;
+    }
+    confirm_win.webContents.send("log", message, style, extraInfo);
+}
+ 
 
-function open_window(html, win) {
+logListeners.push(logEmit);
+
+function open_window(html) {
     html_to_save = html;
-    confirm_win = new BrowserWindow({
-        width: 700,
-        height: 220,
-        resizable: false,
-        webPreferences: {
 
-            nodeIntegration: true, contextIsolation: false,
-        }
-    });
+
+    if(!confirm_win) {
+        startWindow();
+    }
 
     confirm_win.loadURL(__dirname + "\\main.html").then(
         () => {
@@ -44,6 +51,19 @@ function open_window(html, win) {
 }
 exports.open_window = open_window;
 
+function startWindow() {
+
+    confirm_win = new BrowserWindow({
+        width: 900,
+        height: 520, 
+        webPreferences: {
+
+            nodeIntegration: true, contextIsolation: false,
+        }
+    });
+}
+
+loadEJSListeners.push(open_window);
 
 /* Receives an array of paths, returns an array with builderPath + path for each path; 
     if the path is an object, it adds to the attribute "str" of that object instead. */
@@ -82,7 +102,10 @@ function updateContent() {
     updateCSS();
 }
 
-function send_changes() {
+function sendChanges() {
+
+    logEmit("Sending changes to github...");
+
     let { PythonShell } = require('python-shell');
         
     
@@ -104,7 +127,7 @@ function send_changes() {
 
     let args = '{"paths" : ' + JSON.stringify(paths) + '}';
 
-    console.log(args);
+    log("Built args", null, args);
 
 
     if (changes_sent) { return; }
@@ -122,9 +145,11 @@ function send_changes() {
     PythonShell.run(githubInitPath, options, function (err, results) {
         if (err)
         {console.log(err);
+            log("Error in github_init: " + err, styles.error);
             throw err;}
 
         console.log('github.py finished.');
+        log("github.py finished.");
 
         console.log(results);
     });
@@ -135,12 +160,31 @@ function send_changes() {
 
 
 function setupOnEvents() {
-    ipcMain.on('send_changes', send_changes);
+    ipcMain.on('send_changes', sendChanges);
 
     ipcMain.on("save_and_send_changes", ()=> {
         updateContent();
-        send_changes();
+        sendChanges();
     });
+
+    
+    ipcMain.on("update_html_and_js", ()=> {
+
+        updateHTML(html_to_save);
+        minifyJS();
+        
+    });
+
+    ipcMain.on("update_ejs", ()=> {
+
+
+        if(loadEJSPortfolio) {
+            loadEJSPortfolio();
+            return;
+        }
+
+        log("Error: loadEJSPortfolio is not defined", styles.error);
+    })
 
     ipcMain.on("update_all", updateAll);
 
@@ -173,4 +217,8 @@ function setupOnEvents() {
         loader_main.open_window(win);
     })
 
+
+
 }
+
+ 

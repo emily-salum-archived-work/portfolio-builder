@@ -90,6 +90,27 @@ class ProjectFilesView extends View {
     }
 
 
+    update() {	
+    
+
+        /*let projectBoxLocation = document.getElementById("project-box-location");
+        
+        if(!projectBoxLocation) {
+            throw Error("projectBoxLocation not found");
+        }
+        
+        projectBoxLocation.innerHTML = this.template();
+    
+        this.inicializeElements();*/
+    }
+    
+    
+    template(): string {
+        return "!PTemplate";
+    
+    }
+
+
 
 }
 

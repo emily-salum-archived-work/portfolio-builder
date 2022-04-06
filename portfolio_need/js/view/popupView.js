@@ -9,6 +9,12 @@ class PopupView {
         this.popupDiv = this.createPopup(title, text);
         document.body.appendChild(this.popupDiv);
     }
+    removePopup() {
+        if (this.popupDiv) {
+            this.popupDiv.remove();
+            this.popupDiv = null;
+        }
+    }
     createPopup(title, text) {
         let popupDiv = document.createElement("div");
         popupDiv.classList.add("popup");
@@ -19,12 +25,6 @@ class PopupView {
         textElement.innerHTML = text;
         popupDiv.appendChild(textElement);
         return popupDiv;
-    }
-    removePopup() {
-        if (this.popupDiv) {
-            this.popupDiv.remove();
-            this.popupDiv = null;
-        }
     }
 }
 const popupView = new PopupView();

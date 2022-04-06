@@ -10,7 +10,7 @@
   padding: 0;
   scroll-behavior: smooth;
   text-align: center;
-  width: calc(var(--project-width) * 5.5);
+  width: calc(var(--project-width) * 4.5);
  
 } 
 

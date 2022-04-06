@@ -10,43 +10,71 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-  
+    <meta property="og:image" content="portfolio_need/res/images/page-shot.png">
   
     <!--ECSS-->
 
-    <link rel="stylesheet" href="portfolio_need/styles/condensed_css.css">
+    <link rel="preconnect" href="https://raw.githubusercontent.com/">
 
-     
+    <link rel="preload" as="style" href="portfolio_need/styles/condensed_css.css" onload="this.rel='stylesheet'">
+
+    <noscript><link rel="stylesheet" href="portfolio_need/styles/condensed_css.css"></noscript>
   
 
-    <!--import js-->
+
     <!--
+        use this if we add an additional page to the portfolio
+        <link rel="prerender" href="pagina.html">CO
+    -->
+
+    <!-- use this in case you decide to use 
+        a font to style the binary or the portfolio.exe text, 
+        since its the first thing that will show up on the page
+        it will give priority to loading the font, even before loading and parsing the
+        css.
+    <link rel="preload" href="res/others/fonts/... .woff" type="font/woff">
+    -->
+   
+  <script async src="portfolio_need/js/compressed_js.js"></script>
+<!--
         <% for(let language of languages) { %>
-            <script src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
+            <script async src="portfolio_need/js/models/languages/<%=language.name%>.js" type="module"></script>
             <% } %>
              
             
             <% for(let controllerName of JSControllerNames) { %>
-                <script src="portfolio_need/js/controllers/<%=controllerName%>" type="module"> </script>
-            <%}%>
-        -->
-    <!--end-import js-->
+                <script async src="portfolio_need/js/controllers/<%=controllerName%>" type="module"> </script>
+            <%}%> -->
+    
 </head>
 
-<body class="body--light-mode">
+<body class="body--config">
 
 
     <div id="configurations-div"></div>
     <div class="screen-cover screen-cover--loading"> </div>
-    <h2 class="loading__title" id="loading-title">Portfolio.exe</h2>
 
+    <div class="loading">
+        <h2 class="loading__title" id="loading-title">Portfolio.exe</h2>
 
-    <div id="loading__binaries"> 
+ 
+        <div id="loading__bar" class = "loading__barContainer">
+            <div class = "loading__barContent"> 
+            </div>
+        </div>
+      
+        <div id="loading__binaries"> 
+        </div> 
     </div>
-   
-    <!--
-    <button id="change-mode_button" class="change-mode">Change mode</button>
-    -->
+     
+
+    <div class="settings">
+
+        <button class="settings__item">Change Mode</button>
+    </div>
+ 
+
+
     <header class="header" id="header">
 
         <div class="header__container" id="header-container">
@@ -62,6 +90,7 @@
 
                     <!-- Will hold buttons related to every project -->
                     <div class="header__folder header__folder--closed header__folder--projects" id="projects-buttons">
+                       
                         <% for(programming_language of Object.keys(project_lists)){ %>
 
                         <%let project_list=project_lists[programming_language] ; %>
@@ -86,7 +115,8 @@
                     <% for(let fileId of fileIds) { %>
                     
                         <a href="#<%=fileId%>" 
-                    class='header__button header__file header__button--<%=fileId%>' to-translate="<%=fileId%>">
+                    class='header__button header__file header__button--<%=fileId%>' 
+                    to-translate="<%=fileId%>">
                     </a> 
                     
                     <%}%>
@@ -146,7 +176,7 @@
                     <% for(let i=0; i < tech_list.length; i++){ let tech=tech_list[i]; %>
 
                     <img tech="<%=tech%>" class="techs__image" 
-                    src="portfolio_need/res/images/techs/<%=tech%>-logo.png">
+                    src="portfolio_need/res/images/techs/<%=tech%>-logo.png" loading="lazy">
                     <%}%>
 
             </div>
@@ -168,6 +198,11 @@
 
             <div class="projects__box">
                 <p class="projects__bracket">[</p>
+
+            <!-- Will hold buttons related to every project -->
+
+            <div id="project-box-location"></div>
+            <!--!PHTML-->
             <div class="projects__selection scroller" id="project-box">
                 <% let counter=0;%>
 
@@ -184,16 +219,37 @@
                             <%=counter-1%>
                         </p>
 
-                        <% if(project.open_link){ %>
-                        <a 
-                        rel="noopener noreferrer" target="_blank" href='<%=project.open_link%>' class="projects__project-link">
+                  <!--  <%if(project.watch_link) {%>
 
+
+                        <button class="projects__project-open-video"></button>
+                                <iframe width="120" height="150" 
+                                src=" < =project.watch_link%>" 
+            class="projects__projectiframe"
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+                            <%}%>-->
+                                
+                            <% let link = project.open_link || project.watch_link; %>
+                            
+                            <% if(link){ %> 
+                                 <a 
+                        rel="noopener noreferrer" target="_blank" href='<%=link%>' 
+                        class="projects__project-link">
                             <% } %>
-                            <img class="projects__project-image" src="<%=project.image%>">
 
-                            <% if(project.open_link){ %>
-                        </a>
-                        <% } %>
+                            <img class="projects__project-image" 
+                            src="<%=project.image%>" loading="lazy">
+ 
+                          
+                            <%if(link){%>
+                            </a>
+                            <%}%>
+                            
+                            
+ 
+                         
 
                         <p class="projects__project-info"><%=project.techs%></p>
 
@@ -207,6 +263,7 @@
                                                 <%}%>
 
                 </div>
+                <!--PHTML!-->
 
                 <p class="projects__bracket">]</p>
 
@@ -304,17 +361,19 @@
 
             <h3 class="section__subtitle contacts__call_me_in" id="call_me_in" to-translate="call_me_in"></h3>
 
-            <a class="contacts__link" href="http://discord.com/users/674759841583202328">
-                <img class="contacts__midia" src="portfolio_need/res/images/medias/discord_logo.png">
-            </a>
 
-            <a class="contacts__link" href="https://www.linkedin.com/in/emily-salum-839653217/">
-                <img class="contacts__midia" src="portfolio_need/res/images/medias/linkedin_logo.png">
-            </a>
+            <%for(let media of socialMedias) {%> 
 
-            <a class="contacts__link" href="https://github.com/emilymarquessalum/">
-                <img class="contacts__midia" src="portfolio_need/res/images/medias/github_logo.png">
-            </a>
+                <a class="contacts__link" 
+                href="<%=media.link%>">
+                    <img class="contacts__midia" loading="lazy" 
+                    src="<%=media.icon%>">
+                </a>
+
+            <%}%>
+
+ 
+ 
 
         </div>
 
@@ -349,8 +408,7 @@
     </div>
 
 
-
-  <script src="portfolio_need/js/compressed_js.js"></script>
+ 
 
 </body>
 

@@ -4,6 +4,10 @@ const compress_images = require("compress-images")
 const fse = require('fs-extra');
 var nsg = require('node-sprite-generator');
 
+const {log, styles} = require("../utils/logger.js");
+/*const { deleteFile } = require("../utils/fileControl");
+*/
+
 exports.updateRes = function updateRes() {
 
 
@@ -64,6 +68,5 @@ function minifyRES() {
     }
   });
 
-
-
+ 
 }

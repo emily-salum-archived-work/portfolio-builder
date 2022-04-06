@@ -7,7 +7,7 @@ class PopupView {
     constructor() {
     }
 
-    makePopup(title: string, text: string) {
+    public makePopup(title: string, text: string) {
 
         title = configuration.translateWord(title);
         text = configuration.translateWord(text);
@@ -19,7 +19,19 @@ class PopupView {
     }
 
 
-    createPopup(title: string, text: string): HTMLElement {
+
+    public removePopup() {
+
+        if (this.popupDiv) {
+
+            this.popupDiv.remove();
+            this.popupDiv = null;
+    
+        }
+
+    }
+
+    private createPopup(title: string, text: string): HTMLElement {
 
         let popupDiv: HTMLElement = document.createElement("div");
         popupDiv.classList.add("popup");
@@ -35,18 +47,7 @@ class PopupView {
 
         return popupDiv;
     }
-
-    removePopup() {
-
-        if (this.popupDiv) {
-
-            this.popupDiv.remove();
-            this.popupDiv = null;
     
-        }
-
-    }
-
 }
 
 const popupView = new PopupView();

@@ -3,7 +3,7 @@ import TechsView from "../view/techsView.js";
 import Controller from "../classes/controller.js";
 class TechController extends Controller {
     constructor() {
-        super(TechsView);
+        super(TechsView, 2000);
         this.techs = [];
     }
     startBehaviour() {

@@ -5,7 +5,7 @@ import mainController from "../classes/mainController.js";
 import Controller from "../classes/controller.js";
 class SystemConfigurationsController extends Controller {
     constructor() {
-        super(SystemConfigurationsView);
+        super(SystemConfigurationsView, 50);
     }
     startBehaviour() {
         this.buildSystemConfigurations();
@@ -25,12 +25,19 @@ class SystemConfigurationsController extends Controller {
         if (!savedSelectedLanguage) {
             return false;
         }
+        if (document.readyState === "complete") {
+            this.loadConfigurations(savedSelectedLanguage);
+            return true;
+        }
         window.addEventListener("load", () => {
-            languageConfigurations.loadLanguage(savedSelectedLanguage, true);
-            this.view.loadedConfigurations(true);
-            mainController.mainEventController.emit("finishedConfigurations");
+            this.loadConfigurations(savedSelectedLanguage);
         });
         return true;
+    }
+    loadConfigurations(savedSelectedLanguage) {
+        languageConfigurations.loadLanguage(savedSelectedLanguage, true);
+        this.view.loadedConfigurations(true);
+        mainController.mainEventController.emit("finishedConfigurations");
     }
     submitConfigurations(event) {
         let selectedLanguage = languageConfigurations.getLanguage();

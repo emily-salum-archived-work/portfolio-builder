@@ -7,7 +7,7 @@ class TechController extends Controller<TechsView> {
     techs: Array<Tech>;
     constructor() {
 
-        super(TechsView); 
+        super(TechsView, 2000); 
 
         this.techs = []
 

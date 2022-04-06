@@ -4,11 +4,13 @@ import Controller from "../classes/controller.js";
 
 class ProjectFilesController extends Controller<ProjectFilesView> {
     constructor() {
-        super(ProjectFilesView); 
+        super(ProjectFilesView, 1000); 
 
     }
 
     startBehaviour() {
+
+        this.view.update();
         projectFilesController.buildProjectFiles();
 
     }

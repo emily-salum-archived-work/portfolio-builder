@@ -46,6 +46,11 @@ class ProjectFilesView extends View {
             el.classList.toggle("header__file--closed");
         });
     }
+    update() {
+    }
+    template() {
+        return "!PTemplate";
+    }
 }
 __decorate([
     domInjector("#project-box")
