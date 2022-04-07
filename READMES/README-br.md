@@ -15,11 +15,15 @@ carregar os dados de uma página localmente e hostear estaticamente.
 
 
 ## Funcionalidades atualmente
-- Cria a página do portfolio usando ejs, oferencendo alta versatilidade de conteudo.
+- Cria a página do portfolio usando ejs, oferecendo alta versatilidade de conteudo.
 - Interface do Electron utilizada para gerenciar e visualizar a página.
 - Arquivos HTML, CSS e JS sao minificados para melhor performance da pagina.
 - github_init é chamado por meio da interface, para enviar a página para seu repositório.
 
+
+# Externos
+
+Chokidar -> Watchers para atualizar arquivos após mudanças.
 
 # Conclusão
 
