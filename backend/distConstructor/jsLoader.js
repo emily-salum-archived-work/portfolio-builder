@@ -6,14 +6,13 @@ const compressor = require('node-minify');
 const path = require('path');
 
 const {log, styles} = require("../utils/logger.js");
-const { deleteFile } = require("../utils/fileControl");
+const { deleteFile, walk } = require("../utils/fileControl");
 
 
-
-//throw new Error('HTML INSERT')\n
-const needsHTMLInsert = ""
-
-
+ 
+// special key to represent the file was recently written and needs HTML to be inserted on it.
+// currently this doesnt do anything. read the end of htmlLoader to know more;
+const needsHTMLInsert = "" 
 exports.needsHTMLInsert = needsHTMLInsert;
 
 exports.minifyJS = function minifyJS() {
@@ -91,15 +90,18 @@ function finishWrittingJS(newData) {
 }
 
 
-/* Reads js file, removes importing from the first lines of the file and removes exporting from last lines of the file */
+/* Reads js file, removes importing from the first lines of the file 
+and removes exporting from last lines of the file 
+  WARNING: The current implementation forces exports to be made in the bottom of the file, 
+  and the file must have a single export statement. Thats the way the code is written in the
+  current implementation of the portfolio, but this could be refactored perhaps.
+*/
 function getConcactanableJS(pathToJS) {
 
   let jsFile = fs.readFileSync(pathToJS, 'utf-8');
 
-  //return jsFile;
   let lines = jsFile.split("\n");
 
-  /*console.log("lines length: " + lines.length);*/ 
 
   let removedImporting = false;
 
@@ -112,7 +114,7 @@ function getConcactanableJS(pathToJS) {
       lines.splice(i, 1);
       removedImporting = true;
       i--;
-      /*console.log("removed import");*/
+
     } else if (removedImporting) {
       break;
     }
@@ -122,13 +124,10 @@ function getConcactanableJS(pathToJS) {
     if (lines[i].replace(" ", "").startsWith("export")) {
 
       lines.splice(i, 1);
-
-      ///console.log("removed export");
       break;
     }
   }
 
-  //console.log("lines length: " + lines.length);
   return lines.join("\n");
 
 }
@@ -142,7 +141,8 @@ exports.buildCondensedJS = function buildCondensedJS() {
   deleteFile(path.join(__dirname, "../../portfolio_need/js/compressed_js.js"))
 
 
-
+  /* Condensed js file follows this order to allow for linear reading 
+    (Dependencies always in top) */
   let renderOrder = ["helpers", "decorators",
     "classes", "models",
     "languages", "view", "controllers"];
@@ -179,30 +179,7 @@ exports.buildCondensedJS = function buildCondensedJS() {
 
 }
 
-function walk(dir, done) {
-  var results = [];
-  let list = fs.readdirSync(dir)
-
-
-  var i = 0;
-  (function next() {
-    var file = list[i++];
-    if (!file) return done(null, results);
-    file = path.resolve(dir, file);
-    let stat = fs.statSync(file)
-    if (stat && stat.isDirectory()) {
-      walk(file, function (_err, res) {
-        results = results.concat(res);
-        next();
-      });
-    } else {
-      results.push(file);
-      next();
-    }
-
-  })();
-
-};
+ 
 
 
  

@@ -16,25 +16,32 @@ const {log, styles} = require("../utils/logger.js");
  
 const {deleteFile} = require("../utils/fileControl");
 
-/* Gets the list of paths of css files, reads those css files and
-writes all their content to a new file, "condensed_css" */
-exports.buildCondensedCSS = async function buildCondensedCSS() {
-
- /* log("buildCondensedCSS", styles.called);
-  const condensedCSS = path.join(__dirname,
-    "../../portfolio_need/styles/condensed_css.css");
-
-
-   Delete condensed_css file 
-   
-  deleteFile(condensedCSS);
-
-  buildCSS(condensedCSS);
  
-  log("buildCondensedCSS", styles.finished);*/
+
+ 
+exports.updateCSS =  async function updateCSS() { 
+  
+    
+  log("updateCSS", styles.called);
+
+  const distCondensedCSS = path.join(__dirname,
+      "../../dist/styles/condensed_css.css");
+
+      deleteFile(distCondensedCSS);
+       buildCSS(distCondensedCSS, "structure/");
+
+      const output = await postcss([cssnano, autoprefixer])
+      .process(fs.readFileSync(distCondensedCSS, 'utf-8'))
+     
+      let minifiedCss = output.css
+
+     // minifiedCss = minifiedCss.replace("__", "")
+
+    fs.writeFileSync(distCondensedCSS, minifiedCss, { flag: 'w' });
+      
+  
 }
 
- 
 
 function buildCSS(condensedCSS, prefix="") {	
 
@@ -69,29 +76,7 @@ async function cleanCSS(cssToClean) {
 }
 
 exports.cleanCSS = cleanCSS;
-
-exports.updateCSS =  async function updateCSS() { 
-  
-    
-  log("updateCSS", styles.called);
-
-  const distCondensedCSS = path.join(__dirname,
-      "../../dist/styles/condensed_css.css");
-
-      deleteFile(distCondensedCSS);
-       buildCSS(distCondensedCSS, "structure/");
-
-      const output = await postcss([cssnano, autoprefixer])
-      .process(fs.readFileSync(distCondensedCSS, 'utf-8'))
-     
-      let minifiedCss = output.css
-
-     // minifiedCss = minifiedCss.replace("__", "")
-
-    fs.writeFileSync(distCondensedCSS, minifiedCss, { flag: 'w' });
-      
-  
-}
+ 
 
 function getCSSData(css_path) {
   
@@ -107,8 +92,7 @@ function getCSSData(css_path) {
 /* gets all css file paths from the portfolio directory */
 function getCSSPaths(startPath = '../../portfolio_need/styles') {
 
-
-  /*  console.log("Going to read sP " + startPath);*/
+ 
 
   var css_paths = [];
 
@@ -119,32 +103,23 @@ function getCSSPaths(startPath = '../../portfolio_need/styles') {
 
   for (var i = 0; i < css_directories.length; i++) {
 
-    var css_directory_path = startPath + "/" + css_directories[i];
-    //  console.log("Going to read nP " + css_directory_path);
+    var css_directory_path = startPath + "/" + css_directories[i]; 
     if (fs.statSync(css_directory_path).isDirectory()) {
-
-      //  console.log("Directory. ");
-
-      // console.log("Calling with length " + css_paths.length);
-
+ 
       css_paths = css_paths.concat(
         getCSSPaths(css_directory_path + '/'));
-
-      // console.log("Back with length " + css_paths.length);
-
+ 
 
       continue;
-    }
-    //console.log("File ");
+    } 
     css_paths.push(css_directory_path);
   }
-
-  //console.log("Returning with length " + css_paths.length);
+ 
 
   return css_paths;
 
 
 }
-
+ 
 exports.getCSSPaths = getCSSPaths;
 exports.getCSSData = getCSSData;

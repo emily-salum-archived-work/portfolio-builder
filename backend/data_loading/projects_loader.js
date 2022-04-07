@@ -1,19 +1,46 @@
-
-const { makeProject, save_images } = require("./helper_loader");
+ 
 const { app } = require("electron");
 
+/*
+
+    To add a new project:
+
+    1. Add the project to the projectList array, inside loadProjects. How?
+        A- Make a new Project object with each value manually.
+        B- Make a new Project object with the makeProject function, whichwill automate the
+        process of filling some information based on the assumption that:
+            - the project name passed is the same from github.
+            - the repository has an image of path readmeres/presentation.png
+        C- Make a new Project object with a ProjectMaker object, to reference a particular stack.
 
 
+*/
+
+
+/* Project model class. Its being passed directly to the ejs file. */
+class Project {
+
+
+    constructor(name, image, techs, github, links) {         
+            this.name = name;
+            this.image = image;
+            this.techs = techs;
+            this.github = github;
+            this.open_link = links.open_link;
+            this.watch_link = links.watch_link;
+    }
+}
+
+/* Factory-like class that creates projects of the same techstack */
 class ProjectCreator {
 
     /**
      * 
-     * @param {String} name 
+     * @param {String} techStack
      */
-    constructor(name) {
-        this.name = name;
-
-        projectLists[name] = []
+    constructor(techStack) {
+        this.techStack = techStack;
+  
     }
 
     /**
@@ -22,27 +49,51 @@ class ProjectCreator {
  * 
  */
     addProject(nome,  links) {
-        projectLists[this.name].push(makeProject(nome,  this.name, links));
+        projectList.push(makeProject(nome,  this.techStack, links));
     }
-
+ 
 }
+
+
+ 
+ function makeProject(name, techs, links=null) {
+    
+
+    let noSpacesName = name.replace(" ", "")
+    let image = `https://raw.githubusercontent.com/emilymarquessalum/${noSpacesName}/main/readmeres/presentation.png`;
+
+    let github = `https://github.com/emilymarquessalum/${noSpacesName}`;
+
+    let open_link = links ? links.open : github;
+    let watch_link = links?.watch;
+    
+    return new Project(name, image, techs, github, {"open": open_link, "watch": watch_link});
+  
+}
+
 
  
 
-var projectLists = {}
+var projectList = []
 
 function loadProjects() {
 
 
-    projectLists = {};
+    projectList = [];
 
     const godotProjects = new ProjectCreator("godot");
     const frontStackProjects = new ProjectCreator("HTML, CSS, JS");
     const javaProjects = new ProjectCreator("java");
 
 
+    projectList.push(makeProject("portfolio-builder", "Electron, Python, Typescript."));
 
-    /** C:\\Users\\user\\Desktop\\emily\\projects\\godot_projects\\HeartBeat\\md_res\\menu.png */
+
+
+    javaProjects.addProject("Perfect Seven",
+         {"watch": "https://www.youtube.com/embed/CWss5f941eA"});
+
+
     godotProjects.addProject(
         "Heart Beat",
          {"open": "https://gotm.io/emilysalum/heart-beat"})
@@ -55,17 +106,14 @@ function loadProjects() {
 
 
 
-    /**"https://i.ibb.co/vZBF0d3/Perfect-Seven-presentation-image.png" */
-    javaProjects.addProject("Perfect Seven",
-         {"watch": "https://www.youtube.com/embed/CWss5f941eA"});
-
+    
 
     javaProjects.addProject("Crumb Hunt",
          {"watch": "https://www.youtube.com/embed/urmSuQsfpsE"})
+ 
 
-
-
-    app.emit("project_lists_loaded", projectLists);
+    /* Emits that the projects were loaded */
+    app.emit("project_lists_loaded", projectList);
 
 
 }

@@ -67,12 +67,12 @@
         </div> 
     </div>
      
-
+    <!--
     <div class="settings">
 
         <button class="settings__item">Change Mode</button>
     </div>
- 
+ -->
 
 
     <header class="header" id="header">
@@ -90,12 +90,10 @@
 
                     <!-- Will hold buttons related to every project -->
                     <div class="header__folder header__folder--closed header__folder--projects" id="projects-buttons">
-                       
-                        <% for(programming_language of Object.keys(project_lists)){ %>
-
-                        <%let project_list=project_lists[programming_language] ; %>
-                           <% for(let i=0; i < project_list.length; i++){ %>
-                        <% let project=project_list[i] %>
+                        
+ 
+                           <% for(let i=0; i < projectList.length; i++){ %>
+                        <% let project=projectList[i] %>
 
                         <a class="header__button header__file header__file--closed"
                         href="#projects"
@@ -103,8 +101,7 @@
                             <%=project.name.replace("_", " " )%>
                         </a>
 
-
-                        <%} %>
+ 
 
 
                         <% }%>
@@ -112,7 +109,7 @@
                     </div>
 
 
-                    <% for(let fileId of fileIds) { %>
+                    <% for(let fileId of headerFileIds) { %>
                     
                         <a href="#<%=fileId%>" 
                     class='header__button header__file header__button--<%=fileId%>' 
@@ -161,10 +158,10 @@
 
 
             <div class="techs__box">
-                <!-- tech_list is an array with strings -->
+                <!-- techList is an array with strings -->
 
                 <div class="techs__name-list">
-                    <% for(let i=0; i < tech_list.length; i++){ let tech=tech_list[i]; %>
+                    <% for(let i=0; i < techList.length; i++){ let tech=techList[i]; %>
                     <p class="techs__name" tech-name="<%=tech%>">
                         <%=tech%>
                     </p>
@@ -173,7 +170,7 @@
 
                 <div class="techs__image-list">
 
-                    <% for(let i=0; i < tech_list.length; i++){ let tech=tech_list[i]; %>
+                    <% for(let i=0; i < techList.length; i++){ let tech=techList[i]; %>
 
                     <img tech="<%=tech%>" class="techs__image" 
                     src="portfolio_need/res/images/techs/<%=tech%>-logo.png" loading="lazy">
@@ -204,19 +201,14 @@
             <div id="project-box-location"></div>
             <!--!PHTML-->
             <div class="projects__selection scroller" id="project-box">
-                <% let counter=0;%>
+                
+                    <!-- project_list has every project! -->
 
-                    <!-- project_lists is a dict with languages paired to projects (str array) -->
-                    <% for(language of Object.keys(project_lists)){%>
-                    <% let project_list=project_lists[language] %>
-                    <% if(project_list.length==0){continue;} %>
-
-                    <% for(let i=0; i < project_list.length; i++){%>
-                    <% let project=project_list[i] %>
-                    <% counter +=1;%>
+                    <% for(let i=0; i < projectList.length; i++){%>
+                    <% let project=projectList[i] %>
                     <div class="projects__project" project-name="<%=project.name%>">
                         <p class="projects__project-index">
-                            <%=counter-1%>
+                            <%=i%>
                         </p>
 
                   <!--  <%if(project.watch_link) {%>
@@ -257,8 +249,7 @@
                     </div>
 
 
-
-                    <%}%>
+ 
 
                                                 <%}%>
 

@@ -8,7 +8,7 @@ const path = require('path');
 const loader_main = require("./backend/builder_pages/choose_loader/main");
  
 
-const { buildCondensedCSS, updateCSS } = require("./backend/distConstructor/cssLoader.js");
+const { updateCSS } = require("./backend/distConstructor/cssLoader.js");
 const { buildCondensedJS, minifyJS } = require("./backend/distConstructor/jsLoader.js");
 
 const { getPortfolioData } = require("./backend/data_loading/portfolio_loader.js");
@@ -20,6 +20,10 @@ require("./backend/builder_pages/update_github/main");
 const chokidar = require('chokidar');
 const { updateEJS, loadEJSListeners } = require('./backend/builder_pages/ejsLoader');
 const { updateHTML } = require('./backend/distConstructor/htmlLoader');
+
+
+var inicializeProgramListeners = [];
+
 
 function createWindow() {
  
@@ -71,9 +75,11 @@ function registerReload() {
 var html_to_save ="" 
 
 function inicializeProgram(project_lists) {
- 
-  buildCondensedCSS();
+  
   buildCondensedJS();
+
+  inicializeProgramListeners.forEach(listener=> listener());
+
  // registerReload();
  const jsWatcher = chokidar.watch(__dirname + "/portfolio_need/js", { persistent: true });
 
@@ -96,8 +102,7 @@ function inicializeProgram(project_lists) {
   cssWatcher.on('change', (path) => {
     
     if(!changing_css) {
-      changing_css = true;
-      buildCondensedCSS();
+      changing_css = true; 
       updateCSS();
 
       setTimeout(()=> {

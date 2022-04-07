@@ -1,5 +1,6 @@
 
 
+/* Relevant Social Medias! */
 
 function socialMedia(link, icon){
 

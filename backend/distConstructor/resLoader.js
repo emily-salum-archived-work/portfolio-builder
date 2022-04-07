@@ -4,14 +4,14 @@ const compress_images = require("compress-images")
 const fse = require('fs-extra');
 var nsg = require('node-sprite-generator');
 
-const {log, styles} = require("../utils/logger.js");
-/*const { deleteFile } = require("../utils/fileControl");
-*/
+const {log, styles} = require("../utils/logger.js"); 
+
 
 exports.updateRes = function updateRes() {
 
 
-/*
+/* SPRITE GENERATION => Currently not used because it requires css modification and..
+  Well, I am not sure if it is worth it.
 
   nsg({
     src: [

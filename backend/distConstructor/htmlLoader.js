@@ -1,24 +1,14 @@
 
 
-var minify = require('html-minifier').minify;
-
+var minify = require('html-minifier').minify; 
 const fs = require('fs');
 const path = require('path');
-const { getCSSPaths, getCSSData, cleanCSS } = require('./cssLoader');
-
+const { getCSSPaths, getCSSData, cleanCSS } = require('./cssLoader'); 
 const {log, styles} = require("../utils/logger.js");
 const { deleteFile } = require("../utils/fileControl");
-const { needsHTMLInsert } = require('./jsLoader');
-
-
-class ConstructedTemplate {
-
-    constructor(templateName) {
-        this.templateName = templateName;
-    }
-}
-
+const { needsHTMLInsert } = require('./jsLoader'); 
 const distPath = path.join(__dirname,  "../../dist/")
+
 
 exports.updateHTML = function updateHTML(htmlToSave) { 
     log("updateHTML", styles.called);
@@ -56,41 +46,6 @@ exports.updateHTML = function updateHTML(htmlToSave) {
 }
 
 
-function passConstructedTemplatesToJS(htmlToSave) {
-     
-
-
-    let compressedJS = fs.readFileSync(distPath + "js/compressed_js.js", "utf8")
-
-
-    if(!compressedJS.startsWith(needsHTMLInsert)) {
-        return;
-    }
-
-    log("passConstructedTemplatesToJS", styles.called);
-
-    compressedJS = compressedJS.replace(needsHTMLInsert, "")
-
-    let templates = [new ConstructedTemplate("P")];
-    for(let template of templates) {
-
-        let name = template.templateName;
-        let templateStart = htmlToSave.indexOf("<!--!" + name + "HTML-->")
-        let templateEnd = htmlToSave.indexOf("<!--" + name + "HTML!-->")
-        
-        log("Template " + name, styles.progress, {"start": templateStart, "end": templateEnd});
-        
-        let templateHTML = htmlToSave.substring(templateStart, templateEnd)
-        htmlToSave = htmlToSave.replace(templateHTML, "");
-    compressedJS = compressedJS.replace('"!'+ name + 'Template"', "`" + templateHTML + "`");
-    }
- 
-    fs.writeFileSync(distPath + "js/compressed_js.js", compressedJS);
-
-    log("passConstructedTemplatesToJS", styles.finished);
-    return htmlToSave;
-}
-
 function minifyHTML(htmlToSave) {
 
     return minify(htmlToSave, {
@@ -105,6 +60,8 @@ function minifyHTML(htmlToSave) {
 }
 
 
+/* Uses the imported methods from cssLoader to get the files inside "essentials"
+    Those styles have a high render priority, and should come within the html */
 function getEssentialCSS() {
 
 
@@ -130,3 +87,5 @@ function getEssentialCSS() {
 
     });
 }
+
+ 

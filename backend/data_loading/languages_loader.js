@@ -1,6 +1,6 @@
 
 
-/**
+/** ALL THE LANGUAGES I KNOW! Since I plan to know more languages...
  * Steps to add a new language:
  *    1- put the name of the language and the country name in the array
  *    2= look for an icon image on google.
