@@ -7,10 +7,13 @@ const { getCSSPaths, getCSSData, cleanCSS } = require('./cssLoader');
 const {log, styles} = require("../utils/logger.js");
 const { deleteFile } = require("../utils/fileControl");
 const { needsHTMLInsert } = require('./jsLoader'); 
+const { getHtmlToSave } = require('../builder_pages/ejsLoader');
 const distPath = path.join(__dirname,  "../../dist/")
 
 
-exports.updateHTML = function updateHTML(htmlToSave) { 
+exports.updateHTML = function updateHTML() { 
+
+    let htmlToSave = getHtmlToSave();
     log("updateHTML", styles.called);
  
    

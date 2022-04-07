@@ -36,7 +36,17 @@
     
      0% {
         width:  0vw; 
+        opacity: 0;
          
+    }
+
+    10% {
+        width:  0vw; 
+        opacity: 1;
+        background-color: #475e43;
+    }
+
+    20% {
         background-color: #66e978;
     }
 

@@ -9,7 +9,9 @@ carregar os dados de uma página localmente e hostear estaticamente.
 
 - Eu não preciso trabalhar com a estrutura do HTML para adicionar um novo projeto, adicionar um novo idioma ou tecnologia que aprendi.
 
-- Se eu tentasse resolver isso com JS, Teria bem mais js, utilizado simplesmente para carregar dados para dentro da página. Não consegui escapar de tudo mas mesmo assim ficou melhor! 
+- Posso construir versões alternativas do conteúdo do portfolio, adaptando para diferentes cenários (essa funcionalidade, apesar de possível, ainda não está eficiente no momento atual, a implementação está em andamento)
+
+- Se eu tentasse resolver isso com JS, Teria bem mais js, utilizado simplesmente para carregar dados para dentro da página.  
 
 
 ## Funcionalidades atualmente
@@ -23,5 +25,5 @@ carregar os dados de uma página localmente e hostear estaticamente.
 
 De certa forma, eu adicionei trabalho extra na criação do portfolio, e para as funcionalidades
 valerem a pena realmente ainda faltam implementações cruciais. Apesar disso, estou orgulhosa
-do resultado. É bom criar coisas pela funcionalidade, claro. Mas também é justo criar só porque é legal.
+do resultado.  
 

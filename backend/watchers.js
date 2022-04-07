@@ -1,10 +1,14 @@
 
+ 
+const chokidar = require('chokidar');
+const { updateCSS } = require("./distConstructor/cssLoader.js");
+const { updateHTML } = require('./distConstructor/htmlLoader');
+const { buildCondensedJS, minifyJS } = require("./distConstructor/jsLoader.js");
 
-// WIP
-const { updateCSS } = require("./backend/distConstructor/cssLoader.js");
-const { updateHTML } = require('./backend/distConstructor/htmlLoader');
-const { buildCondensedJS, minifyJS } = require("./backend/distConstructor/jsLoader.js");
 
+const { inicializeProgramListeners } = require("../main");
+
+const { reloadEJSWindow } = require("./builder_pages/ejsLoader");
 
  var changing_css = false;
  var changing_js = false;
@@ -20,6 +24,7 @@ function startWatchers() {
 
 }
 
+inicializeProgramListeners.push(startWatchers);
 
 
 function startJSWatcher() {
@@ -66,6 +71,6 @@ function startEssentialCSSWatcher() {
  
     essentialCSSWatcher.on('change', (path) => {
   
-      updateHTML(html_to_save);
+      updateHTML();
     });
 }
