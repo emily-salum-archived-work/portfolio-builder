@@ -5,16 +5,22 @@
   
   border-radius: 1em; 
   filter: brightness(50%);
-  grid-area: image;
-  height: var(--project-width);
+  width: 200px; 
+  height: 200px;
   margin-top: 0;
   padding-top: 0;
-  width: var(--project-width);
 
 }  
 
 
+
+
+@media screen and (max-width: 768px) {
+   .projects__project-image {
+    filter: none;
+  }
+}
+
 .projects__project-image:hover {
     filter: brightness(100%);
 }
-

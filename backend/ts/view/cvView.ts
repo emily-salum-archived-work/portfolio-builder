@@ -4,7 +4,7 @@ import mainController from "../classes/mainController.js"
 import View from "../classes/view.js";
 import domInjector from "../decorators/dom-injector.js";
 
-class cvView extends View {
+class CvView extends View {
 
 
     @domInjector("#cv")
@@ -13,15 +13,13 @@ class cvView extends View {
     @domInjector("#cv_link")
     cvLink: HTMLElement;
 
-    inicializeElements() {
-      
+    inicializeElements() { 
+    }
 
-       mainController.mainEventController.on("finishedConfigurations", 
-       ()=> {
-            this.cvLink.setAttribute(
-                "href",
-                `${staticConfiguration.initialPath()}/res/cv/cv_${configuration.selectedLanguage}.pdf`)
-       });
+    translateCv() {
+        this.cvLink.setAttribute(
+            "href",
+            `${staticConfiguration.initialPath()}/res/others/cv/cv_${configuration.selectedLanguage}.pdf`)
     }
 
 
@@ -29,4 +27,4 @@ class cvView extends View {
 }
 
 
-export default cvView;
+export default CvView;

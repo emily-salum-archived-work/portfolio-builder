@@ -5,12 +5,17 @@ const fs = require("fs");
 const path = require('path');
 
 function deleteFile(path) {
+
+  if (!fs.existsSync(path)) {
+    console.log("deleteFile - file doesnt exist", path);
+    return;
+  }
     try {
         log("deleting file " + path);
         fs.unlinkSync(path);
 
 
-    } catch (err) { console.log("file wasnt deleted, "+ path, err ); }
+    } catch (err) { console.log("file wasnt deleted, "+ path  ); }
 }
 
 
@@ -18,11 +23,12 @@ function deleteFile(path) {
 exports.deleteFile = deleteFile;
 
 
-/* Quick mess I copied from stackoverflow
+/* Function that walks through the folder recursively untill there is no other file to be found,
+ I copied it from stackoverflow
 https://stackoverflow.com/questions/5827612/node-js-fs-readdir-recursive-directory-search
-
-Honestly this kind of thing should come by default */
+*/
 function walk(dir, done) {
+    //log("walk", styles.called, {dir: dir});
     var results = [];
     let list = fs.readdirSync(dir)
   

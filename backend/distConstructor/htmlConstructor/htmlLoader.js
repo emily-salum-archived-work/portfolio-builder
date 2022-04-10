@@ -1,14 +1,24 @@
 
+/*  Builds HTML
+
+    1- Minifies it
+    2- Adds essential css inlining. 
+
+*/
+
 
 var minify = require('html-minifier').minify; 
 const fs = require('fs');
 const path = require('path');
-const { getCSSPaths, getCSSData, cleanCSS } = require('./cssLoader'); 
-const {log, styles} = require("../utils/logger.js");
-const { deleteFile } = require("../utils/fileControl");
-const { needsHTMLInsert } = require('./jsLoader'); 
-const { getHtmlToSave } = require('../builder_pages/ejsLoader');
-const distPath = path.join(__dirname,  "../../dist/")
+const { getCSSPaths, getCSSData, cleanCSS } = require('../cssConstructor/cssLoader'); 
+const {log, styles} = require("../../utils/logger.js");
+const { deleteFile } = require("../../utils/fileControl");
+const { getHtmlToSave } = require('../../builder_pages/ejsLoader');
+//const { needsHTMLInsert } = require('../jsConstructor/jsLoader'); 
+
+
+
+const distPath = path.join(__dirname,  "../../../dist/")
 
 
 exports.updateHTML = function updateHTML() { 
@@ -36,8 +46,8 @@ exports.updateHTML = function updateHTML() {
         log("loaded essential css", styles.progress);
  
         let html = htmlToSave.replace(/portfolio_need/g, ".");
-        fs.writeFileSync("./dist/index.html",
-                html, 'utf8');
+        
+        saveHTML(html);
     
         log("updateHTML", styles.finished);        
        
@@ -72,7 +82,7 @@ function getEssentialCSS() {
 
         let css = ""
         
-        let essentialCSSPaths = getCSSPaths("../../portfolio_need/styles/essentials");
+        let essentialCSSPaths = getCSSPaths("../../../portfolio_need/styles/essentials");
 
         essentialCSSPaths.forEach(function (cssPath) {
 
@@ -92,3 +102,21 @@ function getEssentialCSS() {
 }
 
  
+
+
+async function getHTML() {
+    
+        let html = await fs.readFileSync(distPath + "index.html", 'utf8');
+        return html;
+}
+exports.getHTML = getHTML;
+
+
+function saveHTML(html) {
+    
+    const htmlPath = distPath + "index.html";
+
+    fs.writeFileSync(htmlPath,
+        html, 'utf8');
+}
+exports.saveHTML = saveHTML;

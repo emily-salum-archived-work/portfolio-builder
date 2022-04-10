@@ -8,8 +8,10 @@ function open_window(win)
     win.loadURL(__dirname + "/main.html");
     ipcMain.on('load_selected', (event, arg) => {
        
+        console.log("Loading selected project...");
+
         var loaders = { 'local' : loadProjects };
-        
+                
         loaders[arg]();
         
         win.close();

@@ -1,9 +1,9 @@
 
  
 const chokidar = require('chokidar');
-const { updateCSS } = require("./distConstructor/cssLoader.js");
-const { updateHTML } = require('./distConstructor/htmlLoader');
-const { buildCondensedJS, minifyJS } = require("./distConstructor/jsLoader.js");
+const { updateCSS } = require("./distConstructor/cssConstructor/cssLoader.js");
+const { updateHTML } = require('./distConstructor/htmlConstructor/htmlLoader');
+const { buildCondensedJS, minifyJS } = require("./distConstructor/jsConstructor/jsLoader.js");
 
 
 const { inicializeProgramListeners } = require("../main");

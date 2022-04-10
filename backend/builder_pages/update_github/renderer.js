@@ -28,14 +28,17 @@ controlBoxes.forEach(
 const buttons = Array.from(
     document.querySelectorAll("button"));
 
-
-
-buttons.forEach(button => {
-    button.addEventListener("click", (e) => {
-        const button_id = e.target.id;
-        ipc.send(button_id);
+buildButtons(buttons);
+ 
+function buildButtons(buttons) {
+    buttons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const button_id = e.target.id;
+            ipc.send(button_id);
+        });
     });
-});
+}
+
 
 document.addEventListener('keydown', (ev) => {
 
@@ -52,6 +55,19 @@ var logBox = document.getElementById("log-box");
 ipc.on("log", (event, message, logStyle, extraInfo)=> {
 
     console.log(message);
+    let log = buildLogText(message, logStyle);
+
+    logBox.appendChild(log);    
+
+    if (extraInfo) {
+        buildLogExtra(extraInfo, log);
+    }
+
+    logBox.scrollTop = logBox.scrollHeight ;
+
+})
+ 
+function buildLogText(message, logStyle) {
     let log = document.createElement("p");
  
     log.innerHTML = message;
@@ -61,30 +77,22 @@ ipc.on("log", (event, message, logStyle, extraInfo)=> {
         log.classList.add(logStyle.classCSS);
     }
 
-    logBox.appendChild(log);    
+    return log;
+}
 
-
-    if (extraInfo) {
-        let extra = document.createElement("p");
-        extra.innerHTML = JSON.stringify(extraInfo);
-        logBox.appendChild(extra);
-        
-        extra.style.display = "none";
-        log.classList.add("log__extra");
-        log.addEventListener("click", () => {
-            let extraDisplay = extra.style.display;
-            if (extraDisplay == "none") {
-            extra.style.display = "block";
-            } else {
-                extra.style.display = "none";
-            }
-        });
-    }
-
+function buildLogExtra(extraInfo,  log) {
+    let extra = document.createElement("p");
+    extra.innerHTML = JSON.stringify(extraInfo);
+    logBox.appendChild(extra);
     
-    logBox.scrollTop = logBox.scrollHeight ;
-
-
-
-})
- 
+    extra.style.display = "none";
+    log.classList.add("log__extra");
+    log.addEventListener("click", () => {
+        let extraDisplay = extra.style.display;
+        if (extraDisplay == "none") {
+        extra.style.display = "block";
+        } else {
+            extra.style.display = "none";
+        }
+    });
+}

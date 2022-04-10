@@ -17,6 +17,7 @@ class ModeController extends Controller {
         this.view.applyLoadingMode();
         this.view.addListenerToFinishedBinaryDance(() => {
             console.log("Finished binary dance");
+            this.view.removeLoadingContent();
             if (this.hasControlOverConfigTag) {
                 document.body.classList.remove("body--config");
                 this.introductionView.introductionNameAnimation();

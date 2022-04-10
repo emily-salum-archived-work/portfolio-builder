@@ -207,34 +207,34 @@
                     <% for(let i=0; i < projectList.length; i++){%>
                     <% let project=projectList[i] %>
                     <div class="projects__project" project-name="<%=project.name%>">
+
+
+                        
                         <p class="projects__project-index">
                             <%=i%>
                         </p>
-
-                  <!--  <%if(project.watch_link) {%>
-
-
-                        <button class="projects__project-open-video"></button>
-                                <iframe width="120" height="150" 
-                                src=" < =project.watch_link%>" 
-            class="projects__projectiframe"
-            title="YouTube video player" frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
-                            <%}%>-->
+ 
                                 
                             <% let link = project.open_link || project.watch_link; %>
+
                             
+                             <a href="<%=project.github%>" class="projects__project-github"></a>
+
+
                             <% if(link){ %> 
                                  <a 
                         rel="noopener noreferrer" target="_blank" href='<%=link%>' 
                         class="projects__project-link">
                             <% } %>
 
+
+                           
                             <img class="projects__project-image" 
                             src="<%=project.image%>" loading="lazy">
- 
-                          
+                                
+
+                           <!-- <div class="projects__project-description">blablablablablablablablabla</div>
+                          -->
                             <%if(link){%>
                             </a>
                             <%}%>

@@ -1,27 +1,23 @@
  
 .projects__project
 {  
+  
  
-  display: row;
-  grid-template-areas: "index" "image" "language";
-  grid-template-columns: 10% 50% 40%;
   height: fit-content;
   margin-bottom: 1vh;
-  margin-right: 1vw;
-  width: var(--project-width );
+  margin-right: 1vw; 
+
+ 
  
 }
-
+ 
 .projects__project:hover .projects__project-index, 
 .projects__project:hover .projects__project-info
 {
  font-size: 0;
-}
+} 
 
-
-.projects__project-link {
-}
-
+ 
  
 /*
 .projects__project-open-video { 
@@ -59,3 +55,4 @@
   }
 }
 
+ 

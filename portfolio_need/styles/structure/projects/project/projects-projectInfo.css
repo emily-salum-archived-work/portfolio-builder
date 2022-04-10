@@ -2,8 +2,7 @@
 .projects__project-info {
  
     color: var(--light-main);
-    font-size: 3vmin; 
-    grid-area: language;
+    font-size: 3vmin;  
     overflow-wrap: break-word;
     text-transform: capitalize;
     user-select: none;

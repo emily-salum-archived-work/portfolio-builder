@@ -20,6 +20,7 @@ exports.loadEJSListeners = loadEJSListeners;
 /* Main EJS function, call to build EJS */
 function updateEJS(project_lists) {
 
+  console.log("updateEJS");
   data = getPortfolioData(project_lists, __dirname);
   loadEJSPortfolio();
 }
@@ -33,7 +34,15 @@ exports.updateEJS = updateEJS;
 
 function loadEJSPortfolio() {
 
+  console.log("loadEJSPortfolio");
 
+  buildEJS();
+
+  loadEJSListeners.forEach(listener => listener(html_to_save));
+
+}
+
+function buildEJS() {
   for (key of Object.keys(data)) {
     ejse.data(key, data[key]);
   }
@@ -46,8 +55,6 @@ function loadEJSPortfolio() {
   var template = fs.readFileSync(portfolio_path, 'utf-8');
   html_to_save = ejs.render(template, { ...data });
  
-  loadEJSListeners.forEach(listener => listener(html_to_save));
-
 }
 
 exports.loadEJSPortfolio = loadEJSPortfolio;

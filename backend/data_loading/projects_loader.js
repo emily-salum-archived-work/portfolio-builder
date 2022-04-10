@@ -26,8 +26,8 @@ class Project {
             this.image = image;
             this.techs = techs;
             this.github = github;
-            this.open_link = links.open_link;
-            this.watch_link = links.watch_link;
+            this.open_link = links.open;
+            this.watch_link = links.watch;
     }
 }
 
@@ -86,7 +86,7 @@ function loadProjects() {
     const javaProjects = new ProjectCreator("java");
 
 
-    projectList.push(makeProject("portfolio-builder", "Electron, Python, Typescript."));
+    //projectList.push(makeProject("portfolio-builder", "Electron, Python, Typescript."));
 
 
 

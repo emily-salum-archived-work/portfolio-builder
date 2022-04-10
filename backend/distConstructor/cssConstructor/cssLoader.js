@@ -1,31 +1,26 @@
 
+ 
 
-
-
-
-const fs = require("fs");
-
-const path = require('path');
-
-
+const fs = require("fs"); 
+const path = require('path'); 
 const postcss = require('postcss')
 const cssnano = require('cssnano')
-const autoprefixer = require('autoprefixer')
+const autoprefixer = require('autoprefixer') 
+const {log, styles} = require("../../utils/logger.js"); 
+const {deleteFile} = require("../../utils/fileControl");
 
-const {log, styles} = require("../utils/logger.js");
- 
-const {deleteFile} = require("../utils/fileControl");
 
- 
+const distCondensedCSS = path.join(__dirname,
+      "../../../dist/styles/condensed_css.css");
 
- 
+const portfolioNeedCSSFolder = path.join(__dirname, "../../../portfolio_need/styles");
+
 exports.updateCSS =  async function updateCSS() { 
   
     
   log("updateCSS", styles.called);
 
-  const distCondensedCSS = path.join(__dirname,
-      "../../dist/styles/condensed_css.css");
+  
 
       deleteFile(distCondensedCSS);
        buildCSS(distCondensedCSS, "structure/");
@@ -37,18 +32,19 @@ exports.updateCSS =  async function updateCSS() {
 
      // minifiedCss = minifiedCss.replace("__", "")
 
-    fs.writeFileSync(distCondensedCSS, minifiedCss, { flag: 'w' });
-      
+     saveCSS(minifiedCss);
+     
   
 }
 
+ 
 
 function buildCSS(condensedCSS, prefix="") {	
 
   
   log("buildCSS", styles.called, {prefix: prefix});
 
-  const cssPaths = getCSSPaths("../../portfolio_need/styles/" + prefix);
+  const cssPaths = getCSSPaths(portfolioNeedCSSFolder +"/" + prefix);
   console.log("got css paths")
 
   
@@ -90,15 +86,18 @@ function getCSSData(css_path) {
 }
 
 /* gets all css file paths from the portfolio directory */
-function getCSSPaths(startPath = '../../portfolio_need/styles') {
+function getCSSPaths(startPath = portfolioNeedCSSFolder) {
 
  
 
   var css_paths = [];
 
+  // absolutes path if relative path was given
   if (startPath[0] == '.') {
     startPath = path.join(__dirname, startPath)
   }
+
+  // gets the list of all directories
   var css_directories = fs.readdirSync(startPath);
 
   for (var i = 0; i < css_directories.length; i++) {
@@ -123,3 +122,22 @@ function getCSSPaths(startPath = '../../portfolio_need/styles') {
  
 exports.getCSSPaths = getCSSPaths;
 exports.getCSSData = getCSSData;
+
+
+
+async function getCSS() {
+  log("getCSS", styles.called);
+ 
+  const css = fs.readFileSync(distCondensedCSS, 'utf-8');
+  log("getCSS", styles.finished);
+  return css;
+}
+
+exports.getCSS = getCSS;
+
+function saveCSS(css) {
+  log("saveCSS", styles.called); 
+  fs.writeFileSync(distCondensedCSS, css, { flag: 'w' });
+  log("saveCSS", styles.finished);
+}
+exports.saveCSS = saveCSS;

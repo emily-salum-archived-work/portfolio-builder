@@ -22,6 +22,10 @@ class ModeView extends View {
         console.log("Removing screen-cover--" + mode);
         this.coverScreen.classList.remove("screen-cover--" + mode);
     }
+    removeLoadingContent() {
+        var _a;
+        (_a = this.loadingBar.parentElement) === null || _a === void 0 ? void 0 : _a.remove();
+    }
     applyLoadingMode() {
         this.setCoverScreenMode("loading");
         console.log("Binary ammount: " + this.binaryAmmount);

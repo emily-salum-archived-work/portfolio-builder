@@ -214,19 +214,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-class cvView extends View {
+class CvView extends View {
     inicializeElements() {
-        mainController.mainEventController.on("finishedConfigurations", () => {
-            this.cvLink.setAttribute("href", `${staticConfiguration.initialPath()}/res/cv/cv_${configuration.selectedLanguage}.pdf`);
-        });
+    }
+    translateCv() {
+        this.cvLink.setAttribute("href", `${staticConfiguration.initialPath()}/res/others/cv/cv_${configuration.selectedLanguage}.pdf`);
     }
 }
 __decorate([
     domInjector("#cv")
-], cvView.prototype, "cvSection", void 0);
+], CvView.prototype, "cvSection", void 0);
 __decorate([
     domInjector("#cv_link")
-], cvView.prototype, "cvLink", void 0);
+], CvView.prototype, "cvLink", void 0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -344,6 +344,10 @@ class ModeView extends View {
     removeCoverScreenMode(mode) {
         console.log("Removing screen-cover--" + mode);
         this.coverScreen.classList.remove("screen-cover--" + mode);
+    }
+    removeLoadingContent() {
+        var _a;
+        (_a = this.loadingBar.parentElement) === null || _a === void 0 ? void 0 : _a.remove();
     }
     applyLoadingMode() {
         this.setCoverScreenMode("loading");
@@ -897,6 +901,17 @@ class ContactController extends Controller {
     }
 }
 let contactController = new ContactController();
+class CvController extends Controller {
+    constructor() {
+        super(CvView, 0);
+    }
+    startBehaviour() {
+        mainController.mainEventController.on("finishedConfigurations", () => {
+            this.view.translateCv();
+        });
+    }
+}
+const cvController = new CvController();
 class HeaderController extends Controller {
     constructor() {
         super(HeaderView, 500);
@@ -967,6 +982,7 @@ class ModeController extends Controller {
         this.view.applyLoadingMode();
         this.view.addListenerToFinishedBinaryDance(() => {
             console.log("Finished binary dance");
+            this.view.removeLoadingContent();
             if (this.hasControlOverConfigTag) {
                 document.body.classList.remove("body--config");
                 this.introductionView.introductionNameAnimation();

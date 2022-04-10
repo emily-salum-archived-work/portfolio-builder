@@ -36,6 +36,10 @@ class ModeView extends View {
 
     }
 
+    public removeLoadingContent() {
+        this.loadingBar.parentElement?.remove();
+    }
+
     public applyLoadingMode() {
 
         this.setCoverScreenMode("loading");

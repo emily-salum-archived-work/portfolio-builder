@@ -1,18 +1,19 @@
-let changes_sent = false;
+    let changes_sent = false;
 
 
 const loader_main = require("../../builder_pages/choose_loader/main");
 
 
-const { minifyJS } = require("../../distConstructor/jsLoader.js");
-const { updateHTML } = require('../../distConstructor/htmlLoader.js');
+const { minifyJS } = require("../../distConstructor/jsConstructor/jsLoader.js");
+const { updateHTML } = require('../../distConstructor/htmlConstructor/htmlLoader.js');
 const { updateRes } = require("../../distConstructor/resLoader.js");
 
 const { log, logListeners, styles } = require("../../utils/logger.js");
 
-const { app, BrowserWindow, ipcMain } = require('electron') 
-const { updateCSS } = require('../../distConstructor/cssLoader');
+const { app, BrowserWindow, ipcMain } = require('electron')
+const { updateCSS } = require('../../distConstructor/cssConstructor/cssLoader');
 const { loadEJSPortfolio, loadEJSListeners } = require('../ejsLoader.js');
+//const { shortenStyles } = require("../../distConstructor/globalConstructor/shorterStylesConstructor");
 let confirm_win;
 var html_to_save;
 
@@ -31,30 +32,50 @@ logListeners.push(logEmit);
 
 
 
-function open_window(html) {
+async function open_window(html) {
+
+    console.log("Opening window...");
     html_to_save = html;
-
-
+ 
     if (!confirm_win) {
         startWindow();
     }
 
-    confirm_win.loadURL(__dirname + "\\main.html").then(
-        () => {
-
-            setupOnEvents()
+    try {
 
 
-            confirm_win.webContents.send('init_update_github');
+        console.log("Open window now");
 
-        });
+        let url = __dirname + "\\main.html";
 
+        await confirm_win.loadURL(url);
+        
+        openedWindow();
+    
+    } catch (err) {
+        console.log(err);
+    }
+
+    console.log("Window opened.");
 }
+
+
 exports.open_window = open_window;
 
+function openedWindow() {
+    try {
+        setupOnEvents()
+        confirm_win.webContents.send('init_update_github');
+    }
+    catch (err) {
+        log("Error in open_window: " + err, styles.error);
+        throw err;
+    }
+}
 
 function startWindow() {
 
+    console.log("Creating window...");
     confirm_win = new BrowserWindow({
         width: 900,
         height: 520,
@@ -63,9 +84,10 @@ function startWindow() {
             nodeIntegration: true, contextIsolation: false,
         }
     });
+    console.log("Window created.");
 }
 
-loadEJSListeners.push(open_window);
+//loadEJSListeners.push(open_window);
 
 
 
@@ -110,18 +132,18 @@ function sendChanges() {
 
     logEmit("Sending changes to github...");
 
-     
+
 
     /* Paths to every file that will be added to the portfolio repository */
     let paths = getBuilderPaths([
 
 
         { // gets dist, extracts its contents to root
-            "str": "dist", 
+            "str": "dist",
             "options": {
                 "extract": true
             }
-        },  
+        },
 
     ]);
 
@@ -141,7 +163,7 @@ function sendChanges() {
 function callGithubInit(args) {
 
     let { PythonShell } = require('python-shell');
-    
+
     const pythonPath = "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python39\\python.exe";
 
 
@@ -150,7 +172,7 @@ function callGithubInit(args) {
         args: ["portfolio",
             args,
             true]
-    };  
+    };
 
 
     const githubInitPath = "C:\\Users\\user\\Desktop\\emily\\projects\\@python_projects\\@Automation\\github_init\\togit\\github_args.py";
@@ -161,7 +183,7 @@ function callGithubInit(args) {
             log("Error in github_init: " + err, styles.error);
             throw err;
         }
- 
+
         log("github.py finished.");
 
         console.log(results);
@@ -173,6 +195,9 @@ function callGithubInit(args) {
 
 /* Events for buttons in control-interface */
 function setupOnEvents() {
+
+    console.log("Setting up events...");
+
     ipcMain.on('send_changes', sendChanges);
 
     ipcMain.on("save_and_send_changes", () => {
@@ -180,6 +205,10 @@ function setupOnEvents() {
         sendChanges();
     });
 
+    /*
+    ipcMain.on("shorten_styles", () => {
+        shortenStyles();
+    });*/
 
     ipcMain.on("update_html_and_js", () => {
 

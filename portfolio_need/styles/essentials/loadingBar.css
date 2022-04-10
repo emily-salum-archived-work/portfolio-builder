@@ -28,14 +28,18 @@
     overflow-y: hidden;
     animation: load-bar 3s forwards  ;
 
+    width: 100%; 
     transition: 1s all;
+
+    
 }
  
  
 @keyframes load-bar {
     
-     0% {
-        width:  0vw; 
+     0% { 
+        transform: scaleX(0);
+        transform: translate(-10%);
         opacity: 0;
          
     }
@@ -43,6 +47,7 @@
     10% {
         width:  0vw; 
         opacity: 1;
+        transform: translate(-4%);
         background-color: #475e43;
     }
 
@@ -59,9 +64,9 @@
         background-color: #59ff6f;
     }
 
-    100% {
-        width: 100%; 
+    100% { 
          
+        transform: scaleX(1);
         background-color: #068116;
     }
  
@@ -72,6 +77,10 @@
     70% {
         opacity: 1;
     }
+    90% {
+        opacity: 0.25;
+    }
+
     100% {
         opacity: 0;
     }

@@ -34,7 +34,8 @@ class ModeController extends Controller<ModeView> {
             console.log("Finished binary dance");
 
              
-
+            this.view.removeLoadingContent();
+            
             if(this.hasControlOverConfigTag) {
                 document.body.classList.remove("body--config");
                 this.introductionView.introductionNameAnimation();

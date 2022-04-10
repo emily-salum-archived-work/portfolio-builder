@@ -5,14 +5,19 @@ const fse = require('fs-extra');
 const compressor = require('node-minify');
 const path = require('path');
 
-const {log, styles} = require("../utils/logger.js");
-const { deleteFile, walk } = require("../utils/fileControl");
+const { log, styles } = require("../../utils/logger.js");
+const { deleteFile, walk } = require("../../utils/fileControl");
 
 
- 
+let mainFolder = "../../../portfolio_need"; 
+
+const compressedJSPath = path.join(__dirname, "../../../dist/js/compressed_js.js");
+const portfolioNeedJSPath = path.join(__dirname, "../../../portfolio_need/js/compressed_js.js");
+
+
 // special key to represent the file was recently written and needs HTML to be inserted on it.
 // currently this doesnt do anything. read the end of htmlLoader to know more;
-const needsHTMLInsert = "" 
+const needsHTMLInsert = ""
 exports.needsHTMLInsert = needsHTMLInsert;
 
 exports.minifyJS = function minifyJS() {
@@ -20,24 +25,35 @@ exports.minifyJS = function minifyJS() {
 
   log("minifyJS", styles.called);
 
-  const pathToJS = "./portfolio_need/js/"
+
+  if(!fs.existsSync(portfolioNeedJSPath)){
+      buildCondensedJS().then(()=> {
+        doMinifyJS();
+      });
+      return;
+  }
+  
+  doMinifyJS();
 
 
-  deleteFile(path.join(__dirname, "../../dist/js/compressed_js.js"))
+}
+
+function doMinifyJS() {
+  deleteFile(compressedJSPath)
 
   try {
 
     compressor.minify({
       compressor: "uglify-es",
-      input: __dirname + '/../.' + pathToJS + "compressed_js.js",
-      output: __dirname + "/../../dist/js/compressed_js.js",
+      input: portfolioNeedJSPath,
+      output: compressedJSPath,
       options: {
         compress: {
-          pure_funcs: [ 'console.log' ],
+          pure_funcs: ['console.log'],
         },
-    
-          
-      
+
+
+
 
         mangle: true,
 
@@ -52,37 +68,34 @@ exports.minifyJS = function minifyJS() {
   }
 
 
-
-
-
 }
 
 function minifiedJS(err, data) {
-  if (err) { 
+  if (err) {
     log("minifiedJS", styles.error, err);
     throw err;
   }
 
-  log("minifiedJS", styles.called, {"result size": data.length});
- 
+  log("minifiedJS", styles.called, { "result size": data.length });
+
 
   console.log("read file");
 
   let newData = data.replace(/portfolio_need/g, ".");
- 
-  
+
+
 
   finishWrittingJS(newData);
 
 }
 
 function finishWrittingJS(newData) {
- 
-  
-   
-  newData =  needsHTMLInsert + newData;
 
-  fs.writeFileSync(__dirname + "/../../dist/js/compressed_js.js",
+  log("finishWrittingJS", styles.called);
+
+  newData = needsHTMLInsert + newData;
+
+  fs.writeFileSync(compressedJSPath,
     newData, "utf8")
 
 
@@ -132,13 +145,15 @@ function getConcactanableJS(pathToJS) {
 
 }
 
-exports.buildCondensedJS = function buildCondensedJS() {
+ async function buildCondensedJS() {
 
+  console.log("buildCondensedJS");
 
   let compressedJS = ""
 
 
-  deleteFile(path.join(__dirname, "../../portfolio_need/js/compressed_js.js"))
+  deleteFile(portfolioNeedJSPath)
+
 
 
   /* Condensed js file follows this order to allow for linear reading 
@@ -147,39 +162,55 @@ exports.buildCondensedJS = function buildCondensedJS() {
     "classes", "models",
     "languages", "view", "controllers"];
 
-  let mainFolder = "portfolio_need"
+
   renderOrder.forEach(folder => {
-
-
-
-
-    walk("./" + mainFolder + "/js/" + folder, (err, results) => {
-
-
-      results.forEach(file => {
-
-        compressedJS += getConcactanableJS(file);
-
-      }
-      )
-
-
-    })
-
+    compressedJS = addJSFolderContentToCompressedJS(compressedJS, folder);
   })
 
-/*
-  let compressedJSSplitByDecorate = compressedJS.split(decorateTSTranslation);
-  
-  log("compressed js decorate repetitions: " + compressedJSSplitByDecorate.length, styles.called);
-  compressedJS = compressedJSSplitByDecorate[0] + compressedJSSplitByDecorate.slice(1).join("");
-*/
-  fs.writeFileSync("./" + mainFolder + "/js/compressed_js.js", compressedJS, { flag: 'w' });
+  /*
+    let compressedJSSplitByDecorate = compressedJS.split(decorateTSTranslation);
+    
+    log("compressed js decorate repetitions: " + compressedJSSplitByDecorate.length, styles.called);
+    compressedJS = compressedJSSplitByDecorate[0] + compressedJSSplitByDecorate.slice(1).join("");
+  */
 
+  await saveJS(compressedJS, portfolioNeedJSPath);
+
+  console.log("buildCondensedJS over ");
 
 }
 
- 
+exports.buildCondensedJS = buildCondensedJS;
 
 
- 
+function addJSFolderContentToCompressedJS(compressedJS, folder) {
+  console.log("folder ", folder);
+
+  walk(path.join( __dirname,mainFolder) + "/js/" + folder, (err, results) => {
+    results.forEach(file => {
+
+      compressedJS += getConcactanableJS(file);
+
+    })
+  })
+  
+  return compressedJS;
+}
+
+
+async function getJS() {
+
+  let jsFile = fs.readFileSync(compressedJSPath, 'utf-8');
+
+  return jsFile;
+}
+exports.getJS = getJS;
+
+function saveJS(js, path=compressedJSPath) {
+
+  console.log("saveJS");
+  fs.writeFileSync(path,
+    js, { flag: 'w' });
+
+}
+exports.saveJS = saveJS;
